@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ArunKoundinya.github.io/TidyTuesday/index.html</loc>
-    <lastmod>2024-02-15T16:08:06.621Z</lastmod>
+    <loc>https://ArunKoundinya.github.io/TidyTuesday/analysis/16012024/Tidy16012024.html</loc>
+    <lastmod>2024-02-15T16:14:02.868Z</lastmod>
   </url>
   <url>
     <loc>https://ArunKoundinya.github.io/TidyTuesday/about.html</loc>
-    <lastmod>2024-02-15T16:08:06.621Z</lastmod>
+    <lastmod>2024-02-15T16:14:02.868Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ArunKoundinya.github.io/TidyTuesday/index.html</loc>
+    <lastmod>2024-02-15T16:14:02.868Z</lastmod>
   </url>
 </urlset>
