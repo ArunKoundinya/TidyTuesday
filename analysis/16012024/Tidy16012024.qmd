@@ -1,0 +1,55 @@
+---
+title: Tidy Tuesday  - US Polling Places
+subtitle: 16th Jan 2024
+execute:
+  code-link: true
+---
+
+# 0. Loading Libraries
+```{python}
+#| label: loading_libraries
+#| warning: false
+
+import pandas as pd
+from dfply import *
+from plotnine import *
+```
+
+# 1. Data Loading
+
+```{python}
+#| label: loading_data
+#| warning: false
+
+polling=pd.read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-01-16/polling_places.csv")
+polling.head()
+```
+
+# 2. Data Transformation
+
+```{python}
+#| label: creating_summary
+#| warning: false
+
+polling['year'] = polling['election_date'].apply(lambda x: int(x.split('-')[0]))
+
+polling_summary = (polling >> group_by(X.year) >> summarize(count=n(X.year)) )
+```
+
+# 3. Plotting 
+
+```{python}
+#| label: Count_Polling_Places
+#| warning: false
+
+(polling_summary >> 
+ ggplot(aes(x = 'year', y = 'count')) + 
+ geom_line() + theme_minimal() + 
+ labs (
+     x = "Year", 
+     y = "No. of Polling Places",
+     title = "Count of Polling Places",
+     subtitle = "2012 to 2020"
+ ) 
+)
+```

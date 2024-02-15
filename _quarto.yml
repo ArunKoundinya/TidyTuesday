@@ -5,9 +5,10 @@ website:
   title: "TidyTuesday"
   navbar:
     left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+      - text: Home
+        href: index.qmd
+      - text: About
+        href: about.qmd
 
 format:
   html:

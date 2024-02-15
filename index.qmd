@@ -1,7 +1,12 @@
 ---
-title: "TidyTuesday"
+title: "TidyTuesday Solved Soluitions"
+subtitle: "By Arun Koundinya"
 ---
 
-This is a Quarto website.
+This website is designed to showcase my solutions to [TidyTuesday](https://github.com/rfordatascience/tidytuesday) challenges. In the initial weeks, I will focus on basic analysis and plotting. As the weeks progress, I aim to provide more sophisticated and holistic solutions.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+| Tidy Tuesday Date | Dataset About                                                                                                              | Link for my approach                                                                                           | Comments                 |
+|-------------------|----------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|--------------------------|
+| 16th Jan 2024     | [US Polling Places 2012-2020](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-01-16/readme.md)   | [Analysis-16012024](https://arunkoundinya.github.io/TidyTuesday.Github.io/analysis/16012024/Tidy16012024.html) | My first Basic Line Plot |
+| 30th Jan 2024     | [Groundhog predictions](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-01-30/readme.md)         |                                                                                                                |                          |
+| 13th Feb 2024     | [Valentine's Day consumer data](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-13/readme.md) | Under Development                                                                                              |                          |
