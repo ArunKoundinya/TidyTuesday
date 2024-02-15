@@ -3,12 +3,21 @@ project:
 
 website:
   title: "TidyTuesday"
+  description: "Homepage for Tidy Solutions on Python"
+  favicon: /images/logo.jpeg
+
   navbar:
     left:
       - text: Home
         href: index.qmd
       - text: About
         href: about.qmd
+
+
+  page-footer:
+    right: "This page is built with 💛 and [Quarto](https://quarto.org/)."
+    left: "&copy; Copyright 2024, Arun Koundinya Parasa"
+    background: "#36494E" 
 
 format:
   html:

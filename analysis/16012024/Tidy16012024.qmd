@@ -13,6 +13,7 @@ execute:
 import pandas as pd
 from dfply import *
 from plotnine import *
+import ssl
 ```
 
 # 1. Data Loading
@@ -20,6 +21,9 @@ from plotnine import *
 ```{python}
 #| label: loading_data
 #| warning: false
+
+## adding below ssl line as it is giving ssl error locally in my machine
+ssl._create_default_https_context = ssl._create_unverified_context
 
 polling=pd.read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-01-16/polling_places.csv")
 polling.head()
