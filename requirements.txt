@@ -1,0 +1,9 @@
+pandas
+dfply
+plotnine
+matplotlib
+numpy
+markdown
+folium
+jupyter
+
