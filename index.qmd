@@ -15,6 +15,8 @@ The coding is done in python majorly using the following packages as of now:
 
 -   dfply { Similar to that of tidyverse of R }
 
+May be in future may add matplotlib , plotly and shiny
+
 | Tidy Tuesday Date | Dataset About                                                                                                              | Link for my approach                                     | Comments                 |
 |------------------|-------------------|------------------|------------------|
 | 16th Jan 2024     | [US Polling Places 2012-2020](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-01-16/readme.md)   | [Analysis-16012024](analysis/16012024/Tidy16012024.html) | My first Basic Line Plot |
