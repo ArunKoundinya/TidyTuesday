@@ -7,11 +7,39 @@
     "text": "0. Loading Libraries\n\nimport pandas as pd\nfrom dfply import *\nfrom plotnine import *\nimport ssl\n\n\n\n1. Data Loading\n\n## adding below ssl line as it is giving ssl error locally in my machine\nssl._create_default_https_context = ssl._create_unverified_context\n\npolling=pd.read_csv(\"https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-01-16/polling_places.csv\")\npolling.head()\n\n\n\n\n\n\n\n\n\nelection_date\nstate\ncounty_name\njurisdiction\njurisdiction_type\nprecinct_id\nprecinct_name\npolling_place_id\nlocation_type\nname\naddress\nnotes\nsource\nsource_date\nsource_notes\n\n\n\n\n0\n2020-11-03\nAL\nAUTAUGA\nAUTAUGA\ncounty\nNaN\nAUTAUGAVILLE VOL FIRE DEPT\nNaN\nelection_day\nAUTAUGAVILLE VOL FIRE DEPT\n2610 HIGHWAY 14 W, AUTAUGAVILLE, AL 36003\nNaN\nORR\n2020-10-21\nNaN\n\n\n1\n2020-11-03\nAL\nAUTAUGA\nAUTAUGA\ncounty\nNaN\nBILLINGSLEY COMMUNITY CENTER\nNaN\nelection_day\nBILLINGSLEY COMMUNITY CENTER\n2159 COUNTY RD 37, BILLINGSLEY, AL 36006\nNaN\nORR\n2020-10-21\nNaN\n\n\n2\n2020-11-03\nAL\nAUTAUGA\nAUTAUGA\ncounty\nNaN\nBOONE'S CHAPEL\nNaN\nelection_day\nBOONE'S CHAPEL\n2301 COUNTY RD 66, PRATTVILLE, AL 36067\nNaN\nORR\n2020-10-21\nNaN\n\n\n3\n2020-11-03\nAL\nAUTAUGA\nAUTAUGA\ncounty\nNaN\nBOOTH VOL FIRE DEPT\nNaN\nelection_day\nBOOTH VOL FIRE DEPT\n1701 COUNTY ROAD 10, BOOTH, AL 36008\nNaN\nORR\n2020-10-21\nNaN\n\n\n4\n2020-11-03\nAL\nAUTAUGA\nAUTAUGA\ncounty\nNaN\nCAMELLIA BAPTIST CH\nNaN\nelection_day\nCAMELLIA BAPTIST CH\n201 WOODVALE ROAD, PRATTVILLE, AL 36067\nNaN\nORR\n2020-10-21\nNaN\n\n\n\n\n\n\n\n\n\n\n2. Data Transformation\n\npolling['year'] = polling['election_date'].apply(lambda x: int(x.split('-')[0]))\n\npolling_summary = (polling &gt;&gt; group_by(X.year) &gt;&gt; summarize(count=n(X.year)) )\n\n\n\n3. Plotting\n\n(polling_summary &gt;&gt; \n ggplot(aes(x = 'year', y = 'count')) + \n geom_line() + theme_minimal() + \n labs (\n     x = \"Year\", \n     y = \"No. of Polling Places\",\n     title = \"Count of Polling Places\",\n     subtitle = \"2012 to 2020\"\n ) \n)"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "TidyTuesday Solved Soluitions",
+    "objectID": "analysis/13022024/Tidy13022024.html",
+    "href": "analysis/13022024/Tidy13022024.html",
+    "title": "Tidy Tuesday - Valentine’s Day Consumer Data",
     "section": "",
-    "text": "This website is designed to showcase my solutions to TidyTuesday challenges. In the initial weeks, I will focus on basic analysis and plotting. As the weeks progress, I aim to provide more sophisticated and holistic solutions.\nThe coding is done in python majorly using the following packages as of now:\n\npandas\nnumpy\nplotnine { Similar to that of ggplot of R }\ndfply { Similar to that of tidyverse of R }\n\n\n\n\nTidy Tuesday Date\nDataset About\nLink for my approach\nComments\n\n\n\n\n16th Jan 2024\nUS Polling Places 2012-2020\nAnalysis-16012024\nMy first Basic Line Plot\n\n\n30th Jan 2024\nGroundhog predictions\nAnalysis-30012024\nDensity Plots\n\n\n13th Feb 2024\nValentine’s Day consumer data\nUnder Development"
+    "text": "import pandas as pd\nfrom dfply import *\nfrom plotnine import *\nimport ssl"
+  },
+  {
+    "objectID": "analysis/13022024/Tidy13022024.html#historical-spending-pattern",
+    "href": "analysis/13022024/Tidy13022024.html#historical-spending-pattern",
+    "title": "Tidy Tuesday - Valentine’s Day Consumer Data",
+    "section": "2.1. Historical Spending Pattern",
+    "text": "2.1. Historical Spending Pattern\n\n\nSpending Patterns Plot Code\nplot1 = (gifts_age &gt;&gt; \n        ggplot(aes(x='Age',y='SpendingCelebrating')) + \n        geom_col(fill='#378DBD', color='white', width=0.7) +  \n        theme_minimal() + \n        labs(\n            x = 'Age Group',\n            y = '% People Celebrating',\n            title = '% People Celebrating by Age Group'\n        )\n        )\n\nprint(plot1)\n\nplot2 = (gifts_gender &gt;&gt; \n        ggplot(aes(x='Gender',y='SpendingCelebrating')) + \n        geom_col(fill='#378DBD', color='white', width=0.7) +  \n        theme_minimal() + \n        labs(\n            x = 'Gender',\n            y = '% People Celebrating',\n            title = '% People Celebrating by Gender'\n        )\n        )\n\nprint(plot2)\n\nplot3 = (historical_spending &gt;&gt;\n        ggplot(aes(x='Year', y='PercentCelebrating')) +\n        geom_col(fill='#378DBD', color='white', width=0.7) + \n        theme_minimal() + \n        labs(\n            x = \"Year\",\n            y = \"% People Celebrating\",\n            title = '% People Celebrating YonY'\n        )\n        )\n\nprint(plot3)\n\nplot4 = (historical_spending &gt;&gt;\n        ggplot(aes(x='Year', y='PerPerson')) +\n        geom_col(fill='#378DBD', color='white', width=0.7) + \n        theme_minimal() + \n        labs(\n            x = \"Year\",\n            y = \"Avg. Amount Spending Per Person\",\n            title = 'Avg. Amount Spend per Person YonY'\n        ))\n\nprint(plot4)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFindings:\n\nSpending percentage decreases as people age, which is quite intuitive. Although there is a decrease by 10 basis points as the age group increases, later, the decrease rate reduces, conveying that a significant number of happy couples stick to the tradition to keep their love life in the limelight.\nThe percentage of people’s Valentine’s spending hasn’t reduced; instead, the spending has almost doubled over the years. Partly, this increase can be attributed to inflation, but overall, the spending has increased."
+  },
+  {
+    "objectID": "analysis/13022024/Tidy13022024.html#historical-spending-pattern-by-category",
+    "href": "analysis/13022024/Tidy13022024.html#historical-spending-pattern-by-category",
+    "title": "Tidy Tuesday - Valentine’s Day Consumer Data",
+    "section": "2.2. Historical Spending Pattern by Category",
+    "text": "2.2. Historical Spending Pattern by Category\n\n\nSpending Patterns by Category Plot Code\n(\n    historical_spending &gt;&gt;\n    gather(\"category\", \"value\", \n    [\"Candy\", \"Flowers\", \"Jewelry\", \"GreetingCards\", \"EveningOut\", \"Clothing\", \"GiftCards\"]\n    ) &gt;&gt; \n    ggplot(aes(x='Year', y='value', color='category')) + \n    geom_line() + \n    theme_minimal() + \n    labs(\n        x='Year',\n        y='Avg. Amount Spend per Person',\n        title='Avg. Amount Spend per Person YonY'\n    ) + \n    guides(color=guide_legend(title=\"\")) +  # Use an empty string to remove the legend title\n    theme(legend_position=(0.35, 0.85))\n)\n\n\n\n\n\n\n\n\n\nFindings:\n\nSpending on Jewelry and Clothing has increased over the years."
+  },
+  {
+    "objectID": "analysis/13022024/Tidy13022024.html#spending-pattern-by-category",
+    "href": "analysis/13022024/Tidy13022024.html#spending-pattern-by-category",
+    "title": "Tidy Tuesday - Valentine’s Day Consumer Data",
+    "section": "2.3. Spending Pattern by Category",
+    "text": "2.3. Spending Pattern by Category\n\n\nSpending Patterns by Category Plot Code\n(\n    gifts_age &gt;&gt;\n    gather(\"category\", \"value\", \n    [\"Candy\", \"Flowers\", \"Jewelry\", \"GreetingCards\", \"EveningOut\", \"Clothing\", \"GiftCards\"]\n    ) &gt;&gt; \n    ggplot(aes(x='category', y='value', fill='Age')) + \n    geom_col() + \n    theme_minimal() + \n    labs(\n        x='Category of Spends',\n        y='Avg. % Spending',\n        title='Avg. Spending percentage across Categories'\n    ) + \n    guides(fill=guide_legend(title=\"\")) +  # Use an empty string to remove the legend title\n    theme(legend_position=(0.5, 0.85))\n)\n\n\n\n\n\n\n\n\n\nFindings:\n\nMore people spend on candies, suggesting a desire to sweeten their partner’s experience.\nGifting flowers and evening outings are notably common across younger age groups in comparison.\nGifting jewelry, although less frequent, appears to be more common among younger age groups, implying a tendency to impress partners with costly gifts.\nIn contrast, older generations celebrating Valentine’s Day seem to realize that words and moments are more meaningful than expensive items, reflected in the higher incidence of gifting greeting cards."
+  },
+  {
+    "objectID": "analysis/13022024/Tidy13022024.html#spending-pattern-by-gender",
+    "href": "analysis/13022024/Tidy13022024.html#spending-pattern-by-gender",
+    "title": "Tidy Tuesday - Valentine’s Day Consumer Data",
+    "section": "2.4. Spending Pattern by Gender",
+    "text": "2.4. Spending Pattern by Gender\n\n\nSpending Patterns by Gender Plot Code\n(\n    gifts_gender &gt;&gt;\n    gather(\"category\", \"value\", \n    [\"Candy\", \"Flowers\", \"Jewelry\", \"GreetingCards\", \"EveningOut\", \"Clothing\", \"GiftCards\"]\n    ) &gt;&gt; \n    ggplot(aes(x='category', y='value', fill='Gender')) + \n    geom_col() + \n    theme_minimal() + \n    labs(\n        x='Category of Spends',\n        y='Avg. % Spending',\n        title='Avg. Spending percentage across Categories'\n    ) + \n    guides(fill=guide_legend(title=\"\")) +  # Use an empty string to remove the legend title\n    theme(legend_position=(0.5, 0.85))\n)\n\n\n\n\n\n\n\n\n\nFindings:\n\nMen tend to predominantly choose flowers and jewelry as their gift categories.\nIn contrast, women’s dominant categories are gift cards and greeting cards, and the margin between these two categories is noticeable.\nThis sheds light on the differing expectations that men and women may have for their partners."
   },
   {
     "objectID": "about.html",
@@ -19,6 +47,13 @@
     "title": "About",
     "section": "",
     "text": "About this site"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "TidyTuesday Solved Soluitions",
+    "section": "",
+    "text": "This website is designed to showcase my solutions to TidyTuesday challenges. In the initial weeks, I will focus on basic analysis and plotting. As the weeks progress, I aim to provide more sophisticated and holistic solutions.\nThe coding is done in python majorly using the following packages as of now:\n\npandas\nnumpy\nplotnine { Similar to that of ggplot of R }\ndfply { Similar to that of tidyverse of R }\n\nMay be in future may add matplotlib , plotly and shiny\n\n\n\nTidy Tuesday Date\nDataset About\nLink for my approach\nComments\n\n\n\n\n16th Jan 2024\nUS Polling Places 2012-2020\nAnalysis-16012024\nMy first Basic Line Plot\n\n\n30th Jan 2024\nGroundhog predictions\nAnalysis-30012024\nDensity Plots\n\n\n13th Feb 2024\nValentine’s Day consumer data\nAnalysis-13022024\nColumn Plots"
   },
   {
     "objectID": "analysis/30012024/Tidy30012024.html",
