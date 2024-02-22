@@ -5,7 +5,7 @@ wordcloud
 spacy
 matplotlib
 numpy
-sklearn
+scikit-learn
 markdown
 folium
 jupyter
