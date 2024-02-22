@@ -1,8 +1,11 @@
 pandas
 dfply
 plotnine
+wordcloud
+spacy
 matplotlib
 numpy
+sklearn
 markdown
 folium
 jupyter
