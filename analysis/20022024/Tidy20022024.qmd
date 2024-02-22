@@ -164,11 +164,11 @@ plot1 = (isc_grants >>
         ggplot(aes(x = 'clusters' , y = 'fun' )) + 
         geom_col(fill="blue") + 
         facet_wrap('~year') + theme_minimal() + theme(figure_size=(4, 3)) +
-        scale_x_continuous(labels=lambda x: ['${:.0f}K'.format(i / 1000) for i in x]) +
+        scale_y_continuous(labels=lambda x: ['${:.0f}K'.format(i / 1000) for i in x]) +
         labs (
             x = "Clusters",
             y = "Funding Amount in $",
-            title = "Funding Amount across Clusters YonY"
+            caption = "Funding Amount across Clusters YonY"
         )
         )
 
@@ -183,7 +183,7 @@ plot2 = (isc_grants >>
         labs (
             x = "Clusters",
             y = "Number of Grants",
-            title = "Number of Grants across Clusters YonY"
+            caption = "Number of Grants across Clusters YonY"
         )
         )
 
