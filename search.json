@@ -42,6 +42,13 @@
     "text": "2.4. Spending Pattern by Gender\n\n\nSpending Patterns by Gender Plot Code\n(\n    gifts_gender &gt;&gt;\n    gather(\"category\", \"value\", \n    [\"Candy\", \"Flowers\", \"Jewelry\", \"GreetingCards\", \"EveningOut\", \"Clothing\", \"GiftCards\"]\n    ) &gt;&gt; \n    ggplot(aes(x='category', y='value', fill='Gender')) + \n    geom_col() + \n    theme_minimal() + \n    labs(\n        x='Category of Spends',\n        y='Avg. % Spending',\n        title='Avg. Spending percentage across Categories'\n    ) + \n    guides(fill=guide_legend(title=\"\")) +  # Use an empty string to remove the legend title\n    theme(legend_position=(0.5, 0.85))\n)\n\n\n\n\n\n\n\n\n\nFindings:\n\nMen tend to predominantly choose flowers and jewelry as their gift categories.\nIn contrast, women’s dominant categories are gift cards and greeting cards, and the margin between these two categories is noticeable.\nThis sheds light on the differing expectations that men and women may have for their partners."
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "TidyTuesday Solved Soluitions",
+    "section": "",
+    "text": "This website is designed to showcase my solutions to TidyTuesday challenges. In the initial weeks, I will focus on basic analysis and plotting. As the weeks progress, I aim to provide more sophisticated and holistic solutions.\nThe coding is done in python majorly using the following packages as of now:\n\npandas\nnumpy\nplotnine { Similar to that of ggplot of R }\ndfply { Similar to that of tidyverse of R }\n\nMay be in future may add matplotlib , plotly and shiny\n\n\n\nTidy Tuesday Date\nDataset About\nLink for my approach\nComments\n\n\n\n\n16th Jan 2024\nUS Polling Places 2012-2020\nAnalysis-16012024\nMy first Basic Line Plot\n\n\n30th Jan 2024\nGroundhog predictions\nAnalysis-30012024\nDensity Plots\n\n\n13th Feb 2024\nValentine’s Day consumer data\nAnalysis-13022024\nColumn Plots\n\n\n20th Feb 2024\nR Consortium ISC Grants\nAnalysis-20022024\nSegment Plot & Word Cloud; Used Spacy English Model"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -49,11 +56,46 @@
     "text": "About this site"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "TidyTuesday Solved Soluitions",
+    "objectID": "analysis/20022024/Tidy20022024.html",
+    "href": "analysis/20022024/Tidy20022024.html",
+    "title": "Tidy Tuesday - R Consortium ISC Grants",
     "section": "",
-    "text": "This website is designed to showcase my solutions to TidyTuesday challenges. In the initial weeks, I will focus on basic analysis and plotting. As the weeks progress, I aim to provide more sophisticated and holistic solutions.\nThe coding is done in python majorly using the following packages as of now:\n\npandas\nnumpy\nplotnine { Similar to that of ggplot of R }\ndfply { Similar to that of tidyverse of R }\n\nMay be in future may add matplotlib , plotly and shiny\n\n\n\nTidy Tuesday Date\nDataset About\nLink for my approach\nComments\n\n\n\n\n16th Jan 2024\nUS Polling Places 2012-2020\nAnalysis-16012024\nMy first Basic Line Plot\n\n\n30th Jan 2024\nGroundhog predictions\nAnalysis-30012024\nDensity Plots\n\n\n13th Feb 2024\nValentine’s Day consumer data\nAnalysis-13022024\nColumn Plots"
+    "text": "import pandas as pd\nimport numpy as np\nimport ssl\n\nfrom plotnine import *\nfrom dfply import *\n\nfrom wordcloud import *\nimport matplotlib.pyplot as plt\n\n\nimport spacy\nimport spacy.cli\nspacy.cli.download(\"en_core_web_sm\")\nnlp = spacy.load(\"en_core_web_sm\")\n\n\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.cluster import KMeans"
+  },
+  {
+    "objectID": "analysis/20022024/Tidy20022024.html#total-funding-per-cluster",
+    "href": "analysis/20022024/Tidy20022024.html#total-funding-per-cluster",
+    "title": "Tidy Tuesday - R Consortium ISC Grants",
+    "section": "3.1. Total Funding Per Cluster",
+    "text": "3.1. Total Funding Per Cluster\n\n\nCode for Segment Plot by Cluster\nplot = (isc_grants &gt;&gt; \n        group_by(X.clusters) &gt;&gt; \n        summarize(fun = np.sum(X.funded), count = n(X.clusters) ) &gt;&gt; \n        ggplot(aes(y = 'clusters' , x = 'fun' )) + \n        geom_point(shape=\"*\",size=4, color=\"blue\") + geom_segment(aes(xend=0, yend='clusters'), color=\"green\", size=1) + theme_minimal() + \n        labs(\n            x = \"Total Funded Amount in $\",\n            y = \"Cluster\",\n            title = \"Total Amount of Funding per Cluster\"\n        )\n        +scale_x_continuous(labels=lambda x: ['${:.0f}K'.format(i / 1000) for i in x])\n        )\n\nplot.save(\"Segment.png\", width=8, height=6)\n\n\n\n\n\n\n\nInterpreation\n\nCluster 0 is characterized by a high level of funding, whereas Cluster 3 exhibits relatively lower funding."
+  },
+  {
+    "objectID": "analysis/20022024/Tidy20022024.html#total-funding-vs-total-grants-relationship",
+    "href": "analysis/20022024/Tidy20022024.html#total-funding-vs-total-grants-relationship",
+    "title": "Tidy Tuesday - R Consortium ISC Grants",
+    "section": "3.2. Total Funding vs Total Grants Relationship",
+    "text": "3.2. Total Funding vs Total Grants Relationship\n\n\nCode for Scatter Plot between funding amount and grants\nplot = (isc_grants &gt;&gt; \n        group_by(X.year ) &gt;&gt; \n        summarize(fun = np.sum(X.funded), count = n(X.clusters) ) &gt;&gt; \n        ggplot(aes(x = 'fun' , y = 'count' )) + \n        geom_point(color=\"blue\") + geom_smooth(method='lm',se=False,color=\"green\") + \n        theme_minimal() + \n        labs (\n            x = \"Funding Amount\",\n            y = \"Number of Grants\",\n            title = \"Linear Relationship \",\n            subtitle = \"b/w #grants & funding$\"\n        ) + \n        scale_x_continuous(labels=lambda x: ['${:.0f}K'.format(i / 1000) for i in x])\n        )\n\nplot.save(\"Funding.png\", width=8, height=6)\n\n\n\n\n\n\n\nInterpreation\n\nA clear linear relationship is evident between the number of grants and the funding amount"
+  },
+  {
+    "objectID": "analysis/20022024/Tidy20022024.html#funding-amount-per-cluster-over-years",
+    "href": "analysis/20022024/Tidy20022024.html#funding-amount-per-cluster-over-years",
+    "title": "Tidy Tuesday - R Consortium ISC Grants",
+    "section": "3.3. Funding Amount Per Cluster Over Years",
+    "text": "3.3. Funding Amount Per Cluster Over Years\n\n\nCode for Plot of Funding Amount per Cluster Over Years\nplot1 = (isc_grants &gt;&gt; \n        group_by(X.year , X.clusters) &gt;&gt; \n        summarize(fun = np.sum(X.funded), count = n(X.clusters) ) &gt;&gt; \n        ggplot(aes(x = 'clusters' , y = 'fun' )) + \n        geom_col(fill=\"blue\") + \n        facet_wrap('~year') + theme_minimal() + theme(figure_size=(4, 3)) +\n        scale_x_continuous(labels=lambda x: ['${:.0f}K'.format(i / 1000) for i in x]) +\n        labs (\n            x = \"Clusters\",\n            y = \"Funding Amount in $\",\n            title = \"Funding Amount across Clusters YonY\"\n        )\n        )\n\nplot1.save(\"Funding_Clusters.png\", width=4, height=3)\n\nplot2 = (isc_grants &gt;&gt; \n        group_by(X.year , X.clusters) &gt;&gt; \n        summarize(fun = np.sum(X.funded), count = n(X.clusters) ) &gt;&gt; \n        ggplot(aes(x = 'clusters' , y = 'count' )) + \n        geom_col(fill=\"orange\") + \n        facet_wrap('~year') + theme_minimal() + theme(figure_size=(4, 3)) +\n        labs (\n            x = \"Clusters\",\n            y = \"Number of Grants\",\n            title = \"Number of Grants across Clusters YonY\"\n        )\n        )\n\nplot2.save(\"Count_Clusters.png\", width=4, height=3)\n\n\n \nInterpreation\n\nA nearly identical linear relationship between the number of grants and funding amount is apparent, indicating a consistent funding amount per grant.\nFurthermore, distinct funding values emerge across the clusters, highlighting variations in funding amounts despite similar numbers of grants within each cluster."
+  },
+  {
+    "objectID": "analysis/20022024/Tidy20022024.html#combined-wordcloud",
+    "href": "analysis/20022024/Tidy20022024.html#combined-wordcloud",
+    "title": "Tidy Tuesday - R Consortium ISC Grants",
+    "section": "3.4. Combined WordCloud",
+    "text": "3.4. Combined WordCloud\n\n\nCode for Combined Words of WordCloud\ncombined_text = ' '.join(isc_grants['keywords'].sum())\n\nwordcloud = (\n    WordCloud( \n              max_font_size=50, \n              max_words=100,       \n              background_color=\"white\")\n    .generate(combined_text)\n)\n\nplt.figure(figsize=(8, 6))\nplt.imshow(wordcloud, interpolation='bilinear')\nplt.axis('off')\nplt.title(\"Combined WordCloud\",fontsize=16 )\nplt.savefig('wordcloud_image.png') \n\n\n\n\n\n\n\nInterpreation\n\nThe prevalence of CRAN and ISC is noteworthy, and it would have been beneficial to exclude them for a more focused analysis.\nAdditionally, within the R consortium grants, there is notable diversity with the inclusion of topics such as JavaScript, DBI, and Python. This suggests a robust research scope, particularly in the realm of multiple integrations."
+  },
+  {
+    "objectID": "analysis/20022024/Tidy20022024.html#wordcloud-by-cluster",
+    "href": "analysis/20022024/Tidy20022024.html#wordcloud-by-cluster",
+    "title": "Tidy Tuesday - R Consortium ISC Grants",
+    "section": "3.4. WordCloud by Cluster",
+    "text": "3.4. WordCloud by Cluster\n\n\nCode for WordCloud by Cluster\ncombined_text1 = ' '.join(isc_grants[isc_grants['clusters'] == 0]['keywords'].sum())\ncombined_text2 = ' '.join(isc_grants[isc_grants['clusters'] == 1]['keywords'].sum())\ncombined_text3 = ' '.join(isc_grants[isc_grants['clusters'] == 2]['keywords'].sum())\ncombined_text4 = ' '.join(isc_grants[isc_grants['clusters'] == 3]['keywords'].sum())\n\nwordcloud1 = (\n    WordCloud( \n              max_font_size=50, \n              max_words=100,       \n              background_color=\"white\")\n    .generate(combined_text1)\n)\n\nwordcloud2 = (\n    WordCloud( \n              max_font_size=50, \n              max_words=100,       \n              background_color=\"white\")\n    .generate(combined_text2)\n)\n\nwordcloud3 = (\n    WordCloud( \n              max_font_size=50, \n              max_words=100,       \n              background_color=\"white\")\n    .generate(combined_text3)\n)\n\nwordcloud4 = (\n    WordCloud( \n              max_font_size=50, \n              max_words=100,       \n              background_color=\"white\")\n    .generate(combined_text4)\n)\n\nplt.figure(figsize=(4, 3))\nplt.imshow(wordcloud1, interpolation='bilinear')\nplt.axis('off')\nplt.title(\"Cluster 0 WordCloud\",fontsize=12)\nplt.savefig('wordcloud_image1.png') \n\nplt.figure(figsize=(4, 3))\nplt.imshow(wordcloud2, interpolation='bilinear')\nplt.axis('off')\nplt.title(\"Cluster 1 WordCloud\",fontsize=12)\nplt.savefig('wordcloud_image2.png') \n\nplt.figure(figsize=(4, 3))\nplt.imshow(wordcloud3, interpolation='bilinear')\nplt.axis('off')\nplt.title(\"Cluster 2 WordCloud\",fontsize=12)\nplt.savefig('wordcloud_image3.png') \n\nplt.figure(figsize=(4, 3))\nplt.imshow(wordcloud4, interpolation='bilinear')\nplt.axis('off')\nplt.title(\"Cluster 3 WordCloud\",fontsize=12)\nplt.savefig('wordcloud_image4.png') \n\n\n \n \nInterpreation\n\nIn first cluster we see DBI and Windows.\nIn second cluster we see Python and JavaScript.\nIn third cluster we see RSQLite and RMariaDB.\nIn third cluster we see LLMs and AWS.\n\nCertainly, it is evident that clustering has provided valuable insights into the primary themes of research grants. The observation that the average funding amount per grant is relatively consistent does not imply the superiority of one research segment over another. Instead, it indicates that the number of research projects in the second and fourth segments is lower when compared to the first and third segments."
   },
   {
     "objectID": "analysis/30012024/Tidy30012024.html",
