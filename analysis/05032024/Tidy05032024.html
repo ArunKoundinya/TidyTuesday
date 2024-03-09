@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>TidyTuesday - Tidy Tuesday - GroundHog Predictions</title>
+<title>TidyTuesday - Tidy Tuesday - Trash Wheel Collection Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -149,12 +149,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#loading-libraries" id="toc-loading-libraries" class="nav-link active" data-scroll-target="#loading-libraries">0. Loading Libraries</a></li>
   <li><a href="#data-loading" id="toc-data-loading" class="nav-link" data-scroll-target="#data-loading">1. Data Loading</a></li>
-  <li><a href="#data-transformation" id="toc-data-transformation" class="nav-link" data-scroll-target="#data-transformation">2. Data Transformation</a></li>
-  <li><a href="#plotting" id="toc-plotting" class="nav-link" data-scroll-target="#plotting">3. Plotting</a>
+  <li><a href="#plotting" id="toc-plotting" class="nav-link" data-scroll-target="#plotting">2. Plotting</a>
   <ul class="collapse">
-  <li><a href="#consensus-of-groundhogs-yony" id="toc-consensus-of-groundhogs-yony" class="nav-link" data-scroll-target="#consensus-of-groundhogs-yony">3.1. Consensus of Groundhogs YonY</a></li>
-  <li><a href="#count-of-groundhogs-yony" id="toc-count-of-groundhogs-yony" class="nav-link" data-scroll-target="#count-of-groundhogs-yony">3.2. Count of GroundHogs YonY</a></li>
-  <li><a href="#consensus-of-groundhogs-yony-by-shortname" id="toc-consensus-of-groundhogs-yony-by-shortname" class="nav-link" data-scroll-target="#consensus-of-groundhogs-yony-by-shortname">3.3. Consensus of GroundHogs YonY by ShortName</a></li>
+  <li><a href="#trash-weight-volume-over-years" id="toc-trash-weight-volume-over-years" class="nav-link" data-scroll-target="#trash-weight-volume-over-years">2.1. Trash Weight &amp; Volume Over Years</a></li>
+  <li><a href="#equivalent-homes-powered-with-trash-dump" id="toc-equivalent-homes-powered-with-trash-dump" class="nav-link" data-scroll-target="#equivalent-homes-powered-with-trash-dump">2.2. Equivalent Homes powered with Trash Dump</a></li>
+  <li><a href="#trash-by-category-trending" id="toc-trash-by-category-trending" class="nav-link" data-scroll-target="#trash-by-category-trending">2.3. Trash by Category Trending</a></li>
+  <li><a href="#correlation-heat-map-bw-trash-weight-content" id="toc-correlation-heat-map-bw-trash-weight-content" class="nav-link" data-scroll-target="#correlation-heat-map-bw-trash-weight-content">2.4. Correlation Heat Map B/w Trash Weight &amp; Content</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -164,8 +164,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Tidy Tuesday - GroundHog Predictions</h1>
-<p class="subtitle lead">30th Jan 2024</p>
+<h1 class="title">Tidy Tuesday - Trash Wheel Collection Data</h1>
+<p class="subtitle lead">5th March 2024</p>
 </div>
 
 
@@ -186,9 +186,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>0. Loading Libraries</h1>
 <div id="loading_libraries" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dfply <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ssl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ssl</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dfply <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="data-loading" class="level1">
@@ -197,119 +202,126 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">## adding below ssl line as it is giving ssl error locally in my machine</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ssl._create_default_https_context <span class="op">=</span> ssl._create_unverified_context</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>groundhogs <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-01-30/groundhogs.csv'</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-01-30/predictions.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="data-transformation" class="level1">
-<h1>2. Data Transformation</h1>
-<div id="transforming_data" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> pd.merge(predictions, groundhogs, on<span class="op">=</span><span class="st">"id"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>predictions_groundhog <span class="op">=</span> (merged_df <span class="op">&gt;&gt;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                         select(<span class="op">~</span>X.description, <span class="op">~</span>X.details, <span class="op">~</span>X.source, <span class="op">~</span>X.current_prediction,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                                <span class="op">~</span>X.image, <span class="op">~</span>X.slug, <span class="op">~</span>X.name, <span class="op">~</span>X.predictions_count, <span class="op">~</span>X.active) <span class="op">&gt;&gt;</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                         filter_by(X.is_groundhog <span class="op">==</span> <span class="va">True</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>trashwheels <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-03-05/trashwheel.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="plotting" class="level1">
-<h1>3. Plotting</h1>
-<section id="consensus-of-groundhogs-yony" class="level2">
-<h2 class="anchored" data-anchor-id="consensus-of-groundhogs-yony">3.1. Consensus of Groundhogs YonY</h2>
-<div id="cell-DensityPlot" class="cell" data-execution_count="4">
+<h1>2. Plotting</h1>
+<section id="trash-weight-volume-over-years" class="level2">
+<h2 class="anchored" data-anchor-id="trash-weight-volume-over-years">2.1. Trash Weight &amp; Volume Over Years</h2>
+<div id="weight-volume-trending" class="cell" data-execution_count="3">
 <details class="code-fold">
-<summary>Code for Density Plot of Consensus</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span> (predictions_groundhog <span class="op">&gt;&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>        filter_by(X.shadow.notna()) <span class="op">&gt;&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        ggplot(aes(x<span class="op">=</span><span class="st">'year'</span>, color<span class="op">=</span><span class="st">'shadow'</span>)) <span class="op">+</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        geom_density() <span class="op">+</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        scale_color_manual(name<span class="op">=</span><span class="st">'Prediction'</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                           labels<span class="op">=</span>[<span class="st">'Early Spring'</span>, <span class="st">'Long Winter'</span>],</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                           values<span class="op">=</span>[<span class="st">'#8B4513'</span>, <span class="st">'#0000CD'</span>]) <span class="op">+</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        theme_minimal(base_size<span class="op">=</span><span class="dv">14</span>) <span class="op">+</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        theme(legend_position<span class="op">=</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>)) <span class="op">+</span> </span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        theme(figure_size<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>)) <span class="op">+</span> </span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        labs(title<span class="op">=</span><span class="st">'Consensus of Groundhogs YoY'</span>))</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Weight Volume Trending Plot Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span>  ( trashwheels <span class="op">&gt;&gt;</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>        group_by(X.Year) <span class="op">&gt;&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        summarize(Weights<span class="op">=</span>np.<span class="bu">sum</span>(X.Weight), Volumes<span class="op">=</span>np.<span class="bu">sum</span>(X.Volume)) <span class="op">&gt;&gt;</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        ggplot(aes(x <span class="op">=</span> <span class="st">"Year"</span>,y<span class="op">=</span><span class="st">"Weights"</span>,fill<span class="op">=</span><span class="st">"Volumes"</span>)) <span class="op">+</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        geom_col() <span class="op">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        theme_minimal()</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plot.save(<span class="st">"TrashWeightVolume.png"</span>, width<span class="op">=</span><span class="dv">8</span>, height<span class="op">=</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display">
-<div>
+</div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="Tidy30012024_files/figure-html/densityplot-output-1.png" id="densityplot" class="img-fluid figure-img"></p>
+<p><img src="TrashWeightVolume.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="760"></p>
 </figure>
 </div>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code></code></pre>
-</div>
-</div>
-</section>
-<section id="count-of-groundhogs-yony" class="level2">
-<h2 class="anchored" data-anchor-id="count-of-groundhogs-yony">3.2. Count of GroundHogs YonY</h2>
-<div id="cell-LinePlot" class="cell" data-execution_count="5">
-<details class="code-fold">
-<summary>Code for Line Plot of Groundhogs</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span> (predictions_groundhog <span class="op">&gt;&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>        filter_by(X.shadow.notna()) <span class="op">&gt;&gt;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        group_by(X.year) <span class="op">&gt;&gt;</span> </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        summarize(n <span class="op">=</span> n(X.year)) <span class="op">&gt;&gt;</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        ggplot(aes(x<span class="op">=</span><span class="st">'year'</span>, y<span class="op">=</span><span class="st">'n'</span>)) <span class="op">+</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        geom_line() <span class="op">+</span> </span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        theme_minimal() <span class="op">+</span> </span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        labs(x<span class="op">=</span><span class="st">'year'</span>, y<span class="op">=</span><span class="st">'number of groundhogs'</span>, title<span class="op">=</span><span class="st">'Count of Groundhogs by Year'</span>))</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Tidy30012024_files/figure-html/lineplot-output-1.png" id="lineplot" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code></code></pre>
-</div>
-</div>
-</section>
-<section id="consensus-of-groundhogs-yony-by-shortname" class="level2">
-<h2 class="anchored" data-anchor-id="consensus-of-groundhogs-yony-by-shortname">3.3. Consensus of GroundHogs YonY by ShortName</h2>
-<div id="cell-Histogram_Plot_by_ShortName" class="cell" data-execution_count="6">
-<details class="code-fold">
-<summary>Code for Consensus Plot of Groundhogs by ShortName</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span> (predictions_groundhog <span class="op">&gt;&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>        filter_by(X.shadow.notna()) <span class="op">&gt;&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        ggplot(aes(x<span class="op">=</span><span class="st">'year'</span>, color<span class="op">=</span><span class="st">'shadow'</span>)) <span class="op">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        geom_histogram() <span class="op">+</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        labs(title<span class="op">=</span><span class="st">'Consensus of Groundhogs YoY'</span>) <span class="op">+</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        facet_wrap(<span class="st">'~shortname'</span>) <span class="op">+</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        scale_color_manual(name<span class="op">=</span><span class="st">'Prediction'</span>,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                           labels<span class="op">=</span>[<span class="st">'Early Spring'</span>, <span class="st">'Long Winter'</span>],</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                           values<span class="op">=</span>[<span class="st">'#8B4513'</span>, <span class="st">'#0000CD'</span>]) <span class="op">+</span> </span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        theme_minimal(base_size <span class="op">=</span> <span class="dv">14</span>) <span class="op">+</span> </span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        theme(figure_size<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">12</span>))</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>                           )</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Tidy30012024_files/figure-html/histogram_plot_by_shortname-output-1.png" id="histogram_plot_by_shortname" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code></code></pre>
-</div>
-</div>
-<p>I believe this is a simplified representation of the consensus to gain initial insights.</p>
+<p><u><strong>Findings</strong></u>:</p>
 <ul>
-<li><p>Considering the number of groundhogs included in the observational study, the majority predicted an early spring.</p></li>
-<li><p>However, since we currently lack weather data, we are unable to cross-verify which predictions were accurate.</p></li>
-<li><p>With the exception of <code>Phil</code>, most others forecasted an early spring.</p></li>
+<li><strong>Consistent Growth</strong>: Trash weight and its corresponding volume consistently show an upward trend, indicating a year-on-year increase.</li>
+<li><strong>Post-COVID Surge</strong>: Particularly noteworthy is the exponential rise in trash weight observed post the COVID-19 pandemic, highlighting a substantial increase in waste generation during this period.</li>
+</ul>
+</section>
+<section id="equivalent-homes-powered-with-trash-dump" class="level2">
+<h2 class="anchored" data-anchor-id="equivalent-homes-powered-with-trash-dump">2.2. Equivalent Homes powered with Trash Dump</h2>
+<div id="trash-volume-homes" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Equivalent Home Powered by Trash Code Plot</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span> ( trashwheels <span class="op">&gt;&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a> group_by(X.Year) <span class="op">&gt;&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a> summarize(HomesPowered<span class="op">=</span>np.<span class="bu">sum</span>(X.HomesPowered)) <span class="op">&gt;&gt;</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a> ggplot(aes(x <span class="op">=</span> <span class="st">"Year"</span>,y<span class="op">=</span><span class="st">"HomesPowered"</span>)) <span class="op">+</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a> geom_line(color <span class="op">=</span> <span class="st">"brown"</span>) <span class="op">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a> theme_minimal()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a> )</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>plot.save(<span class="st">"HomePowered.png"</span>, width<span class="op">=</span><span class="dv">8</span>, height<span class="op">=</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="HomePowered.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="760"></p>
+</figure>
+</div>
+<p><u><strong>Findings</strong></u>:</p>
+<ul>
+<li><strong>Intuitive Observation</strong>: It is evident from the data that the number of homes powered by trash is intuitively increasing over time.</li>
+</ul>
+</section>
+<section id="trash-by-category-trending" class="level2">
+<h2 class="anchored" data-anchor-id="trash-by-category-trending">2.3. Trash by Category Trending</h2>
+<div id="trash-volume-category" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Trash Volume by Category Code Plot</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span>  (trashwheels <span class="op">&gt;&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>        gather(<span class="st">"variable"</span>, <span class="st">"value"</span>, [<span class="st">"PlasticBottles"</span>, <span class="st">"Polystyrene"</span>, <span class="st">"CigaretteButts"</span>, <span class="st">"GlassBottles"</span>, <span class="st">"PlasticBags"</span>, <span class="st">"Wrappers"</span>, <span class="st">"SportsBalls"</span>]) <span class="op">&gt;&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        group_by(X.Year, X.variable) <span class="op">&gt;&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        summarize(Values<span class="op">=</span>np.<span class="bu">sum</span>(X.value)) <span class="op">&gt;&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        group_by(X.variable) <span class="op">&gt;&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        mutate(Standardized_Values<span class="op">=</span>(X.Values <span class="op">-</span> X.Values.mean()) <span class="op">/</span> X.Values.std()) <span class="op">&gt;&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        ggplot(aes(x<span class="op">=</span><span class="st">"Year"</span>, y<span class="op">=</span><span class="st">"Standardized_Values"</span>)) <span class="op">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        geom_line(color<span class="op">=</span><span class="st">"brown"</span>) <span class="op">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        facet_wrap(<span class="st">'~variable'</span>) <span class="op">+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        theme_minimal()</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plot.save(<span class="st">"TrashVolumeCat.png"</span>, width<span class="op">=</span><span class="dv">8</span>, height<span class="op">=</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="TrashVolumeCat.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="760"></p>
+</figure>
+</div>
+<p><u><strong>Findings</strong></u>:</p>
+<ul>
+<li><strong>Increasing Usage and Disposal</strong>: The consumption and disposal of Glass Bottles, Plastic Bottles, Sport Balls, and Plastic Wrappers have witnessed a steady increase in recent years.</li>
+<li><strong>Processed Food Consumption</strong>: The elevated consumption of Plastic, Wrappers, and Glass suggests a potential upward trend in the usage of processed food items, given their common packaging materials.</li>
+<li><strong>Quality Impact on Dumping</strong>: The higher consumption of Sport Balls may be linked to quality factors, potentially indicating a shorter lifespan for these items than expected. This, in turn, could contribute to an increase in waste disposal.</li>
+</ul>
+</section>
+<section id="correlation-heat-map-bw-trash-weight-content" class="level2">
+<h2 class="anchored" data-anchor-id="correlation-heat-map-bw-trash-weight-content">2.4. Correlation Heat Map B/w Trash Weight &amp; Content</h2>
+<div id="trash-correlation" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Trash Correlation Code Plot</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>selected_columns <span class="op">=</span> [<span class="st">"Weight"</span>, <span class="st">"PlasticBottles"</span>, <span class="st">"Polystyrene"</span>, <span class="st">"CigaretteButts"</span>, <span class="st">"GlassBottles"</span>, <span class="st">"PlasticBags"</span>, <span class="st">"Wrappers"</span>, <span class="st">"SportsBalls"</span>] </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>selected_data <span class="op">=</span> trashwheels[selected_columns]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>scaled_data <span class="op">=</span> scaler.fit_transform(selected_data)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>scaled_df <span class="op">=</span> pd.DataFrame(scaled_data, columns<span class="op">=</span>selected_columns)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>correlation_matrix_scaled <span class="op">=</span> scaled_df.corr()</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>sns.heatmap(correlation_matrix_scaled, annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, fmt<span class="op">=</span><span class="st">".2f"</span>, linewidths<span class="op">=</span><span class="fl">.5</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Correlation Heatmap (Scaled Data)'</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'correlation_heatmap.png'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="correlation_heatmap.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="645"></p>
+</figure>
+</div>
+<p><u><strong>Findings</strong></u>:</p>
+<ul>
+<li><strong>Limited Observations</strong>: Upon examination, I did not observe a significant association as expected. However, a noticeable correlation exists between the usage of plastic bottles and related products such as plastic bags, wrappers, and polystyrene.</li>
+<li><strong>Material Association</strong>: The correlation between plastic bottles and sport balls suggests a potential association in the manufacturing process, possibly sharing similar synthetic raw materials.</li>
 </ul>
 
 
