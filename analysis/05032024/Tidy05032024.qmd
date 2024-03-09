@@ -1,0 +1,159 @@
+---
+title: Tidy Tuesday  - Trash Wheel Collection Data
+subtitle: 5th March 2024
+format: html
+fig-dpi: 300
+execute:
+  code-link: true
+---
+
+# 0. Loading Libraries
+
+```{python}
+#| label: loading_libraries
+#| warning: false
+
+import pandas as pd
+import ssl
+from dfply import *
+from plotnine import *
+import numpy as np
+
+from sklearn.preprocessing import StandardScaler
+import seaborn as sns
+import matplotlib.pyplot as plt
+```
+
+# 1. Data Loading
+
+```{python}
+#| label: loading_data
+#| warning: false
+
+## adding below ssl line as it is giving ssl error locally in my machine
+ssl._create_default_https_context = ssl._create_unverified_context
+
+trashwheels = pd.read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-03-05/trashwheel.csv')
+```
+
+# 2. Plotting
+
+## 2.1. Trash Weight & Volume Over Years
+
+```{python}
+#| label: Weight-Volume-Trending
+#| code-fold: true
+#| code-summary: Weight Volume Trending Plot Code
+#| warning: false
+
+plot =  ( trashwheels >> 
+        group_by(X.Year) >>
+        summarize(Weights=np.sum(X.Weight), Volumes=np.sum(X.Volume)) >> 
+        ggplot(aes(x = "Year",y="Weights",fill="Volumes")) + 
+        geom_col() +
+        theme_minimal()
+        )
+
+plot.save("TrashWeightVolume.png", width=8, height=6)
+
+```
+
+![](TrashWeightVolume.png){fig-align="center" width="760"}
+
+[**Findings**]{.underline}:
+
+-   **Consistent Growth**: Trash weight and its corresponding volume consistently show an upward trend, indicating a year-on-year increase.
+-   **Post-COVID Surge**: Particularly noteworthy is the exponential rise in trash weight observed post the COVID-19 pandemic, highlighting a substantial increase in waste generation during this period.
+
+
+## 2.2. Equivalent Homes powered with Trash Dump
+
+```{python}
+#| label: Trash-Volume-Homes
+#| code-fold: true
+#| code-summary: Equivalent Home Powered by Trash Code Plot
+#| warning: false
+
+plot = ( trashwheels >> 
+ group_by(X.Year) >>
+ summarize(HomesPowered=np.sum(X.HomesPowered)) >> 
+ ggplot(aes(x = "Year",y="HomesPowered")) + 
+ geom_line(color = "brown") +
+ theme_minimal()
+ )
+
+plot.save("HomePowered.png", width=8, height=6)
+
+```
+
+![](HomePowered.png){fig-align="center" width="760"}
+
+[**Findings**]{.underline}:
+
+-   **Intuitive Observation**: It is evident from the data that the number of homes powered by trash is intuitively increasing over time.
+
+## 2.3. Trash by Category Trending
+
+```{python}
+#| label: Trash-Volume-Category
+#| code-fold: true
+#| code-summary: Trash Volume by Category Code Plot
+#| warning: false
+
+plot =  (trashwheels >>
+        gather("variable", "value", ["PlasticBottles", "Polystyrene", "CigaretteButts", "GlassBottles", "PlasticBags", "Wrappers", "SportsBalls"]) >>
+        group_by(X.Year, X.variable) >>
+        summarize(Values=np.sum(X.value)) >>
+        group_by(X.variable) >>
+        mutate(Standardized_Values=(X.Values - X.Values.mean()) / X.Values.std()) >>
+        ggplot(aes(x="Year", y="Standardized_Values")) +
+        geom_line(color="brown") +
+        facet_wrap('~variable') +
+        theme_minimal()
+        )
+
+plot.save("TrashVolumeCat.png", width=8, height=6)
+
+```
+
+![](TrashVolumeCat.png){fig-align="center" width="760"}
+
+[**Findings**]{.underline}:
+
+-   **Increasing Usage and Disposal**: The consumption and disposal of Glass Bottles, Plastic Bottles, Sport Balls, and Plastic Wrappers have witnessed a steady increase in recent years.
+-   **Processed Food Consumption**: The elevated consumption of Plastic, Wrappers, and Glass suggests a potential upward trend in the usage of processed food items, given their common packaging materials.
+-   **Quality Impact on Dumping**: The higher consumption of Sport Balls may be linked to quality factors, potentially indicating a shorter lifespan for these items than expected. This, in turn, could contribute to an increase in waste disposal.
+
+
+## 2.4. Correlation Heat Map B/w Trash Weight & Content
+
+```{python}
+#| label: Trash-Correlation
+#| code-fold: true
+#| code-summary: Trash Correlation Code Plot
+#| warning: false
+#| output: false
+
+selected_columns = ["Weight", "PlasticBottles", "Polystyrene", "CigaretteButts", "GlassBottles", "PlasticBags", "Wrappers", "SportsBalls"] 
+selected_data = trashwheels[selected_columns]
+
+scaler = StandardScaler()
+scaled_data = scaler.fit_transform(selected_data)
+
+scaled_df = pd.DataFrame(scaled_data, columns=selected_columns)
+
+correlation_matrix_scaled = scaled_df.corr()
+
+plt.figure(figsize=(6, 4))
+sns.heatmap(correlation_matrix_scaled, annot=True, cmap='coolwarm', fmt=".2f", linewidths=.5)
+plt.title('Correlation Heatmap (Scaled Data)')
+plt.savefig('correlation_heatmap.png')
+
+```
+
+![](correlation_heatmap.png){fig-align="center" width="645"}
+
+[**Findings**]{.underline}:
+
+-   **Limited Observations**: Upon examination, I did not observe a significant association as expected. However, a noticeable correlation exists between the usage of plastic bottles and related products such as plastic bags, wrappers, and polystyrene.
+-   **Material Association**: The correlation between plastic bottles and sport balls suggests a potential association in the manufacturing process, possibly sharing similar synthetic raw materials.
