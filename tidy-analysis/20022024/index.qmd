@@ -318,3 +318,21 @@ plt.savefig('wordcloud_image4.png')
 -   In third cluster we see `LLMs` and `AWS`.
 
 Certainly, it is evident that clustering has provided valuable insights into the primary themes of research grants. The observation that the average funding amount per grant is relatively consistent does not imply the superiority of one research segment over another. Instead, it indicates that the number of research projects in the second and fourth segments is lower when compared to the first and third segments.
+
+```{=html}
+<script src="https://giscus.app/client.js"
+        data-repo="ArunKoundinya/TidyTuesday"
+        data-repo-id="R_kgDOLS-XzA"
+        data-category="General"
+        data-category-id="DIC_kwDOLS-XzM4CdbG7"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="dark_high_contrast"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+```
