@@ -7,157 +7,185 @@
     "text": "About this site"
   },
   {
-    "objectID": "analysis/20022024/Tidy20022024.html",
-    "href": "analysis/20022024/Tidy20022024.html",
-    "title": "Tidy Tuesday - R Consortium ISC Grants",
-    "section": "",
-    "text": "import pandas as pd\nimport numpy as np\nimport ssl\n\nfrom plotnine import *\nfrom dfply import *\n\nfrom wordcloud import *\nimport matplotlib.pyplot as plt\n\n\nimport spacy\nimport spacy.cli\nspacy.cli.download(\"en_core_web_sm\")\nnlp = spacy.load(\"en_core_web_sm\")\n\n\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.cluster import KMeans"
-  },
-  {
-    "objectID": "analysis/20022024/Tidy20022024.html#total-funding-per-cluster",
-    "href": "analysis/20022024/Tidy20022024.html#total-funding-per-cluster",
-    "title": "Tidy Tuesday - R Consortium ISC Grants",
-    "section": "3.1. Total Funding Per Cluster",
-    "text": "3.1. Total Funding Per Cluster\n\n\nCode for Segment Plot by Cluster\nplot = (isc_grants &gt;&gt; \n        group_by(X.clusters) &gt;&gt; \n        summarize(fun = np.sum(X.funded), count = n(X.clusters) ) &gt;&gt; \n        ggplot(aes(y = 'clusters' , x = 'fun' )) + \n        geom_point(shape=\"*\",size=4, color=\"blue\") + geom_segment(aes(xend=0, yend='clusters'), color=\"green\", size=1) + theme_minimal() + \n        labs(\n            x = \"Total Funded Amount in $\",\n            y = \"Cluster\",\n            title = \"Total Amount of Funding per Cluster\"\n        )\n        +scale_x_continuous(labels=lambda x: ['${:.0f}K'.format(i / 1000) for i in x])\n        )\n\nplot.save(\"Segment.png\", width=8, height=6)\n\n\n\n\n\n\n\nInterpreation\n\nCluster 0 is characterized by a high level of funding, whereas Cluster 3 exhibits relatively lower funding."
-  },
-  {
-    "objectID": "analysis/20022024/Tidy20022024.html#total-funding-vs-total-grants-relationship",
-    "href": "analysis/20022024/Tidy20022024.html#total-funding-vs-total-grants-relationship",
-    "title": "Tidy Tuesday - R Consortium ISC Grants",
-    "section": "3.2. Total Funding vs Total Grants Relationship",
-    "text": "3.2. Total Funding vs Total Grants Relationship\n\n\nCode for Scatter Plot between funding amount and grants\nplot = (isc_grants &gt;&gt; \n        group_by(X.year ) &gt;&gt; \n        summarize(fun = np.sum(X.funded), count = n(X.clusters) ) &gt;&gt; \n        ggplot(aes(x = 'fun' , y = 'count' )) + \n        geom_point(color=\"blue\") + geom_smooth(method='lm',se=False,color=\"green\") + \n        theme_minimal() + \n        labs (\n            x = \"Funding Amount\",\n            y = \"Number of Grants\",\n            title = \"Linear Relationship \",\n            subtitle = \"b/w #grants & funding$\"\n        ) + \n        scale_x_continuous(labels=lambda x: ['${:.0f}K'.format(i / 1000) for i in x])\n        )\n\nplot.save(\"Funding.png\", width=8, height=6)\n\n\n\n\n\n\n\nInterpreation\n\nA clear linear relationship is evident between the number of grants and the funding amount"
-  },
-  {
-    "objectID": "analysis/20022024/Tidy20022024.html#funding-amount-per-cluster-over-years",
-    "href": "analysis/20022024/Tidy20022024.html#funding-amount-per-cluster-over-years",
-    "title": "Tidy Tuesday - R Consortium ISC Grants",
-    "section": "3.3. Funding Amount Per Cluster Over Years",
-    "text": "3.3. Funding Amount Per Cluster Over Years\n\n\nCode for Plot of Funding Amount per Cluster Over Years\nplot1 = (isc_grants &gt;&gt; \n        group_by(X.year , X.clusters) &gt;&gt; \n        summarize(fun = np.sum(X.funded), count = n(X.clusters) ) &gt;&gt; \n        ggplot(aes(x = 'clusters' , y = 'fun' )) + \n        geom_col(fill=\"blue\") + \n        facet_wrap('~year') + theme_minimal() + theme(figure_size=(4, 3)) +\n        scale_y_continuous(labels=lambda x: ['${:.0f}K'.format(i / 1000) for i in x]) +\n        labs (\n            x = \"Clusters\",\n            y = \"Funding Amount in $\",\n            caption = \"Funding Amount across Clusters YonY\"\n        )\n        )\n\nplot1.save(\"Funding_Clusters.png\", width=4, height=3)\n\nplot2 = (isc_grants &gt;&gt; \n        group_by(X.year , X.clusters) &gt;&gt; \n        summarize(fun = np.sum(X.funded), count = n(X.clusters) ) &gt;&gt; \n        ggplot(aes(x = 'clusters' , y = 'count' )) + \n        geom_col(fill=\"orange\") + \n        facet_wrap('~year') + theme_minimal() + theme(figure_size=(4, 3)) +\n        labs (\n            x = \"Clusters\",\n            y = \"Number of Grants\",\n            caption = \"Number of Grants across Clusters YonY\"\n        )\n        )\n\nplot2.save(\"Count_Clusters.png\", width=4, height=3)\n\n\n \nInterpreation\n\nA nearly identical linear relationship between the number of grants and funding amount is apparent, indicating a consistent funding amount per grant.\nFurthermore, distinct funding values emerge across the clusters, highlighting variations in funding amounts despite similar numbers of grants within each cluster."
-  },
-  {
-    "objectID": "analysis/20022024/Tidy20022024.html#combined-wordcloud",
-    "href": "analysis/20022024/Tidy20022024.html#combined-wordcloud",
-    "title": "Tidy Tuesday - R Consortium ISC Grants",
-    "section": "3.4. Combined WordCloud",
-    "text": "3.4. Combined WordCloud\n\n\nCode for Combined Words of WordCloud\ncombined_text = ' '.join(isc_grants['keywords'].sum())\n\nwordcloud = (\n    WordCloud( \n              max_font_size=50, \n              max_words=100,       \n              background_color=\"white\")\n    .generate(combined_text)\n)\n\nplt.figure(figsize=(8, 6))\nplt.imshow(wordcloud, interpolation='bilinear')\nplt.axis('off')\nplt.title(\"Combined WordCloud\",fontsize=16 )\nplt.savefig('wordcloud_image.png') \n\n\n\n\n\n\n\nInterpreation\n\nThe prevalence of CRAN and ISC is noteworthy, and it would have been beneficial to exclude them for a more focused analysis.\nAdditionally, within the R consortium grants, there is notable diversity with the inclusion of topics such as JavaScript, DBI, and Python. This suggests a robust research scope, particularly in the realm of multiple integrations."
-  },
-  {
-    "objectID": "analysis/20022024/Tidy20022024.html#wordcloud-by-cluster",
-    "href": "analysis/20022024/Tidy20022024.html#wordcloud-by-cluster",
-    "title": "Tidy Tuesday - R Consortium ISC Grants",
-    "section": "3.4. WordCloud by Cluster",
-    "text": "3.4. WordCloud by Cluster\n\n\nCode for WordCloud by Cluster\ncombined_text1 = ' '.join(isc_grants[isc_grants['clusters'] == 0]['keywords'].sum())\ncombined_text2 = ' '.join(isc_grants[isc_grants['clusters'] == 1]['keywords'].sum())\ncombined_text3 = ' '.join(isc_grants[isc_grants['clusters'] == 2]['keywords'].sum())\ncombined_text4 = ' '.join(isc_grants[isc_grants['clusters'] == 3]['keywords'].sum())\n\nwordcloud1 = (\n    WordCloud( \n              max_font_size=50, \n              max_words=100,       \n              background_color=\"white\")\n    .generate(combined_text1)\n)\n\nwordcloud2 = (\n    WordCloud( \n              max_font_size=50, \n              max_words=100,       \n              background_color=\"white\")\n    .generate(combined_text2)\n)\n\nwordcloud3 = (\n    WordCloud( \n              max_font_size=50, \n              max_words=100,       \n              background_color=\"white\")\n    .generate(combined_text3)\n)\n\nwordcloud4 = (\n    WordCloud( \n              max_font_size=50, \n              max_words=100,       \n              background_color=\"white\")\n    .generate(combined_text4)\n)\n\nplt.figure(figsize=(4, 3))\nplt.imshow(wordcloud1, interpolation='bilinear')\nplt.axis('off')\nplt.title(\"Cluster 0 WordCloud\",fontsize=12)\nplt.savefig('wordcloud_image1.png') \n\nplt.figure(figsize=(4, 3))\nplt.imshow(wordcloud2, interpolation='bilinear')\nplt.axis('off')\nplt.title(\"Cluster 1 WordCloud\",fontsize=12)\nplt.savefig('wordcloud_image2.png') \n\nplt.figure(figsize=(4, 3))\nplt.imshow(wordcloud3, interpolation='bilinear')\nplt.axis('off')\nplt.title(\"Cluster 2 WordCloud\",fontsize=12)\nplt.savefig('wordcloud_image3.png') \n\nplt.figure(figsize=(4, 3))\nplt.imshow(wordcloud4, interpolation='bilinear')\nplt.axis('off')\nplt.title(\"Cluster 3 WordCloud\",fontsize=12)\nplt.savefig('wordcloud_image4.png') \n\n\n \n \nInterpreation\n\nIn first cluster we see DBI and Windows.\nIn second cluster we see Python and JavaScript.\nIn third cluster we see RSQLite and RMariaDB.\nIn third cluster we see LLMs and AWS.\n\nCertainly, it is evident that clustering has provided valuable insights into the primary themes of research grants. The observation that the average funding amount per grant is relatively consistent does not imply the superiority of one research segment over another. Instead, it indicates that the number of research projects in the second and fourth segments is lower when compared to the first and third segments."
-  },
-  {
-    "objectID": "analysis/05032024/Tidy05032024.html",
-    "href": "analysis/05032024/Tidy05032024.html",
-    "title": "Tidy Tuesday - Trash Wheel Collection Data",
-    "section": "",
-    "text": "import pandas as pd\nimport ssl\nfrom dfply import *\nfrom plotnine import *\nimport numpy as np\n\nfrom sklearn.preprocessing import StandardScaler\nimport seaborn as sns\nimport matplotlib.pyplot as plt"
-  },
-  {
-    "objectID": "analysis/05032024/Tidy05032024.html#trash-weight-volume-over-years",
-    "href": "analysis/05032024/Tidy05032024.html#trash-weight-volume-over-years",
-    "title": "Tidy Tuesday - Trash Wheel Collection Data",
-    "section": "2.1. Trash Weight & Volume Over Years",
-    "text": "2.1. Trash Weight & Volume Over Years\n\n\nWeight Volume Trending Plot Code\nplot =  ( trashwheels &gt;&gt; \n        group_by(X.Year) &gt;&gt;\n        summarize(Weights=np.sum(X.Weight), Volumes=np.sum(X.Volume)) &gt;&gt; \n        ggplot(aes(x = \"Year\",y=\"Weights\",fill=\"Volumes\")) + \n        geom_col() +\n        theme_minimal()\n        )\n\nplot.save(\"TrashWeightVolume.png\", width=8, height=6)\n\n\n\n\n\n\n\nFindings:\n\nConsistent Growth: Trash weight and its corresponding volume consistently show an upward trend, indicating a year-on-year increase.\nPost-COVID Surge: Particularly noteworthy is the exponential rise in trash weight observed post the COVID-19 pandemic, highlighting a substantial increase in waste generation during this period."
-  },
-  {
-    "objectID": "analysis/05032024/Tidy05032024.html#equivalent-homes-powered-with-trash-dump",
-    "href": "analysis/05032024/Tidy05032024.html#equivalent-homes-powered-with-trash-dump",
-    "title": "Tidy Tuesday - Trash Wheel Collection Data",
-    "section": "2.2. Equivalent Homes powered with Trash Dump",
-    "text": "2.2. Equivalent Homes powered with Trash Dump\n\n\nEquivalent Home Powered by Trash Code Plot\nplot = ( trashwheels &gt;&gt; \n group_by(X.Year) &gt;&gt;\n summarize(HomesPowered=np.sum(X.HomesPowered)) &gt;&gt; \n ggplot(aes(x = \"Year\",y=\"HomesPowered\")) + \n geom_line(color = \"brown\") +\n theme_minimal()\n )\n\nplot.save(\"HomePowered.png\", width=8, height=6)\n\n\n\n\n\n\n\nFindings:\n\nIntuitive Observation: It is evident from the data that the number of homes powered by trash is intuitively increasing over time."
-  },
-  {
-    "objectID": "analysis/05032024/Tidy05032024.html#trash-by-category-trending",
-    "href": "analysis/05032024/Tidy05032024.html#trash-by-category-trending",
-    "title": "Tidy Tuesday - Trash Wheel Collection Data",
-    "section": "2.3. Trash by Category Trending",
-    "text": "2.3. Trash by Category Trending\n\n\nTrash Volume by Category Code Plot\nplot =  (trashwheels &gt;&gt;\n        gather(\"variable\", \"value\", [\"PlasticBottles\", \"Polystyrene\", \"CigaretteButts\", \"GlassBottles\", \"PlasticBags\", \"Wrappers\", \"SportsBalls\"]) &gt;&gt;\n        group_by(X.Year, X.variable) &gt;&gt;\n        summarize(Values=np.sum(X.value)) &gt;&gt;\n        group_by(X.variable) &gt;&gt;\n        mutate(Standardized_Values=(X.Values - X.Values.mean()) / X.Values.std()) &gt;&gt;\n        ggplot(aes(x=\"Year\", y=\"Standardized_Values\")) +\n        geom_line(color=\"brown\") +\n        facet_wrap('~variable') +\n        theme_minimal()\n        )\n\nplot.save(\"TrashVolumeCat.png\", width=8, height=6)\n\n\n\n\n\n\n\nFindings:\n\nIncreasing Usage and Disposal: The consumption and disposal of Glass Bottles, Plastic Bottles, Sport Balls, and Plastic Wrappers have witnessed a steady increase in recent years.\nProcessed Food Consumption: The elevated consumption of Plastic, Wrappers, and Glass suggests a potential upward trend in the usage of processed food items, given their common packaging materials.\nQuality Impact on Dumping: The higher consumption of Sport Balls may be linked to quality factors, potentially indicating a shorter lifespan for these items than expected. This, in turn, could contribute to an increase in waste disposal."
-  },
-  {
-    "objectID": "analysis/05032024/Tidy05032024.html#correlation-heat-map-bw-trash-weight-content",
-    "href": "analysis/05032024/Tidy05032024.html#correlation-heat-map-bw-trash-weight-content",
-    "title": "Tidy Tuesday - Trash Wheel Collection Data",
-    "section": "2.4. Correlation Heat Map B/w Trash Weight & Content",
-    "text": "2.4. Correlation Heat Map B/w Trash Weight & Content\n\n\nTrash Correlation Code Plot\nselected_columns = [\"Weight\", \"PlasticBottles\", \"Polystyrene\", \"CigaretteButts\", \"GlassBottles\", \"PlasticBags\", \"Wrappers\", \"SportsBalls\"] \nselected_data = trashwheels[selected_columns]\n\nscaler = StandardScaler()\nscaled_data = scaler.fit_transform(selected_data)\n\nscaled_df = pd.DataFrame(scaled_data, columns=selected_columns)\n\ncorrelation_matrix_scaled = scaled_df.corr()\n\nplt.figure(figsize=(6, 4))\nsns.heatmap(correlation_matrix_scaled, annot=True, cmap='coolwarm', fmt=\".2f\", linewidths=.5)\nplt.title('Correlation Heatmap (Scaled Data)')\nplt.savefig('correlation_heatmap.png')\n\n\n\n\n\n\n\nFindings:\n\nLimited Observations: Upon examination, I did not observe a significant association as expected. However, a noticeable correlation exists between the usage of plastic bottles and related products such as plastic bags, wrappers, and polystyrene.\nMaterial Association: The correlation between plastic bottles and sport balls suggests a potential association in the manufacturing process, possibly sharing similar synthetic raw materials."
-  },
-  {
-    "objectID": "analysis/16012024/Tidy16012024.html",
-    "href": "analysis/16012024/Tidy16012024.html",
-    "title": "Tidy Tuesday - US Polling Places",
-    "section": "",
-    "text": "0. Loading Libraries\n\nimport pandas as pd\nfrom dfply import *\nfrom plotnine import *\nimport ssl\n\n\n\n1. Data Loading\n\n## adding below ssl line as it is giving ssl error locally in my machine\nssl._create_default_https_context = ssl._create_unverified_context\n\npolling=pd.read_csv(\"https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-01-16/polling_places.csv\")\npolling.head()\n\n\n\n\n\n\n\n\n\nelection_date\nstate\ncounty_name\njurisdiction\njurisdiction_type\nprecinct_id\nprecinct_name\npolling_place_id\nlocation_type\nname\naddress\nnotes\nsource\nsource_date\nsource_notes\n\n\n\n\n0\n2020-11-03\nAL\nAUTAUGA\nAUTAUGA\ncounty\nNaN\nAUTAUGAVILLE VOL FIRE DEPT\nNaN\nelection_day\nAUTAUGAVILLE VOL FIRE DEPT\n2610 HIGHWAY 14 W, AUTAUGAVILLE, AL 36003\nNaN\nORR\n2020-10-21\nNaN\n\n\n1\n2020-11-03\nAL\nAUTAUGA\nAUTAUGA\ncounty\nNaN\nBILLINGSLEY COMMUNITY CENTER\nNaN\nelection_day\nBILLINGSLEY COMMUNITY CENTER\n2159 COUNTY RD 37, BILLINGSLEY, AL 36006\nNaN\nORR\n2020-10-21\nNaN\n\n\n2\n2020-11-03\nAL\nAUTAUGA\nAUTAUGA\ncounty\nNaN\nBOONE'S CHAPEL\nNaN\nelection_day\nBOONE'S CHAPEL\n2301 COUNTY RD 66, PRATTVILLE, AL 36067\nNaN\nORR\n2020-10-21\nNaN\n\n\n3\n2020-11-03\nAL\nAUTAUGA\nAUTAUGA\ncounty\nNaN\nBOOTH VOL FIRE DEPT\nNaN\nelection_day\nBOOTH VOL FIRE DEPT\n1701 COUNTY ROAD 10, BOOTH, AL 36008\nNaN\nORR\n2020-10-21\nNaN\n\n\n4\n2020-11-03\nAL\nAUTAUGA\nAUTAUGA\ncounty\nNaN\nCAMELLIA BAPTIST CH\nNaN\nelection_day\nCAMELLIA BAPTIST CH\n201 WOODVALE ROAD, PRATTVILLE, AL 36067\nNaN\nORR\n2020-10-21\nNaN\n\n\n\n\n\n\n\n\n\n\n2. Data Transformation\n\npolling['year'] = polling['election_date'].apply(lambda x: int(x.split('-')[0]))\n\npolling_summary = (polling &gt;&gt; group_by(X.year) &gt;&gt; summarize(count=n(X.year)) )\n\n\n\n3. Plotting\n\n(polling_summary &gt;&gt; \n ggplot(aes(x = 'year', y = 'count')) + \n geom_line() + theme_minimal() + \n labs (\n     x = \"Year\", \n     y = \"No. of Polling Places\",\n     title = \"Count of Polling Places\",\n     subtitle = \"2012 to 2020\"\n ) \n)"
-  },
-  {
-    "objectID": "analysis/30012024/Tidy30012024.html",
-    "href": "analysis/30012024/Tidy30012024.html",
-    "title": "Tidy Tuesday - GroundHog Predictions",
-    "section": "",
-    "text": "import pandas as pd\nfrom dfply import *\nfrom plotnine import *\nimport ssl"
-  },
-  {
-    "objectID": "analysis/30012024/Tidy30012024.html#consensus-of-groundhogs-yony",
-    "href": "analysis/30012024/Tidy30012024.html#consensus-of-groundhogs-yony",
-    "title": "Tidy Tuesday - GroundHog Predictions",
-    "section": "3.1. Consensus of Groundhogs YonY",
-    "text": "3.1. Consensus of Groundhogs YonY\n\n\nCode for Density Plot of Consensus\nplot = (predictions_groundhog &gt;&gt;\n        filter_by(X.shadow.notna()) &gt;&gt;\n        ggplot(aes(x='year', color='shadow')) +\n        geom_density() +\n        scale_color_manual(name='Prediction',\n                           labels=['Early Spring', 'Long Winter'],\n                           values=['#8B4513', '#0000CD']) +\n        theme_minimal(base_size=14) +\n        theme(legend_position=(0.5, 0.5)) + \n        theme(figure_size=(6,4)) + \n        labs(title='Consensus of Groundhogs YoY'))\n\nprint(plot)"
-  },
-  {
-    "objectID": "analysis/30012024/Tidy30012024.html#count-of-groundhogs-yony",
-    "href": "analysis/30012024/Tidy30012024.html#count-of-groundhogs-yony",
-    "title": "Tidy Tuesday - GroundHog Predictions",
-    "section": "3.2. Count of GroundHogs YonY",
-    "text": "3.2. Count of GroundHogs YonY\n\n\nCode for Line Plot of Groundhogs\nplot = (predictions_groundhog &gt;&gt;\n        filter_by(X.shadow.notna()) &gt;&gt;\n        group_by(X.year) &gt;&gt; \n        summarize(n = n(X.year)) &gt;&gt;\n        ggplot(aes(x='year', y='n')) +\n        geom_line() + \n        theme_minimal() + \n        labs(x='year', y='number of groundhogs', title='Count of Groundhogs by Year'))\n\nprint(plot)"
-  },
-  {
-    "objectID": "analysis/30012024/Tidy30012024.html#consensus-of-groundhogs-yony-by-shortname",
-    "href": "analysis/30012024/Tidy30012024.html#consensus-of-groundhogs-yony-by-shortname",
-    "title": "Tidy Tuesday - GroundHog Predictions",
-    "section": "3.3. Consensus of GroundHogs YonY by ShortName",
-    "text": "3.3. Consensus of GroundHogs YonY by ShortName\n\n\nCode for Consensus Plot of Groundhogs by ShortName\nplot = (predictions_groundhog &gt;&gt;\n        filter_by(X.shadow.notna()) &gt;&gt;\n        ggplot(aes(x='year', color='shadow')) +\n        geom_histogram() +\n        labs(title='Consensus of Groundhogs YoY') +\n        facet_wrap('~shortname') +\n        scale_color_manual(name='Prediction',\n                           labels=['Early Spring', 'Long Winter'],\n                           values=['#8B4513', '#0000CD']) + \n        theme_minimal(base_size = 14) + \n        theme(figure_size=(20,12))\n                           )\n\nprint(plot)\n\n\n\n\n\n\n\n\n\n\n\n\nI believe this is a simplified representation of the consensus to gain initial insights.\n\nConsidering the number of groundhogs included in the observational study, the majority predicted an early spring.\nHowever, since we currently lack weather data, we are unable to cross-verify which predictions were accurate.\nWith the exception of Phil, most others forecasted an early spring."
-  },
-  {
-    "objectID": "analysis/13022024/Tidy13022024.html",
-    "href": "analysis/13022024/Tidy13022024.html",
+    "objectID": "tidy-analysis/13022024/index.html",
+    "href": "tidy-analysis/13022024/index.html",
     "title": "Tidy Tuesday - Valentine’s Day Consumer Data",
     "section": "",
     "text": "import pandas as pd\nfrom dfply import *\nfrom plotnine import *\nimport ssl"
   },
   {
-    "objectID": "analysis/13022024/Tidy13022024.html#historical-spending-pattern",
-    "href": "analysis/13022024/Tidy13022024.html#historical-spending-pattern",
+    "objectID": "tidy-analysis/13022024/index.html#historical-spending-pattern",
+    "href": "tidy-analysis/13022024/index.html#historical-spending-pattern",
     "title": "Tidy Tuesday - Valentine’s Day Consumer Data",
     "section": "2.1. Historical Spending Pattern",
     "text": "2.1. Historical Spending Pattern\n\n\nSpending Patterns Plot Code\nplot1 = (gifts_age &gt;&gt; \n        ggplot(aes(x='Age',y='SpendingCelebrating')) + \n        geom_col(fill='#378DBD', color='white', width=0.7) +  \n        theme_minimal() + \n        labs(\n            x = 'Age Group',\n            y = '% People Celebrating',\n            title = '% People Celebrating by Age Group'\n        )\n        )\n\nprint(plot1)\n\nplot2 = (gifts_gender &gt;&gt; \n        ggplot(aes(x='Gender',y='SpendingCelebrating')) + \n        geom_col(fill='#378DBD', color='white', width=0.7) +  \n        theme_minimal() + \n        labs(\n            x = 'Gender',\n            y = '% People Celebrating',\n            title = '% People Celebrating by Gender'\n        )\n        )\n\nprint(plot2)\n\nplot3 = (historical_spending &gt;&gt;\n        ggplot(aes(x='Year', y='PercentCelebrating')) +\n        geom_col(fill='#378DBD', color='white', width=0.7) + \n        theme_minimal() + \n        labs(\n            x = \"Year\",\n            y = \"% People Celebrating\",\n            title = '% People Celebrating YonY'\n        )\n        )\n\nprint(plot3)\n\nplot4 = (historical_spending &gt;&gt;\n        ggplot(aes(x='Year', y='PerPerson')) +\n        geom_col(fill='#378DBD', color='white', width=0.7) + \n        theme_minimal() + \n        labs(\n            x = \"Year\",\n            y = \"Avg. Amount Spending Per Person\",\n            title = 'Avg. Amount Spend per Person YonY'\n        ))\n\nprint(plot4)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFindings:\n\nSpending percentage decreases as people age, which is quite intuitive. Although there is a decrease by 10 basis points as the age group increases, later, the decrease rate reduces, conveying that a significant number of happy couples stick to the tradition to keep their love life in the limelight.\nThe percentage of people’s Valentine’s spending hasn’t reduced; instead, the spending has almost doubled over the years. Partly, this increase can be attributed to inflation, but overall, the spending has increased."
   },
   {
-    "objectID": "analysis/13022024/Tidy13022024.html#historical-spending-pattern-by-category",
-    "href": "analysis/13022024/Tidy13022024.html#historical-spending-pattern-by-category",
+    "objectID": "tidy-analysis/13022024/index.html#historical-spending-pattern-by-category",
+    "href": "tidy-analysis/13022024/index.html#historical-spending-pattern-by-category",
     "title": "Tidy Tuesday - Valentine’s Day Consumer Data",
     "section": "2.2. Historical Spending Pattern by Category",
     "text": "2.2. Historical Spending Pattern by Category\n\n\nSpending Patterns by Category Plot Code\n(\n    historical_spending &gt;&gt;\n    gather(\"category\", \"value\", \n    [\"Candy\", \"Flowers\", \"Jewelry\", \"GreetingCards\", \"EveningOut\", \"Clothing\", \"GiftCards\"]\n    ) &gt;&gt; \n    ggplot(aes(x='Year', y='value', color='category')) + \n    geom_line() + \n    theme_minimal() + \n    labs(\n        x='Year',\n        y='Avg. Amount Spend per Person',\n        title='Avg. Amount Spend per Person YonY'\n    ) + \n    guides(color=guide_legend(title=\"\")) +  # Use an empty string to remove the legend title\n    theme(legend_position=(0.35, 0.85))\n)\n\n\n\n\n\n\n\n\n\nFindings:\n\nSpending on Jewelry and Clothing has increased over the years."
   },
   {
-    "objectID": "analysis/13022024/Tidy13022024.html#spending-pattern-by-category",
-    "href": "analysis/13022024/Tidy13022024.html#spending-pattern-by-category",
+    "objectID": "tidy-analysis/13022024/index.html#spending-pattern-by-category",
+    "href": "tidy-analysis/13022024/index.html#spending-pattern-by-category",
     "title": "Tidy Tuesday - Valentine’s Day Consumer Data",
     "section": "2.3. Spending Pattern by Category",
     "text": "2.3. Spending Pattern by Category\n\n\nSpending Patterns by Category Plot Code\n(\n    gifts_age &gt;&gt;\n    gather(\"category\", \"value\", \n    [\"Candy\", \"Flowers\", \"Jewelry\", \"GreetingCards\", \"EveningOut\", \"Clothing\", \"GiftCards\"]\n    ) &gt;&gt; \n    ggplot(aes(x='category', y='value', fill='Age')) + \n    geom_col() + \n    theme_minimal() + \n    labs(\n        x='Category of Spends',\n        y='Avg. % Spending',\n        title='Avg. Spending percentage across Categories'\n    ) + \n    guides(fill=guide_legend(title=\"\")) +  # Use an empty string to remove the legend title\n    theme(legend_position=(0.5, 0.85))\n)\n\n\n\n\n\n\n\n\n\nFindings:\n\nMore people spend on candies, suggesting a desire to sweeten their partner’s experience.\nGifting flowers and evening outings are notably common across younger age groups in comparison.\nGifting jewelry, although less frequent, appears to be more common among younger age groups, implying a tendency to impress partners with costly gifts.\nIn contrast, older generations celebrating Valentine’s Day seem to realize that words and moments are more meaningful than expensive items, reflected in the higher incidence of gifting greeting cards."
   },
   {
-    "objectID": "analysis/13022024/Tidy13022024.html#spending-pattern-by-gender",
-    "href": "analysis/13022024/Tidy13022024.html#spending-pattern-by-gender",
+    "objectID": "tidy-analysis/13022024/index.html#spending-pattern-by-gender",
+    "href": "tidy-analysis/13022024/index.html#spending-pattern-by-gender",
     "title": "Tidy Tuesday - Valentine’s Day Consumer Data",
     "section": "2.4. Spending Pattern by Gender",
     "text": "2.4. Spending Pattern by Gender\n\n\nSpending Patterns by Gender Plot Code\n(\n    gifts_gender &gt;&gt;\n    gather(\"category\", \"value\", \n    [\"Candy\", \"Flowers\", \"Jewelry\", \"GreetingCards\", \"EveningOut\", \"Clothing\", \"GiftCards\"]\n    ) &gt;&gt; \n    ggplot(aes(x='category', y='value', fill='Gender')) + \n    geom_col() + \n    theme_minimal() + \n    labs(\n        x='Category of Spends',\n        y='Avg. % Spending',\n        title='Avg. Spending percentage across Categories'\n    ) + \n    guides(fill=guide_legend(title=\"\")) +  # Use an empty string to remove the legend title\n    theme(legend_position=(0.5, 0.85))\n)\n\n\n\n\n\n\n\n\n\nFindings:\n\nMen tend to predominantly choose flowers and jewelry as their gift categories.\nIn contrast, women’s dominant categories are gift cards and greeting cards, and the margin between these two categories is noticeable.\nThis sheds light on the differing expectations that men and women may have for their partners."
+  },
+  {
+    "objectID": "tidy-analysis/16012024/index.html",
+    "href": "tidy-analysis/16012024/index.html",
+    "title": "Tidy Tuesday - US Polling Places",
+    "section": "",
+    "text": "0. Loading Libraries\n\nimport pandas as pd\nfrom dfply import *\nfrom plotnine import *\nimport ssl\n\n\n\n1. Data Loading\n\n## adding below ssl line as it is giving ssl error locally in my machine\nssl._create_default_https_context = ssl._create_unverified_context\n\npolling=pd.read_csv(\"https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-01-16/polling_places.csv\")\npolling.head()\n\n\n\n\n\n\n\n\n\nelection_date\nstate\ncounty_name\njurisdiction\njurisdiction_type\nprecinct_id\nprecinct_name\npolling_place_id\nlocation_type\nname\naddress\nnotes\nsource\nsource_date\nsource_notes\n\n\n\n\n0\n2020-11-03\nAL\nAUTAUGA\nAUTAUGA\ncounty\nNaN\nAUTAUGAVILLE VOL FIRE DEPT\nNaN\nelection_day\nAUTAUGAVILLE VOL FIRE DEPT\n2610 HIGHWAY 14 W, AUTAUGAVILLE, AL 36003\nNaN\nORR\n2020-10-21\nNaN\n\n\n1\n2020-11-03\nAL\nAUTAUGA\nAUTAUGA\ncounty\nNaN\nBILLINGSLEY COMMUNITY CENTER\nNaN\nelection_day\nBILLINGSLEY COMMUNITY CENTER\n2159 COUNTY RD 37, BILLINGSLEY, AL 36006\nNaN\nORR\n2020-10-21\nNaN\n\n\n2\n2020-11-03\nAL\nAUTAUGA\nAUTAUGA\ncounty\nNaN\nBOONE'S CHAPEL\nNaN\nelection_day\nBOONE'S CHAPEL\n2301 COUNTY RD 66, PRATTVILLE, AL 36067\nNaN\nORR\n2020-10-21\nNaN\n\n\n3\n2020-11-03\nAL\nAUTAUGA\nAUTAUGA\ncounty\nNaN\nBOOTH VOL FIRE DEPT\nNaN\nelection_day\nBOOTH VOL FIRE DEPT\n1701 COUNTY ROAD 10, BOOTH, AL 36008\nNaN\nORR\n2020-10-21\nNaN\n\n\n4\n2020-11-03\nAL\nAUTAUGA\nAUTAUGA\ncounty\nNaN\nCAMELLIA BAPTIST CH\nNaN\nelection_day\nCAMELLIA BAPTIST CH\n201 WOODVALE ROAD, PRATTVILLE, AL 36067\nNaN\nORR\n2020-10-21\nNaN\n\n\n\n\n\n\n\n\n\n\n2. Data Transformation\n\npolling['year'] = polling['election_date'].apply(lambda x: int(x.split('-')[0]))\n\npolling_summary = (polling &gt;&gt; group_by(X.year) &gt;&gt; summarize(count=n(X.year)) )\n\n\n\n3. Plotting\n\n(polling_summary &gt;&gt; \n ggplot(aes(x = 'year', y = 'count')) + \n geom_line() + theme_minimal() + \n labs (\n     x = \"Year\", \n     y = \"No. of Polling Places\",\n     title = \"Count of Polling Places\",\n     subtitle = \"2012 to 2020\"\n ) \n)"
+  },
+  {
+    "objectID": "tidy-analysis/05032024/index.html",
+    "href": "tidy-analysis/05032024/index.html",
+    "title": "Tidy Tuesday - Trash Wheel Collection Data",
+    "section": "",
+    "text": "import pandas as pd\nimport ssl\nfrom dfply import *\nfrom plotnine import *\nimport numpy as np\n\nfrom sklearn.preprocessing import StandardScaler\nimport seaborn as sns\nimport matplotlib.pyplot as plt"
+  },
+  {
+    "objectID": "tidy-analysis/05032024/index.html#trash-weight-volume-over-years",
+    "href": "tidy-analysis/05032024/index.html#trash-weight-volume-over-years",
+    "title": "Tidy Tuesday - Trash Wheel Collection Data",
+    "section": "2.1. Trash Weight & Volume Over Years",
+    "text": "2.1. Trash Weight & Volume Over Years\n\n\nWeight Volume Trending Plot Code\nplot =  ( trashwheels &gt;&gt; \n        group_by(X.Year) &gt;&gt;\n        summarize(Weights=np.sum(X.Weight), Volumes=np.sum(X.Volume)) &gt;&gt; \n        ggplot(aes(x = \"Year\",y=\"Weights\",fill=\"Volumes\")) + \n        geom_col() +\n        theme_minimal()\n        )\n\nplot.save(\"TrashWeightVolume.png\", width=8, height=6)\n\n\n\n\n\n\n\nFindings:\n\nConsistent Growth: Trash weight and its corresponding volume consistently show an upward trend, indicating a year-on-year increase.\nPost-COVID Surge: Particularly noteworthy is the exponential rise in trash weight observed post the COVID-19 pandemic, highlighting a substantial increase in waste generation during this period."
+  },
+  {
+    "objectID": "tidy-analysis/05032024/index.html#equivalent-homes-powered-with-trash-dump",
+    "href": "tidy-analysis/05032024/index.html#equivalent-homes-powered-with-trash-dump",
+    "title": "Tidy Tuesday - Trash Wheel Collection Data",
+    "section": "2.2. Equivalent Homes powered with Trash Dump",
+    "text": "2.2. Equivalent Homes powered with Trash Dump\n\n\nEquivalent Home Powered by Trash Code Plot\nplot = ( trashwheels &gt;&gt; \n group_by(X.Year) &gt;&gt;\n summarize(HomesPowered=np.sum(X.HomesPowered)) &gt;&gt; \n ggplot(aes(x = \"Year\",y=\"HomesPowered\")) + \n geom_line(color = \"brown\") +\n theme_minimal()\n )\n\nplot.save(\"HomePowered.png\", width=8, height=6)\n\n\n\n\n\n\n\nFindings:\n\nIntuitive Observation: It is evident from the data that the number of homes powered by trash is intuitively increasing over time."
+  },
+  {
+    "objectID": "tidy-analysis/05032024/index.html#trash-by-category-trending",
+    "href": "tidy-analysis/05032024/index.html#trash-by-category-trending",
+    "title": "Tidy Tuesday - Trash Wheel Collection Data",
+    "section": "2.3. Trash by Category Trending",
+    "text": "2.3. Trash by Category Trending\n\n\nTrash Volume by Category Code Plot\nplot =  (trashwheels &gt;&gt;\n        gather(\"variable\", \"value\", [\"PlasticBottles\", \"Polystyrene\", \"CigaretteButts\", \"GlassBottles\", \"PlasticBags\", \"Wrappers\", \"SportsBalls\"]) &gt;&gt;\n        group_by(X.Year, X.variable) &gt;&gt;\n        summarize(Values=np.sum(X.value)) &gt;&gt;\n        group_by(X.variable) &gt;&gt;\n        mutate(Standardized_Values=(X.Values - X.Values.mean()) / X.Values.std()) &gt;&gt;\n        ggplot(aes(x=\"Year\", y=\"Standardized_Values\")) +\n        geom_line(color=\"brown\") +\n        facet_wrap('~variable') +\n        theme_minimal()\n        )\n\nplot.save(\"TrashVolumeCat.png\", width=8, height=6)\n\n\n\n\n\n\n\nFindings:\n\nIncreasing Usage and Disposal: The consumption and disposal of Glass Bottles, Plastic Bottles, Sport Balls, and Plastic Wrappers have witnessed a steady increase in recent years.\nProcessed Food Consumption: The elevated consumption of Plastic, Wrappers, and Glass suggests a potential upward trend in the usage of processed food items, given their common packaging materials.\nQuality Impact on Dumping: The higher consumption of Sport Balls may be linked to quality factors, potentially indicating a shorter lifespan for these items than expected. This, in turn, could contribute to an increase in waste disposal."
+  },
+  {
+    "objectID": "tidy-analysis/05032024/index.html#correlation-heat-map-bw-trash-weight-content",
+    "href": "tidy-analysis/05032024/index.html#correlation-heat-map-bw-trash-weight-content",
+    "title": "Tidy Tuesday - Trash Wheel Collection Data",
+    "section": "2.4. Correlation Heat Map B/w Trash Weight & Content",
+    "text": "2.4. Correlation Heat Map B/w Trash Weight & Content\n\n\nTrash Correlation Code Plot\nselected_columns = [\"Weight\", \"PlasticBottles\", \"Polystyrene\", \"CigaretteButts\", \"GlassBottles\", \"PlasticBags\", \"Wrappers\", \"SportsBalls\"] \nselected_data = trashwheels[selected_columns]\n\nscaler = StandardScaler()\nscaled_data = scaler.fit_transform(selected_data)\n\nscaled_df = pd.DataFrame(scaled_data, columns=selected_columns)\n\ncorrelation_matrix_scaled = scaled_df.corr()\n\nplt.figure(figsize=(6, 4))\nsns.heatmap(correlation_matrix_scaled, annot=True, cmap='coolwarm', fmt=\".2f\", linewidths=.5)\nplt.title('Correlation Heatmap (Scaled Data)')\nplt.savefig('correlation_heatmap.png')\n\n\n\n\n\n\n\nFindings:\n\nLimited Observations: Upon examination, I did not observe a significant association as expected. However, a noticeable correlation exists between the usage of plastic bottles and related products such as plastic bags, wrappers, and polystyrene.\nMaterial Association: The correlation between plastic bottles and sport balls suggests a potential association in the manufacturing process, possibly sharing similar synthetic raw materials."
+  },
+  {
+    "objectID": "tidy-analysis/20022024/index.html",
+    "href": "tidy-analysis/20022024/index.html",
+    "title": "Tidy Tuesday - R Consortium ISC Grants",
+    "section": "",
+    "text": "import pandas as pd\nimport numpy as np\nimport ssl\n\nfrom plotnine import *\nfrom dfply import *\n\nfrom wordcloud import *\nimport matplotlib.pyplot as plt\n\n\nimport spacy\nimport spacy.cli\nspacy.cli.download(\"en_core_web_sm\")\nnlp = spacy.load(\"en_core_web_sm\")\n\n\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.cluster import KMeans"
+  },
+  {
+    "objectID": "tidy-analysis/20022024/index.html#total-funding-per-cluster",
+    "href": "tidy-analysis/20022024/index.html#total-funding-per-cluster",
+    "title": "Tidy Tuesday - R Consortium ISC Grants",
+    "section": "3.1. Total Funding Per Cluster",
+    "text": "3.1. Total Funding Per Cluster\n\n\nCode for Segment Plot by Cluster\nplot = (isc_grants &gt;&gt; \n        group_by(X.clusters) &gt;&gt; \n        summarize(fun = np.sum(X.funded), count = n(X.clusters) ) &gt;&gt; \n        ggplot(aes(y = 'clusters' , x = 'fun' )) + \n        geom_point(shape=\"*\",size=4, color=\"blue\") + geom_segment(aes(xend=0, yend='clusters'), color=\"green\", size=1) + theme_minimal() + \n        labs(\n            x = \"Total Funded Amount in $\",\n            y = \"Cluster\",\n            title = \"Total Amount of Funding per Cluster\"\n        )\n        +scale_x_continuous(labels=lambda x: ['${:.0f}K'.format(i / 1000) for i in x])\n        )\n\nplot.save(\"Segment.png\", width=8, height=6)\n\n\n\n\n\n\n\nInterpreation\n\nCluster 0 is characterized by a high level of funding, whereas Cluster 3 exhibits relatively lower funding."
+  },
+  {
+    "objectID": "tidy-analysis/20022024/index.html#total-funding-vs-total-grants-relationship",
+    "href": "tidy-analysis/20022024/index.html#total-funding-vs-total-grants-relationship",
+    "title": "Tidy Tuesday - R Consortium ISC Grants",
+    "section": "3.2. Total Funding vs Total Grants Relationship",
+    "text": "3.2. Total Funding vs Total Grants Relationship\n\n\nCode for Scatter Plot between funding amount and grants\nplot = (isc_grants &gt;&gt; \n        group_by(X.year ) &gt;&gt; \n        summarize(fun = np.sum(X.funded), count = n(X.clusters) ) &gt;&gt; \n        ggplot(aes(x = 'fun' , y = 'count' )) + \n        geom_point(color=\"blue\") + geom_smooth(method='lm',se=False,color=\"green\") + \n        theme_minimal() + \n        labs (\n            x = \"Funding Amount\",\n            y = \"Number of Grants\",\n            title = \"Linear Relationship \",\n            subtitle = \"b/w #grants & funding$\"\n        ) + \n        scale_x_continuous(labels=lambda x: ['${:.0f}K'.format(i / 1000) for i in x])\n        )\n\nplot.save(\"Funding.png\", width=8, height=6)\n\n\n\n\n\n\n\nInterpreation\n\nA clear linear relationship is evident between the number of grants and the funding amount"
+  },
+  {
+    "objectID": "tidy-analysis/20022024/index.html#funding-amount-per-cluster-over-years",
+    "href": "tidy-analysis/20022024/index.html#funding-amount-per-cluster-over-years",
+    "title": "Tidy Tuesday - R Consortium ISC Grants",
+    "section": "3.3. Funding Amount Per Cluster Over Years",
+    "text": "3.3. Funding Amount Per Cluster Over Years\n\n\nCode for Plot of Funding Amount per Cluster Over Years\nplot1 = (isc_grants &gt;&gt; \n        group_by(X.year , X.clusters) &gt;&gt; \n        summarize(fun = np.sum(X.funded), count = n(X.clusters) ) &gt;&gt; \n        ggplot(aes(x = 'clusters' , y = 'fun' )) + \n        geom_col(fill=\"blue\") + \n        facet_wrap('~year') + theme_minimal() + theme(figure_size=(4, 3)) +\n        scale_y_continuous(labels=lambda x: ['${:.0f}K'.format(i / 1000) for i in x]) +\n        labs (\n            x = \"Clusters\",\n            y = \"Funding Amount in $\",\n            caption = \"Funding Amount across Clusters YonY\"\n        )\n        )\n\nplot1.save(\"Funding_Clusters.png\", width=4, height=3)\n\nplot2 = (isc_grants &gt;&gt; \n        group_by(X.year , X.clusters) &gt;&gt; \n        summarize(fun = np.sum(X.funded), count = n(X.clusters) ) &gt;&gt; \n        ggplot(aes(x = 'clusters' , y = 'count' )) + \n        geom_col(fill=\"orange\") + \n        facet_wrap('~year') + theme_minimal() + theme(figure_size=(4, 3)) +\n        labs (\n            x = \"Clusters\",\n            y = \"Number of Grants\",\n            caption = \"Number of Grants across Clusters YonY\"\n        )\n        )\n\nplot2.save(\"Count_Clusters.png\", width=4, height=3)\n\n\n \nInterpreation\n\nA nearly identical linear relationship between the number of grants and funding amount is apparent, indicating a consistent funding amount per grant.\nFurthermore, distinct funding values emerge across the clusters, highlighting variations in funding amounts despite similar numbers of grants within each cluster."
+  },
+  {
+    "objectID": "tidy-analysis/20022024/index.html#combined-wordcloud",
+    "href": "tidy-analysis/20022024/index.html#combined-wordcloud",
+    "title": "Tidy Tuesday - R Consortium ISC Grants",
+    "section": "3.4. Combined WordCloud",
+    "text": "3.4. Combined WordCloud\n\n\nCode for Combined Words of WordCloud\ncombined_text = ' '.join(isc_grants['keywords'].sum())\n\nwordcloud = (\n    WordCloud( \n              max_font_size=50, \n              max_words=100,       \n              background_color=\"white\")\n    .generate(combined_text)\n)\n\nplt.figure(figsize=(8, 6))\nplt.imshow(wordcloud, interpolation='bilinear')\nplt.axis('off')\nplt.title(\"Combined WordCloud\",fontsize=16 )\nplt.savefig('wordcloud_image.png') \n\n\n\n\n\n\n\nInterpreation\n\nThe prevalence of CRAN and ISC is noteworthy, and it would have been beneficial to exclude them for a more focused analysis.\nAdditionally, within the R consortium grants, there is notable diversity with the inclusion of topics such as JavaScript, DBI, and Python. This suggests a robust research scope, particularly in the realm of multiple integrations."
+  },
+  {
+    "objectID": "tidy-analysis/20022024/index.html#wordcloud-by-cluster",
+    "href": "tidy-analysis/20022024/index.html#wordcloud-by-cluster",
+    "title": "Tidy Tuesday - R Consortium ISC Grants",
+    "section": "3.4. WordCloud by Cluster",
+    "text": "3.4. WordCloud by Cluster\n\n\nCode for WordCloud by Cluster\ncombined_text1 = ' '.join(isc_grants[isc_grants['clusters'] == 0]['keywords'].sum())\ncombined_text2 = ' '.join(isc_grants[isc_grants['clusters'] == 1]['keywords'].sum())\ncombined_text3 = ' '.join(isc_grants[isc_grants['clusters'] == 2]['keywords'].sum())\ncombined_text4 = ' '.join(isc_grants[isc_grants['clusters'] == 3]['keywords'].sum())\n\nwordcloud1 = (\n    WordCloud( \n              max_font_size=50, \n              max_words=100,       \n              background_color=\"white\")\n    .generate(combined_text1)\n)\n\nwordcloud2 = (\n    WordCloud( \n              max_font_size=50, \n              max_words=100,       \n              background_color=\"white\")\n    .generate(combined_text2)\n)\n\nwordcloud3 = (\n    WordCloud( \n              max_font_size=50, \n              max_words=100,       \n              background_color=\"white\")\n    .generate(combined_text3)\n)\n\nwordcloud4 = (\n    WordCloud( \n              max_font_size=50, \n              max_words=100,       \n              background_color=\"white\")\n    .generate(combined_text4)\n)\n\nplt.figure(figsize=(4, 3))\nplt.imshow(wordcloud1, interpolation='bilinear')\nplt.axis('off')\nplt.title(\"Cluster 0 WordCloud\",fontsize=12)\nplt.savefig('wordcloud_image1.png') \n\nplt.figure(figsize=(4, 3))\nplt.imshow(wordcloud2, interpolation='bilinear')\nplt.axis('off')\nplt.title(\"Cluster 1 WordCloud\",fontsize=12)\nplt.savefig('wordcloud_image2.png') \n\nplt.figure(figsize=(4, 3))\nplt.imshow(wordcloud3, interpolation='bilinear')\nplt.axis('off')\nplt.title(\"Cluster 2 WordCloud\",fontsize=12)\nplt.savefig('wordcloud_image3.png') \n\nplt.figure(figsize=(4, 3))\nplt.imshow(wordcloud4, interpolation='bilinear')\nplt.axis('off')\nplt.title(\"Cluster 3 WordCloud\",fontsize=12)\nplt.savefig('wordcloud_image4.png') \n\n\n \n \nInterpreation\n\nIn first cluster we see DBI and Windows.\nIn second cluster we see Python and JavaScript.\nIn third cluster we see RSQLite and RMariaDB.\nIn third cluster we see LLMs and AWS.\n\nCertainly, it is evident that clustering has provided valuable insights into the primary themes of research grants. The observation that the average funding amount per grant is relatively consistent does not imply the superiority of one research segment over another. Instead, it indicates that the number of research projects in the second and fourth segments is lower when compared to the first and third segments."
+  },
+  {
+    "objectID": "tidy-analysis/30012024/index.html",
+    "href": "tidy-analysis/30012024/index.html",
+    "title": "Tidy Tuesday - GroundHog Predictions",
+    "section": "",
+    "text": "import pandas as pd\nfrom dfply import *\nfrom plotnine import *\nimport ssl"
+  },
+  {
+    "objectID": "tidy-analysis/30012024/index.html#consensus-of-groundhogs-yony",
+    "href": "tidy-analysis/30012024/index.html#consensus-of-groundhogs-yony",
+    "title": "Tidy Tuesday - GroundHog Predictions",
+    "section": "3.1. Consensus of Groundhogs YonY",
+    "text": "3.1. Consensus of Groundhogs YonY\n\n\nCode for Density Plot of Consensus\nplot = (predictions_groundhog &gt;&gt;\n        filter_by(X.shadow.notna()) &gt;&gt;\n        ggplot(aes(x='year', color='shadow')) +\n        geom_density() +\n        scale_color_manual(name='Prediction',\n                           labels=['Early Spring', 'Long Winter'],\n                           values=['#8B4513', '#0000CD']) +\n        theme_minimal(base_size=14) +\n        theme(legend_position=(0.5, 0.5)) + \n        theme(figure_size=(6,4)) + \n        labs(title='Consensus of Groundhogs YoY'))\n\nprint(plot)"
+  },
+  {
+    "objectID": "tidy-analysis/30012024/index.html#count-of-groundhogs-yony",
+    "href": "tidy-analysis/30012024/index.html#count-of-groundhogs-yony",
+    "title": "Tidy Tuesday - GroundHog Predictions",
+    "section": "3.2. Count of GroundHogs YonY",
+    "text": "3.2. Count of GroundHogs YonY\n\n\nCode for Line Plot of Groundhogs\nplot = (predictions_groundhog &gt;&gt;\n        filter_by(X.shadow.notna()) &gt;&gt;\n        group_by(X.year) &gt;&gt; \n        summarize(n = n(X.year)) &gt;&gt;\n        ggplot(aes(x='year', y='n')) +\n        geom_line() + \n        theme_minimal() + \n        labs(x='year', y='number of groundhogs', title='Count of Groundhogs by Year'))\n\nprint(plot)"
+  },
+  {
+    "objectID": "tidy-analysis/30012024/index.html#consensus-of-groundhogs-yony-by-shortname",
+    "href": "tidy-analysis/30012024/index.html#consensus-of-groundhogs-yony-by-shortname",
+    "title": "Tidy Tuesday - GroundHog Predictions",
+    "section": "3.3. Consensus of GroundHogs YonY by ShortName",
+    "text": "3.3. Consensus of GroundHogs YonY by ShortName\n\n\nCode for Consensus Plot of Groundhogs by ShortName\nplot = (predictions_groundhog &gt;&gt;\n        filter_by(X.shadow.notna()) &gt;&gt;\n        ggplot(aes(x='year', color='shadow')) +\n        geom_histogram() +\n        labs(title='Consensus of Groundhogs YoY') +\n        facet_wrap('~shortname') +\n        scale_color_manual(name='Prediction',\n                           labels=['Early Spring', 'Long Winter'],\n                           values=['#8B4513', '#0000CD']) + \n        theme_minimal(base_size = 14) + \n        theme(figure_size=(20,12))\n                           )\n\nprint(plot)\n\n\n\n\n\n\n\n\n\n\n\n\nI believe this is a simplified representation of the consensus to gain initial insights.\n\nConsidering the number of groundhogs included in the observational study, the majority predicted an early spring.\nHowever, since we currently lack weather data, we are unable to cross-verify which predictions were accurate.\nWith the exception of Phil, most others forecasted an early spring."
+  },
+  {
+    "objectID": "tidy-analysis/12032024/index.html",
+    "href": "tidy-analysis/12032024/index.html",
+    "title": "Tidy Tuesday - Fiscal Sponsors",
+    "section": "",
+    "text": "import pandas as pd\nfrom dfply import *\nfrom plotnine import *\nimport ssl"
+  },
+  {
+    "objectID": "tidy-analysis/12032024/index.html#total-sponsorships-duration-and-projects",
+    "href": "tidy-analysis/12032024/index.html#total-sponsorships-duration-and-projects",
+    "title": "Tidy Tuesday - Fiscal Sponsors",
+    "section": "2.1. Total Sponsorships Duration and Projects",
+    "text": "2.1. Total Sponsorships Duration and Projects\n\n\nTotal Sponsorships Duration and Projects Plot Code\n(data &gt;&gt; \n ggplot(aes(x= \"fiscal_sponsor_since\",y=\"n_sponsored\",color=\"year_fiscal_sponsor\")) +\n geom_point() + \n theme_minimal() + \n labs(\n     x = \"Years since Fiscal Sponsorship\",\n     y = \"Number of Sponsored Projects\",\n     title = \"Relationship between Total Sponsorships and Duration of Sponsorship\",\n     subtitle = \"Legend of colors is on Fiscal Sponsorship year\",\n     caption = \"Axis is zoomed to have a better visualization\"\n ) +\n  guides(color=guide_legend(title=\"\")) +  # Use an empty string to remove the legend title\n  theme(\n      legend_position=(0.5, 0.85),\n      panel_grid_minor_x = element_blank(),\n      panel_grid_minor_y = element_blank()\n  ) + \n   coord_cartesian( \n    ylim = (0, 400),\n    xlim = (0,75)\n    ) + \n   annotate(\n       \"text\",\n       x = 60,\n       y = 200,\n       label = \"Older Sponsors doesn't mean \\n more sponsored projects \",\n       color = \"brown\",\n       size = 8\n       )\n )\n\n\n\n\n\n\n\n\n\nSponsors who began sponsoring in recent years tend to have a lower number of sponsored projects, which aligns with our intuition. However, sponsors who commenced sponsorship fifty years ago exhibit a comparable number of projects to those of more recent sponsors. Upon closer examination of the last twenty years, the number of projects appears to demonstrate a linear relationship with the launch of sponsorship"
+  },
+  {
+    "objectID": "tidy-analysis/12032024/index.html#histogram-of-total-sponsored-projects",
+    "href": "tidy-analysis/12032024/index.html#histogram-of-total-sponsored-projects",
+    "title": "Tidy Tuesday - Fiscal Sponsors",
+    "section": "2.2. Histogram of Total Sponsored Projects",
+    "text": "2.2. Histogram of Total Sponsored Projects\n\n\nHistogram of Total Sponsored Projects Plot Code\n(data &gt;&gt; \n ggplot(aes(x=\"n_sponsored\")) +\n geom_histogram(position=\"dodge\",fill = \"#4169E1\") + \n theme_minimal() +\n labs (\n     x = \"Number of Sponsored Projects\",\n     y = \"\",\n     title = \"Histogram of total Sponsored projects\"\n ) + \n theme(\n      panel_grid_major_y = element_blank(),\n      panel_grid_minor_x = element_blank(),\n      panel_grid_minor_y = element_blank()\n  ) + \n   annotate(\n       \"text\",\n       x = 200,\n       y = 80,\n       label = \"Most of the sponsors \\n sponsored only one/two project \",\n       color = \"brown\",\n       size = 8\n       )\n )\n\n\n\n\n\n\n\n\n\nMost sponsors have one or two projects, while a few have a significantly higher number, indicating a long tail of active involvement."
+  },
+  {
+    "objectID": "tidy-analysis/12032024/index.html#histogram-of-fiscal-sponsorship-fee",
+    "href": "tidy-analysis/12032024/index.html#histogram-of-fiscal-sponsorship-fee",
+    "title": "Tidy Tuesday - Fiscal Sponsors",
+    "section": "2.3. Histogram of Fiscal Sponsorship Fee",
+    "text": "2.3. Histogram of Fiscal Sponsorship Fee\n\n\nHistrogram of Fiscal Sponsorship Fee Plot Code\n(data &gt;&gt; \n ggplot(aes(x=\"fee\")) +\n geom_histogram(position=\"dodge\", fill = \"#708090\") +\n theme_minimal() +\n labs (\n     x = \"Sponsorship Fee%\",\n     y = \"\",\n     title = \"Histogram of fees associated with fiscal sponsorship\",\n     caption = \"Axis is zoomed to have a better visualization\"\n ) +  \n theme(\n      panel_grid_major_y = element_blank(),\n      panel_grid_minor_x = element_blank(),\n      panel_grid_minor_y = element_blank()\n  ) + \n   coord_cartesian( \n    xlim = (0, 15),\n    ) + \n   annotate(\n       \"text\",\n       x = 13,\n       y = 50,\n       label = \"Median range of sponsorship \\n fee is b/w 5% & 10% \",\n       color = \"brown\",\n       size = 8\n       )\n )\n\n\n\n\n\n\n\n\n\nAs annotated in the plot most of the fiscal sponsorship fee starts at 5% to 10%."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "TidyTuesday Solved Soluitions",
     "section": "",
-    "text": "This website is designed to showcase my solutions to TidyTuesday challenges. In the initial weeks, I will focus on basic analysis and plotting. As the weeks progress, I aim to provide more sophisticated and holistic solutions.\nThe coding is done in python majorly using the following packages as of now:\n\npandas\nnumpy\nplotnine { Similar to that of ggplot of R }\ndfply { Similar to that of tidyverse of R }\n\nMay be in future may add matplotlib , plotly and shiny\n\n\n\nTidy Tuesday Date\nDataset About\nLink for my approach\nComments\n\n\n\n\n16th Jan 2024\nUS Polling Places 2012-2020\nAnalysis-16012024\nMy first Basic Line Plot\n\n\n30th Jan 2024\nGroundhog predictions\nAnalysis-30012024\nDensity Plots\n\n\n13th Feb 2024\nValentine’s Day consumer data\nAnalysis-13022024\nColumn Plots\n\n\n20th Feb 2024\nR Consortium ISC Grants\nAnalysis-20022024\nSegment Plot & Word Cloud; Used Spacy English Model\n\n\n5th Mar 2024\nTrash Wheel Collection Data\nAnalysis-05032024\nLine Plots & Heat-Map"
+    "text": "This website is designed to showcase my solutions to TidyTuesday challenges. In the initial weeks, I will focus on basic analysis and plotting. As the weeks progress, I aim to provide more sophisticated and holistic solutions.\nThe coding is done in python majorly using the following packages as of now:\n\npandas\nnumpy\nplotnine { Similar to that of ggplot of R }\ndfply { Similar to that of tidyverse of R }\nplotly\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday - Fiscal Sponsors\n\n\n12th Mar 2024\n\n\n\n\n\n\n\n\nMar 21, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday - Trash Wheel Collection Data\n\n\n5th March 2024\n\n\n\n\n\n\n\n\nMar 8, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday - R Consortium ISC Grants\n\n\n20th Feb 2024\n\n\n\n\n\n\n\n\nFeb 24, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday - Valentine’s Day Consumer Data\n\n\n13th Feb 2024\n\n\n\n\n\n\n\n\nFeb 16, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday - GroundHog Predictions\n\n\n30th Jan 2024\n\n\n\n\n\n\n\n\nJan 31, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday - US Polling Places\n\n\n16th Jan 2024\n\n\n\n\n\n\n\n\nJan 18, 2024\n\n\n\n\n\n\nNo matching items"
   }
 ]
