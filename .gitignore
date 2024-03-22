@@ -2,3 +2,5 @@
 .DS_Store
 _site/
 analysis/16012024/Tidy16012024.ipynb
+_freeze/*
+

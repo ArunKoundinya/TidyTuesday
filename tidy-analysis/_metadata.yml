@@ -1,0 +1,24 @@
+# options specified here will apply to all posts in this folder
+
+# freeze computational output
+# (see https://quarto.org/docs/projects/code-execution.html#freeze)
+freeze: true
+
+# Enable banner style title blocks
+title-block-banner: true
+
+# Author name of all blog posts
+author: 'Arun Koundinya Parasa'
+
+# Table of content settings
+toc: true
+toc-depth: 3
+
+page-layout: article
+
+output-file: index.html
+
+page-footer:
+  right: "This page is built with 💛 and [Quarto](https://quarto.org/)."
+  left: "&copy; Copyright 2024, Arun Koundinya Parasa"
+  background: "#36494E" 

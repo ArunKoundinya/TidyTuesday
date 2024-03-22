@@ -1,6 +1,7 @@
 ---
 title: Tidy Tuesday  - Trash Wheel Collection Data
 subtitle: 5th March 2024
+date: "2024-03-08"
 format: html
 fig-dpi: 300
 execute:

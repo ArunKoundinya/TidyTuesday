@@ -1,6 +1,7 @@
 ---
 title: Tidy Tuesday  - US Polling Places
 subtitle: 16th Jan 2024
+date: "2024-01-18"
 execute:
   code-link: true
 ---

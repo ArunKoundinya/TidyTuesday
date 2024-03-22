@@ -2,10 +2,6 @@ project:
   type: website
 
 website:
-  comments:
-    giscus:
-      repo: ArunKoundinya/TidyTuesday
-
   title: "TidyTuesday"
   description: "Homepage for Tidy Solutions on Python"
   favicon: /images/logo.jpeg
@@ -25,7 +21,7 @@ website:
 
 format:
   html:
-    theme: cosmo
+    theme: simple
     css: styles.css
     toc: true
 
