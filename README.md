@@ -14,7 +14,7 @@ The coding is done in python majorly using the following packages as of now:
 
 May be in future may add matplotlib , plotly and shiny
 
-My last six tidy tuesday solutions
+My last seven tidy tuesday solutions
 
 | Tidy Tuesday Date | Dataset About                                                                                                              | Link for my approach                                   | Comments                                            |
 |------------------|-------------------|------------------|------------------|
@@ -24,3 +24,4 @@ My last six tidy tuesday solutions
 | 20th Feb 2024     | [R Consortium ISC Grants](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-20/readme.md)       | [Analysis-20022024](tidy-analysis/20022024/index.html) | Segment Plot & Word Cloud; Used Spacy English Model |
 | 5th Mar 2024      | [Trash Wheel Collection Data](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-03-05/readme.md)   | [Analysis-05032024](tidy-analysis/05032024/index.html) | Line Plots & Heat-Map                               |
 | 12th Mar 2024     | [Fiscal Sponsorship](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-03-12/readme.md)            | [Analysis-12032024](tidy-analysis/12032024/index.html) | Scatter & Histograms with Annotations               |
+| 5th Apr 2024      | [Du Bios Challenge](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-02/readme.md)             | [Analysis-02042024](tidy-analysis/02042024/index.html) | Pie Chart with Annotations - R Code                 |
