@@ -1,0 +1,187 @@
+#DubiosChallenge2024
+
+library(tidyverse)
+
+dubois_week10 <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-04-02/dubois_week10.csv')
+
+order_series <- c(1,6,4,5,3,2)
+
+color_palette <- c("#EC2744", "#FFC56F", "#8C7C70", "#EFC1B3", "#CCA288", "#61719D")
+
+dubois_week10 <- cbind(dubois_week10,order_series,color_palette)
+
+
+
+color_palette <- c("#EC2744", "#FFC56F", "#8C7C70", "#EFC1B3", "#CCA288", "#61719D")
+
+#Source - https://redketchup.io/color-picker
+
+
+dubois_week10 |>
+  arrange(desc(Percentage)) |>
+  ggplot(aes(x= "",y = Percentage,fill = reorder(order_series,Occupation))) + 
+  geom_bar(stat = "identity",width = 1) + 
+  coord_polar("y", start = 2.1) + 
+  scale_fill_manual(values = color_palette) +
+  theme_void() + 
+  theme(legend.position = "none",
+        plot.background = element_rect(fill = "#F5DEB3")) + 
+  annotate(
+  "text",
+  x = 0.9,
+  y = 65,
+  label = expression(bold("58.5%")),
+  size = 5
+) + 
+  annotate(
+    "text",
+    x = 1,
+    y = 30,
+    label = expression(bold("28.1%")),
+    size = 5
+  ) + 
+  annotate(
+    "text",
+    x = 1.4,
+    y = 11.5,
+    label = expression(bold("3.8%")),
+    size = 4
+  )+ 
+  annotate(
+    "text",
+    x = 1.4,
+    y = 8,
+    label = expression(bold("3.2%")),
+    size = 4
+  )+ 
+  annotate(
+    "text",
+    x = 1.4,
+    y = 5,
+    label = expression(bold("2.1%")),
+    size = 3
+  )+ 
+  annotate(
+    "text",
+    x = 1.3,
+    y = 2,
+    label = expression(bold("4.3%")),
+    size = 4
+  ) -> base_plot
+
+dubois_week10 |>
+  ggplot(aes(x=0.2,y=reorder(order_series/10,Occupation))) + 
+  geom_point(aes(color = Occupation),size = 4) + 
+  scale_y_discrete(expand = expansion(mult = c(1, 1))) + 
+  coord_cartesian(xlim = c(0, 1))  +
+  scale_color_manual(values = c("#61719D","#EFC1B3", "#8C7C70", "#EC2744", "#CCA288","#FFC56F")) +
+  theme_void() + theme(legend.position = "none", plot.background = element_rect(fill = "#F5DEB3")) + 
+  annotate(
+    "text",
+    x = 0.2,
+    y = 6,
+    hjust = -0.21,
+    label = "TEACHERS"
+  ) + 
+  annotate(
+    "text",
+    x = 0.2,
+    y = 5,
+    hjust = -0.21,
+    label = "MINISTERS"
+  )+ 
+  annotate(
+    "text",
+    x = 0.2,
+    y = 4,
+    hjust = -0.09,
+    label = "GOVERNMENT SERVICE"
+  )+ 
+  annotate(
+    "text",
+    x = 0.2,
+    y = 3,
+    hjust = -0.21,
+    label = "BUSINESS"
+  )+ 
+  annotate(
+    "text",
+    x = 0.2,
+    y = 2,
+    hjust = -0.1,
+    label = "OTHER PROFESSORS"
+  )+ 
+  annotate(
+    "text",
+    x = 0.2,
+    y = 1,
+    hjust = -0.16,
+    label = "HOUSE WIVES"
+  ) -> label_plot
+
+
+
+dubois_week10 |>
+  ggplot(aes(x=0.9,y=reorder(order_series/10,Occupation))) + 
+  geom_point(aes(color = Occupation),size = 4) + 
+  scale_y_discrete(expand = expansion(mult = c(1, 1))) + 
+  coord_cartesian(xlim = c(0, 1))  +
+  scale_color_manual(values = c("#61719D","#EFC1B3", "#8C7C70", "#EC2744", "#CCA288","#FFC56F")) +
+  theme_void() + theme(legend.position = "none",plot.background = element_rect(fill = "#F5DEB3")) + 
+  annotate(
+    "text",
+    x = 0.57,
+    y = 6,
+    hjust = 0.7,
+    label = "PROFESSEURS ET INSTITUTEURS",
+  ) + 
+  annotate(
+    "text",
+    x = 0.635,
+    y = 5,
+    hjust = 0.7,
+    label = "MINISTERS DE L'EVANGILE"
+  )+ 
+  annotate(
+    "text",
+    x = 0.625,
+    y = 4,
+    hjust = 0.72,
+    label = "EMPLOYEES DU GOVERNMENT"
+  )+ 
+  annotate(
+    "text",
+    x = 0.76,
+    y = 3,
+    hjust = 0.72,
+    label = "MARCHANDS"
+  )+ 
+  annotate(
+    "text",
+    x = 0.60,
+    y = 2,
+    hjust = 0.72,
+    label = "MEDCNS, ADVOCATS, ETUDIANTS"
+  )+ 
+  annotate(
+    "text",
+    x = 0.71,
+    y = 1,
+    hjust = 0.72,
+    label = "MERES DE FAMILLE"
+  ) -> label_plot1
+  
+
+library(patchwork)
+
+final_plot <-  label_plot + base_plot + label_plot1 +
+  plot_layout(widths = c(1, 1.6, 1)) + 
+  annotate(
+    "text",
+    x = 10,
+    y = 50,
+    hjust = 0.72,
+    label = "MERES DE FAMILLE"
+  )
+
+final_plot 
