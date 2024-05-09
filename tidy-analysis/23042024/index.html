@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.550">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Arun Koundinya Parasa">
+<meta name="dcterms.date" content="2024-05-08">
+
+<title>TidyTuesday - Tidy Tuesday - Objects Launched into Space</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../..//images/logo.jpeg" rel="icon" type="image/jpeg">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="../../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">TidyTuesday</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Tidy Tuesday - Objects Launched into Space</h1>
+            <p class="subtitle lead">23rd April 2024</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Arun Koundinya Parasa </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">May 8, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#loading-libraries" id="toc-loading-libraries" class="nav-link active" data-scroll-target="#loading-libraries">0. Loading Libraries</a></li>
+  <li><a href="#data-loading" id="toc-data-loading" class="nav-link" data-scroll-target="#data-loading">1. Data Loading</a></li>
+  <li><a href="#data-manipulation" id="toc-data-manipulation" class="nav-link" data-scroll-target="#data-manipulation">2. Data Manipulation</a></li>
+  <li><a href="#plots" id="toc-plots" class="nav-link" data-scroll-target="#plots">3. Plots</a>
+  <ul class="collapse">
+  <li><a href="#total-objects-launched-in-space-over-time" id="toc-total-objects-launched-in-space-over-time" class="nav-link" data-scroll-target="#total-objects-launched-in-space-over-time">3.1. Total Objects Launched in space over time</a></li>
+  <li><a href="#objects-launched-by-entities" id="toc-objects-launched-by-entities" class="nav-link" data-scroll-target="#objects-launched-by-entities">3.2. Objects Launched by Entities</a></li>
+  <li><a href="#objected-launched-by-top-15-countries" id="toc-objected-launched-by-top-15-countries" class="nav-link" data-scroll-target="#objected-launched-by-top-15-countries">3.3. Objected Launched by Top 15 Countries</a></li>
+  <li><a href="#movie-of-object-launches-across-65-years" id="toc-movie-of-object-launches-across-65-years" class="nav-link" data-scroll-target="#movie-of-object-launches-across-65-years">3.4. Movie of Object Launches Across 65 Years</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">4. References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="loading-libraries" class="level1">
+<h1>0. Loading Libraries</h1>
+<p>This particular visualization is done on <code>R</code> to visualize the data in an animation. Finally, was successful by creating a movie plot where users can pause and see a particular version of plot. Plots are annotated with key findings inside the plot.</p>
+<div id="loading_libraries" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Loading Libraries</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>library(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>library(ggrepel)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>library(gganimate)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>library(jpeg)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>library(grid)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>library(png)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>library(av)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="data-loading" class="level1">
+<h1>1. Data Loading</h1>
+<div id="loading_data" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Loading Data</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>outer_space_objects <span class="op">&lt;-</span> readr::read_csv(<span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-04-23/outer_space_objects.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="data-manipulation" class="level1">
+<h1>2. Data Manipulation</h1>
+<div id="manipulation_of_data" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Data Manipulation</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating Seperate dataframe for entities</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>entities <span class="op">=</span> subset(outer_space_objects,<span class="kw">is</span>.na(outer_space_objects$Code))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating Seperate dataframe for Countries</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>countries <span class="op">=</span> subset(outer_space_objects,outer_space_objects$Entity<span class="op">!=</span> <span class="st">"World"</span> <span class="op">&amp;</span> <span class="op">!</span>(<span class="kw">is</span>.na(outer_space_objects$Code)))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a consistent color coding for Countries</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># List of countries</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>countrynames <span class="op">&lt;-</span> c(</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Algeria"</span>, <span class="st">"Angola"</span>, <span class="st">"Argentina"</span>, <span class="st">"Armenia"</span>, <span class="st">"Australia"</span>, </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Austria"</span>, <span class="st">"Azerbaijan"</span>, <span class="st">"Bangladesh"</span>, <span class="st">"Belarus"</span>, <span class="st">"Belgium"</span>, </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Bhutan"</span>, <span class="st">"Bolivia"</span>, <span class="st">"Brazil"</span>, <span class="st">"Bulgaria"</span>, <span class="st">"Canada"</span>, </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Chile"</span>, <span class="st">"China"</span>, <span class="st">"Colombia"</span>, <span class="st">"Costa Rica"</span>, <span class="st">"Czechia"</span>, </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Denmark"</span>, <span class="st">"Djibouti"</span>, <span class="st">"Ecuador"</span>, <span class="st">"Egypt"</span>, <span class="st">"Estonia"</span>, </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Ethiopia"</span>, <span class="st">"Finland"</span>, <span class="st">"France"</span>, <span class="st">"Germany"</span>, <span class="st">"Ghana"</span>, </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Greece"</span>, <span class="st">"Guatemala"</span>, <span class="st">"Hungary"</span>, <span class="st">"India"</span>, <span class="st">"Indonesia"</span>, </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Iran"</span>, <span class="st">"Ireland"</span>, <span class="st">"Israel"</span>, <span class="st">"Italy"</span>, <span class="st">"Japan"</span>, </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Jordan"</span>, <span class="st">"Kazakhstan"</span>, <span class="st">"Kenya"</span>, <span class="st">"Kuwait"</span>, <span class="st">"Laos"</span>, </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Latvia"</span>, <span class="st">"Lithuania"</span>, <span class="st">"Luxembourg"</span>, <span class="st">"Malaysia"</span>, <span class="st">"Mauritius"</span>, </span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Mexico"</span>, <span class="st">"Moldova"</span>, <span class="st">"Monaco"</span>, <span class="st">"Mongolia"</span>, <span class="st">"Morocco"</span>, </span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Nepal"</span>, <span class="st">"Netherlands"</span>, <span class="st">"New Zealand"</span>, <span class="st">"Nigeria"</span>, <span class="st">"North Korea"</span>, </span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Norway"</span>, <span class="st">"Pakistan"</span>, <span class="st">"Papua New Guinea"</span>, <span class="st">"Paraguay"</span>, <span class="st">"Peru"</span>, </span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Philippines"</span>, <span class="st">"Poland"</span>, <span class="st">"Portugal"</span>, <span class="st">"Qatar"</span>, <span class="st">"Romania"</span>, </span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Russia"</span>, <span class="st">"Rwanda"</span>, <span class="st">"Saudi Arabia"</span>, <span class="st">"Singapore"</span>, <span class="st">"Slovakia"</span>, </span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Slovenia"</span>, <span class="st">"South Africa"</span>, <span class="st">"South Korea"</span>, <span class="st">"Spain"</span>, <span class="st">"Sri Lanka"</span>, </span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Sweden"</span>, <span class="st">"Switzerland"</span>, <span class="st">"Taiwan"</span>, <span class="st">"Thailand"</span>, <span class="st">"Tunisia"</span>, </span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Turkey"</span>, <span class="st">"Turkmenistan"</span>, <span class="st">"Uganda"</span>, <span class="st">"Ukraine"</span>, <span class="st">"United Arab Emirates"</span>, </span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="st">"United Kingdom"</span>, <span class="st">"United States"</span>, <span class="st">"Uruguay"</span>, <span class="st">"Venezuela"</span>, <span class="st">"Vietnam"</span>, </span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Zimbabwe"</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co"># List of manually selected unique color hex codes</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>color_hex_codes <span class="op">&lt;-</span> c(</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#FF5733"</span>, <span class="st">"#C70039"</span>, <span class="st">"#900C3F"</span>, <span class="st">"#581845"</span>, <span class="st">"#FFC300"</span>, </span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#FF5734"</span>, <span class="st">"#C7003A"</span>, <span class="st">"#900C40"</span>, <span class="st">"#581846"</span>, <span class="st">"#FFC301"</span>, </span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#FF5735"</span>, <span class="st">"#C7003B"</span>, <span class="st">"#900C41"</span>, <span class="st">"#581847"</span>, <span class="st">"#FFC302"</span>, </span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#FF5736"</span>, <span class="st">"#C7003C"</span>, <span class="st">"#900C42"</span>, <span class="st">"#581848"</span>, <span class="st">"#FFC303"</span>, </span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#FF5737"</span>, <span class="st">"#C7003D"</span>, <span class="st">"#900C43"</span>, <span class="st">"#581849"</span>, <span class="st">"#FFC304"</span>, </span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#FF5738"</span>, <span class="st">"#C7003E"</span>, <span class="st">"#900C44"</span>, <span class="st">"#58184A"</span>, <span class="st">"#FFC305"</span>, </span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#FF5739"</span>, <span class="st">"#C7003F"</span>, <span class="st">"#900C45"</span>, <span class="st">"#58184B"</span>, <span class="st">"#FFC306"</span>, </span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#FF573A"</span>, <span class="st">"#C70040"</span>, <span class="st">"#900C46"</span>, <span class="st">"#58184C"</span>, <span class="st">"#FFC307"</span>, </span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#FF573B"</span>, <span class="st">"#C70041"</span>, <span class="st">"#900C47"</span>, <span class="st">"#58184D"</span>, <span class="st">"#FFC308"</span>, </span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#FF573C"</span>, <span class="st">"#C70042"</span>, <span class="st">"#900C48"</span>, <span class="st">"#58184E"</span>, <span class="st">"#FFC309"</span>, </span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#FF573D"</span>, <span class="st">"#C70043"</span>, <span class="st">"#900C49"</span>, <span class="st">"#58184F"</span>, <span class="st">"#FFC30A"</span>, </span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#FF573E"</span>, <span class="st">"#C70044"</span>, <span class="st">"#900C4A"</span>, <span class="st">"#581850"</span>, <span class="st">"#FFC30B"</span>, </span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#FF573F"</span>, <span class="st">"#C70045"</span>, <span class="st">"#900C4B"</span>, <span class="st">"#581851"</span>, <span class="st">"#FFC30C"</span>, </span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#FF5740"</span>, <span class="st">"#C70046"</span>, <span class="st">"#900C4C"</span>, <span class="st">"#581852"</span>, <span class="st">"#FFC30D"</span>, </span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#FF5741"</span>, <span class="st">"#C70047"</span>, <span class="st">"#900C4D"</span>, <span class="st">"#581853"</span>, <span class="st">"#FFC30E"</span>, </span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#FF5742"</span>, <span class="st">"#C70048"</span>, <span class="st">"#900C4E"</span>, <span class="st">"#581854"</span>, <span class="st">"#FFC30F"</span>, </span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#FF5743"</span>, <span class="st">"#C70049"</span>, <span class="st">"#900C4F"</span>, <span class="st">"#581855"</span>, <span class="st">"#FFC310"</span>,</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#FF5744"</span>, <span class="st">"#C7004A"</span>, <span class="st">"#900C50"</span>, <span class="st">"#581856"</span>, <span class="st">"#FFC311"</span>,</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#1F5745"</span>, <span class="st">"#C7004B"</span>, <span class="st">"#900C51"</span>, <span class="st">"#581857"</span>, <span class="st">"#C7004B"</span>,</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#FF5746"</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame with countries and their corresponding color codes</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>country_colors_df <span class="op">&lt;-</span> data.frame(Country <span class="op">=</span> countrynames, Color <span class="op">=</span> color_hex_codes)</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Merging to the orignal dataframe</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>countries<span class="op">&lt;-</span> merge(countries,country_colors_df,by.x <span class="op">=</span> <span class="st">"Entity"</span>,by.y <span class="op">=</span> <span class="st">"Country"</span>,<span class="bu">all</span>.x <span class="op">=</span> TRUE)</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="co"># removing the values created</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>rm(country_colors_df,countrynames,color_hex_codes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="plots" class="level1">
+<h1>3. Plots</h1>
+<section id="total-objects-launched-in-space-over-time" class="level2">
+<h2 class="anchored" data-anchor-id="total-objects-launched-in-space-over-time">3.1. Total Objects Launched in space over time</h2>
+<div id="plot1-line-plot" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Plot1 Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot1 - Line Graph with background image</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>bg_image <span class="op">&lt;-</span> readPNG(<span class="st">"satellite.png"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>bg_image <span class="op">&lt;-</span> rasterGrob(bg_image, interpolate<span class="op">=</span>TRUE)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>outer_space_objects <span class="op">&lt;-</span> </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  rbind(</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  outer_space_objects <span class="op">|&gt;</span> </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    Entity <span class="op">%</span><span class="kw">in</span><span class="op">%</span> c(<span class="st">"World"</span>,<span class="st">"United States"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="op">|&gt;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  select(</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    c(<span class="st">"Year"</span>,<span class="st">"Entity"</span>,<span class="st">"num_objects"</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  ) ,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  outer_space_objects <span class="op">|&gt;</span> </span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>(Entity <span class="op">%</span><span class="kw">in</span><span class="op">%</span> c(<span class="st">"World"</span>,<span class="st">"United States"</span>))</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="op">|&gt;</span> </span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  select(</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    c(<span class="st">"Entity"</span>,<span class="st">"Year"</span>,<span class="st">"num_objects"</span>) </span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="op">|&gt;</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  group_by(Year) <span class="op">|&gt;</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  summarise(Entity <span class="op">=</span> <span class="st">"Rest of World"</span>,num_objects <span class="op">=</span> <span class="bu">sum</span>(num_objects), .groups <span class="op">=</span> <span class="st">"drop"</span>)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>outer_space_objects <span class="op">&lt;-</span> outer_space_objects <span class="op">|&gt;</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  mutate(</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    Year <span class="op">=</span> <span class="im">as</span>.Date(paste(<span class="st">"01/01/"</span>,outer_space_objects$Year,sep<span class="op">=</span><span class="st">""</span>),<span class="st">"</span><span class="sc">%d</span><span class="st">/%m/%Y"</span>)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>outer_space_objects <span class="op">|&gt;</span> </span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  ggplot(aes(x <span class="op">=</span> Year, y <span class="op">=</span> num_objects, color <span class="op">=</span> Entity)) <span class="op">+</span> </span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  annotation_custom(</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    bg_image, xmin <span class="op">=</span> <span class="im">as</span>.Date(<span class="st">"1956-01-01"</span>), xmax <span class="op">=</span> <span class="im">as</span>.Date(<span class="st">"2023-12-31"</span>), ymin <span class="op">=</span> <span class="dv">0</span>, </span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    ymax <span class="op">=</span> <span class="bu">max</span>(outer_space_objects$num_objects)<span class="op">+</span><span class="dv">10</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>  ) <span class="op">+</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  geom_line() <span class="op">+</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  geom_label(data <span class="op">=</span> subset(outer_space_objects,outer_space_objects$num_objects<span class="op">&gt;</span><span class="dv">2000</span>),</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>                   aes( label <span class="op">=</span> num_objects)) <span class="op">+</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  scale_color_manual(values <span class="op">=</span> c(<span class="st">"pink"</span>, <span class="st">"green"</span>, <span class="st">"red"</span>)) <span class="op">+</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  scale_x_date(breaks <span class="op">=</span> seq(<span class="im">from</span> <span class="op">=</span> <span class="im">as</span>.Date(<span class="st">"1957-01-01"</span>),</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>                            to <span class="op">=</span> <span class="im">as</span>.Date(<span class="st">"2023-01-01"</span>),</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>                            by <span class="op">=</span> <span class="st">"6 years"</span>),</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>               date_labels <span class="op">=</span> <span class="st">"%Y"</span>) <span class="op">+</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>  theme_minimal()  <span class="op">+</span> </span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>  labs (</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="st">"Year"</span>,</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="st">"Number of Objects"</span>,</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="st">"Number of Objects Launched in Space"</span>,</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    subtitle <span class="op">=</span> <span class="st">"Period: 1957 to 2023"</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>  ) <span class="op">+</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>  theme (</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>    legend.position <span class="op">=</span> <span class="st">"none"</span>,</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>    panel.grid.minor.y <span class="op">=</span> element_blank(),</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>    panel.grid.minor.x <span class="op">=</span> element_blank(),</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>    panel.grid.major.x <span class="op">=</span> element_blank(),</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>    plot.title <span class="op">=</span> element_text(hjust <span class="op">=</span> <span class="fl">0.5</span>, size <span class="op">=</span> <span class="dv">18</span>, face <span class="op">=</span> <span class="st">"bold"</span>),</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>    plot.subtitle <span class="op">=</span> element_text(hjust <span class="op">=</span> <span class="fl">0.5</span>, size <span class="op">=</span> <span class="dv">14</span>) </span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>  ) <span class="op">+</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>  geom_rect(aes(xmin <span class="op">=</span> <span class="im">as</span>.Date(<span class="st">"2019-01-01"</span>), xmax <span class="op">=</span> <span class="im">as</span>.Date(<span class="st">"2023-06-01"</span>), ymin <span class="op">=</span> <span class="dv">2290</span>, ymax <span class="op">=</span> <span class="dv">2410</span>),</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>            fill <span class="op">=</span> <span class="st">"red"</span>,color <span class="op">=</span> <span class="st">"red"</span>, alpha <span class="op">=</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>  annotate(</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text"</span>,</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="im">as</span>.Date(<span class="st">"2021-06-01"</span>),</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="dv">2364</span>,</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>    label <span class="op">=</span> <span class="st">"World"</span>,</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>    size <span class="op">=</span> <span class="dv">4</span>,</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span> <span class="st">"white"</span></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>  ) <span class="op">+</span></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>  geom_rect(aes(xmin <span class="op">=</span> <span class="im">as</span>.Date(<span class="st">"2019-01-01"</span>), xmax <span class="op">=</span> <span class="im">as</span>.Date(<span class="st">"2023-06-01"</span>), ymin <span class="op">=</span> <span class="dv">1590</span>, ymax <span class="op">=</span> <span class="dv">1710</span>),</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>            fill <span class="op">=</span> <span class="st">"green4"</span>,color <span class="op">=</span> <span class="st">"green4"</span>, alpha <span class="op">=</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>  annotate(</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text"</span>,</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="im">as</span>.Date(<span class="st">"2021-06-01"</span>),</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="dv">1663</span>,</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>    label <span class="op">=</span> <span class="st">"USA"</span>,</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>    size <span class="op">=</span> <span class="dv">4</span>,</span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span> <span class="st">"white"</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>  )<span class="op">+</span></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>  geom_rect(aes(xmin <span class="op">=</span> <span class="im">as</span>.Date(<span class="st">"2019-01-01"</span>), xmax <span class="op">=</span> <span class="im">as</span>.Date(<span class="st">"2023-06-01"</span>), ymin <span class="op">=</span> <span class="dv">490</span>, ymax <span class="op">=</span> <span class="dv">610</span>),</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>            fill <span class="op">=</span> <span class="st">"pink3"</span>,color <span class="op">=</span> <span class="st">"pink3"</span>, alpha <span class="op">=</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>  annotate(</span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text"</span>,</span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="im">as</span>.Date(<span class="st">"2021-06-01"</span>),</span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="dv">563</span>,</span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>    label <span class="op">=</span> <span class="st">"Others"</span>,</span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>    size <span class="op">=</span> <span class="dv">4</span>,</span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span> <span class="st">"white"</span></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>  )<span class="op">+</span></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>  annotate(</span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text"</span>,</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="im">as</span>.Date(<span class="st">"1975-06-01"</span>),</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="dv">2100</span>,</span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>    label <span class="op">=</span> <span class="st">"The recent spike in objects launched into space, </span></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="er">    particularly from the year 2020, </span></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>    <span class="kw">is</span> being led by the USA<span class="st">",</span></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a><span class="er">    size = 4,</span></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>    fontface <span class="op">=</span> <span class="st">"italic"</span></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plot1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="objects-launched-by-entities" class="level2">
+<h2 class="anchored" data-anchor-id="objects-launched-by-entities">3.2. Objects Launched by Entities</h2>
+<div id="plot2-bar-plot" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Plot2 Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 2 Bar Plot by Entities</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>entities <span class="op">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  group_by(Entity) <span class="op">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  summarise(num_objects <span class="op">=</span> <span class="bu">sum</span>(num_objects), .groups <span class="op">=</span> <span class="st">"drop"</span>) <span class="op">|&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  arrange(desc(num_objects)) <span class="op">|&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  ggplot(aes( x <span class="op">=</span> reorder(Entity, num_objects))) <span class="op">+</span> </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  geom_bar(aes(y<span class="op">=</span>num_objects),stat <span class="op">=</span> <span class="st">"identity"</span>, fill <span class="op">=</span> <span class="st">"cornsilk4"</span>) <span class="op">+</span> </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  geom_label(aes(x <span class="op">=</span> reorder(Entity, num_objects), y <span class="op">=</span> num_objects, label <span class="op">=</span> num_objects), size <span class="op">=</span> <span class="dv">3</span>, color <span class="op">=</span> <span class="st">"black"</span>, hjust <span class="op">=</span> <span class="op">-</span><span class="fl">0.1</span>) <span class="op">+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  coord_flip() <span class="op">+</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  theme_minimal() <span class="op">+</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  labs (</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="st">"Number of Objects"</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="st">"Entities"</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="st">"Number of Objects Launched in Space by Entities"</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    subtitle <span class="op">=</span> <span class="st">"Period: 1957 to 2023"</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="op">+</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  theme (</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    legend.position <span class="op">=</span> <span class="st">"none"</span>,</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    panel.grid.minor.y <span class="op">=</span> element_blank(),</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    panel.grid.minor.x <span class="op">=</span> element_blank(),</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    panel.grid.major.y <span class="op">=</span> element_blank(),</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    plot.title <span class="op">=</span> element_text(hjust <span class="op">=</span> <span class="fl">0.5</span>, size <span class="op">=</span> <span class="dv">18</span>, face <span class="op">=</span> <span class="st">"bold"</span>),</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    plot.subtitle <span class="op">=</span> element_text(hjust <span class="op">=</span> <span class="fl">0.5</span>, size <span class="op">=</span> <span class="dv">14</span>) </span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="op">+</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  annotate(</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text"</span>,</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="st">"NATO"</span>,</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="dv">60</span>,</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    label <span class="op">=</span> <span class="st">"Total objects launched into space during the period, </span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="er">    is being led mostly by Europe",</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    size <span class="op">=</span> <span class="dv">4</span>,</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span> <span class="st">"darkred"</span>,</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    fontface <span class="op">=</span> <span class="st">"italic"</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plot2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="objected-launched-by-top-15-countries" class="level2">
+<h2 class="anchored" data-anchor-id="objected-launched-by-top-15-countries">3.3. Objected Launched by Top 15 Countries</h2>
+<div id="plot3-bar-plot" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Plot3 Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 3 Bar Plot for top 15 countries</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>top15countries <span class="op">&lt;-</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  countries <span class="op">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  group_by(Entity,Color) <span class="op">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  summarise(num_objects <span class="op">=</span> <span class="bu">sum</span>(num_objects), .groups <span class="op">=</span> <span class="st">"drop"</span>) <span class="op">|&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  arrange(desc(num_objects)) <span class="op">|&gt;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  head(<span class="dv">15</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>col <span class="op">&lt;-</span> <span class="im">as</span>.character(top15countries$Color)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>names(col) <span class="op">&lt;-</span> <span class="im">as</span>.character(top15countries$Entity)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>top15countries <span class="op">|&gt;</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  ggplot(aes( x <span class="op">=</span> reorder(Entity, num_objects))) <span class="op">+</span> </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  geom_bar(aes(y<span class="op">=</span>num_objects, fill <span class="op">=</span> Entity),stat <span class="op">=</span> <span class="st">"identity"</span>) <span class="op">+</span> </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  geom_label(aes(x <span class="op">=</span> reorder(Entity, num_objects), y <span class="op">=</span> num_objects, label <span class="op">=</span> num_objects), size <span class="op">=</span> <span class="dv">3</span>, color <span class="op">=</span> <span class="st">"black"</span>, hjust <span class="op">=</span> <span class="op">-</span><span class="fl">0.1</span>) <span class="op">+</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  coord_flip() <span class="op">+</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  theme_minimal() <span class="op">+</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  labs (</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="st">"Number of Objects"</span>,</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="st">"Entities"</span>,</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="st">"Number of Objects Launched in Space by top 15 Countries"</span>,</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    subtitle <span class="op">=</span> <span class="st">"Period: 1957 to 2023"</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="op">+</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  theme (</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    legend.position <span class="op">=</span> <span class="st">"none"</span>,</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    panel.grid.minor.y <span class="op">=</span> element_blank(),</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    panel.grid.minor.x <span class="op">=</span> element_blank(),</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    panel.grid.major.y <span class="op">=</span> element_blank(),</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    plot.title <span class="op">=</span> element_text(hjust <span class="op">=</span> <span class="fl">0.5</span>, size <span class="op">=</span> <span class="dv">18</span>, face <span class="op">=</span> <span class="st">"bold"</span>),</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    plot.subtitle <span class="op">=</span> element_text(hjust <span class="op">=</span> <span class="fl">0.5</span>, size <span class="op">=</span> <span class="dv">14</span>) </span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="op">+</span> </span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  scale_fill_manual(values <span class="op">=</span> col)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plot3.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="movie-of-object-launches-across-65-years" class="level2">
+<h2 class="anchored" data-anchor-id="movie-of-object-launches-across-65-years">3.4. Movie of Object Launches Across 65 Years</h2>
+<div id="plot4-animation-plot" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Movie Animation Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 4 Bar Plot animation</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plot_racing_barplot <span class="op">&lt;-</span> function(countries, year, annotation_text <span class="op">=</span> NULL) {</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  data <span class="op">&lt;-</span> countries[countries$Year <span class="op">==</span> year, ]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  data <span class="op">&lt;-</span> data[order(<span class="op">-</span>data$num_objects), ]</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  col <span class="op">&lt;-</span> <span class="im">as</span>.character(data$Color)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  names(col) <span class="op">&lt;-</span> <span class="im">as</span>.character(data$Entity)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  p <span class="op">&lt;-</span> ggplot(data, aes(x <span class="op">=</span> Entity)) <span class="op">+</span> </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    geom_bar(aes(y <span class="op">=</span> num_objects, fill <span class="op">=</span> Entity), stat <span class="op">=</span> <span class="st">"identity"</span>, width <span class="op">=</span> <span class="fl">0.5</span>) <span class="op">+</span> </span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    coord_flip() <span class="op">+</span> </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    theme_minimal() <span class="op">+</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    labs (</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>      y <span class="op">=</span> <span class="st">"Number of Objects"</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>      x <span class="op">=</span> <span class="st">"Countries"</span>,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>      title <span class="op">=</span> <span class="st">"Number of Objects Launched in Space by Entities"</span>,</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>      subtitle <span class="op">=</span> paste(<span class="st">"Year:"</span>,year)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">+</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    geom_label(aes(x <span class="op">=</span> reorder(Entity, num_objects), y <span class="op">=</span> num_objects, label <span class="op">=</span> num_objects), size <span class="op">=</span> <span class="dv">3</span>, color <span class="op">=</span> <span class="st">"black"</span>, hjust <span class="op">=</span> <span class="op">-</span><span class="fl">0.1</span>) <span class="op">+</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    theme (</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>      legend.position <span class="op">=</span> <span class="st">"none"</span>,</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>      panel.grid.minor.y <span class="op">=</span> element_blank(),</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>      panel.grid.minor.x <span class="op">=</span> element_blank(),</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>      panel.grid.major.y <span class="op">=</span> element_blank(),</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>      plot.title <span class="op">=</span> element_text(hjust <span class="op">=</span> <span class="fl">0.5</span>, size <span class="op">=</span> <span class="dv">20</span>, face <span class="op">=</span> <span class="st">"bold"</span>),</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>      plot.subtitle <span class="op">=</span> element_text(hjust <span class="op">=</span> <span class="fl">0.5</span>, size <span class="op">=</span> <span class="dv">16</span>),</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>      axis.title.x <span class="op">=</span> element_text(size <span class="op">=</span> <span class="dv">16</span>),</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>      axis.title.y <span class="op">=</span> element_text(size <span class="op">=</span> <span class="dv">16</span>),</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>      axis.text.x <span class="op">=</span> element_text(size <span class="op">=</span> <span class="dv">12</span>),</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>      axis.text.y <span class="op">=</span> element_text(size <span class="op">=</span> <span class="dv">12</span>)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">+</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    scale_fill_manual(values <span class="op">=</span> col)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate dynamic annotation positions</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>  annotation_x <span class="op">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  annotation_y <span class="op">&lt;-</span> nrow(data) <span class="op">+</span> <span class="bu">max</span>(data$num_objects) <span class="op">-</span> <span class="bu">max</span>(data$num_objects)<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(year <span class="op">==</span> <span class="dv">1957</span>){</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    annotation_y <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (nrow(data)<span class="op">&gt;</span><span class="dv">3</span>){</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>    annotation_x <span class="op">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (nrow(data)<span class="op">&gt;</span><span class="dv">4</span>){</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>    annotation_x <span class="op">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>    annotation_y <span class="op">&lt;-</span> nrow(data) <span class="op">+</span> <span class="bu">max</span>(data$num_objects) <span class="op">-</span> <span class="bu">max</span>(data$num_objects)<span class="op">/</span><span class="dv">3</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (nrow(data)<span class="op">&gt;</span><span class="dv">6</span>){</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>    annotation_x <span class="op">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>    annotation_y <span class="op">&lt;-</span> <span class="bu">max</span>(data$num_objects)<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add annotations if provided</span></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is</span>.null(annotation_text)) {</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>    p <span class="op">&lt;-</span> p <span class="op">+</span> annotate(geom <span class="op">=</span> <span class="st">"text"</span>, x <span class="op">=</span> annotation_x, y <span class="op">=</span> annotation_y, label <span class="op">=</span> annotation_text, vjust <span class="op">=</span> <span class="dv">1</span>, hjust <span class="op">=</span> <span class="dv">0</span>,</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>                      color <span class="op">=</span> <span class="st">"darkred"</span>,</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>                      size <span class="op">=</span> <span class="dv">5</span>)</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span>(p)</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>years <span class="op">&lt;-</span> <span class="dv">1957</span>:<span class="dv">2023</span></span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>annotation_texts <span class="op">&lt;-</span> c(<span class="st">"1957"</span> <span class="op">=</span> <span class="st">"Russia is the only country"</span>,</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1958"</span> <span class="op">=</span> <span class="st">"USA Joined the party"</span>,</span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1959"</span> <span class="op">=</span> <span class="st">"USA and Russia are enjoying"</span>,</span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1960"</span> <span class="op">=</span> <span class="st">"USA and Russia are enjoying"</span>,</span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1961"</span> <span class="op">=</span> <span class="st">"USA consistently at top"</span>,</span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1962"</span> <span class="op">=</span> <span class="st">"UK &amp; Canada Joined the Launch party"</span>,</span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1963"</span> <span class="op">=</span> <span class="st">"USA &amp; Russia head on head"</span>,</span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1964"</span> <span class="op">=</span> <span class="st">"USA &amp; Russia still head on head</span><span class="ch">\n</span><span class="st">Italy joined"</span>,</span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1965"</span> <span class="op">=</span> <span class="st">"USA &amp; Russia fighting for space control,</span><span class="ch">\n</span><span class="st">France opened its account"</span>,</span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1966"</span> <span class="op">=</span> <span class="st">"Russia &amp; USA competition"</span>,</span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1967"</span> <span class="op">=</span> <span class="st">"Russia &amp; USA Stiff competition,</span><span class="ch">\n</span><span class="st">Australia opened its account"</span>,</span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1968"</span> <span class="op">=</span> <span class="st">"Russia &amp; USA head on head"</span>,</span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1969"</span> <span class="op">=</span> <span class="st">"Russia overtook USA after 11 years, </span><span class="ch">\n</span><span class="st">Germany joined the party"</span>,</span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1970"</span> <span class="op">=</span> <span class="st">"Russia is fierce , </span><span class="ch">\n</span><span class="st">Japan and China joined the party"</span>,</span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1971"</span> <span class="op">=</span> <span class="st">"Russia is aggresive"</span>,</span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1972"</span> <span class="op">=</span> <span class="st">"USA giving tough competition"</span>,</span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1973"</span> <span class="op">=</span> <span class="st">"Russia is still aggresive"</span>,</span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1974"</span> <span class="op">=</span> <span class="st">"Russia is way dominating, </span><span class="ch">\n</span><span class="st"> Netherlands launched their first"</span>,</span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1975"</span> <span class="op">=</span> <span class="st">"Russia is still aggresive, </span><span class="ch">\n</span><span class="st"> India launched their first!!!"</span>,</span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1976"</span> <span class="op">=</span> <span class="st">"Russia is still aggresive, </span><span class="ch">\n</span><span class="st"> Indonesia launched their first!"</span>,</span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1977"</span> <span class="op">=</span> <span class="st">"Russia is still aggresive"</span>,</span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1978"</span> <span class="op">=</span> <span class="st">"Russia is still aggresive"</span>,</span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1979"</span> <span class="op">=</span> <span class="st">"Russia is still aggresive"</span>,</span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1980"</span> <span class="op">=</span> <span class="st">"Russia is still aggresive, </span><span class="ch">\n</span><span class="st"> US seems shifted their focus"</span>,</span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1981"</span> <span class="op">=</span> <span class="st">"Russia is still incredible"</span>,</span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1982"</span> <span class="op">=</span> <span class="st">"Russia is still aggresive"</span>,</span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1983"</span> <span class="op">=</span> <span class="st">"Russia is still incredible"</span>,</span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1984"</span> <span class="op">=</span> <span class="st">"Russia is still incredible, </span><span class="ch">\n</span><span class="st"> US still the second major compared to ROW "</span>,</span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1985"</span> <span class="op">=</span> <span class="st">"Russia is still aggresive, </span><span class="ch">\n</span><span class="st"> Mexico and Brazil launched their first "</span>,</span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1986"</span> <span class="op">=</span> <span class="st">"Russia is very aggresive, </span><span class="ch">\n</span><span class="st"> Sweden launched their first"</span>,</span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1987"</span> <span class="op">=</span> <span class="st">"Russia is very aggresive, </span><span class="ch">\n</span><span class="st"> US slowing down"</span>,</span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1988"</span> <span class="op">=</span> <span class="st">"Russia is very aggresive, </span><span class="ch">\n</span><span class="st"> Luxembourg &amp; Isreal launched their first"</span>,</span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1989"</span> <span class="op">=</span> <span class="st">"Russia is very aggresive, </span><span class="ch">\n</span><span class="st"> US has reversed their trend now </span><span class="ch">\n</span><span class="st"> Czechia launched their first"</span>,</span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1990"</span> <span class="op">=</span> <span class="st">"USA and Russia are head on head, </span><span class="ch">\n</span><span class="st"> Argentina &amp; Pakistan launched their first"</span>,</span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1991"</span> <span class="op">=</span> <span class="st">"USA is the second largest still"</span>,</span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1992"</span> <span class="op">=</span> <span class="st">"USA is the second largest still. </span><span class="ch">\n</span><span class="st"> Spain and Sourth Korea launched their first"</span>,</span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1993"</span> <span class="op">=</span> <span class="st">"USA and Russia are head on head, </span><span class="ch">\n</span><span class="st"> Thailand, Portugal and Mexico launched their first"</span>,</span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1994"</span> <span class="op">=</span> <span class="st">"USA and Russia are head on head"</span>,</span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1995"</span> <span class="op">=</span> <span class="st">"USA became aggressive"</span>,</span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1996"</span> <span class="op">=</span> <span class="st">"USA became aggressive, </span><span class="ch">\n</span><span class="st"> Malaysia launched their first"</span>,</span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1997"</span> <span class="op">=</span> <span class="st">"USA doubled its launches, </span><span class="ch">\n</span><span class="st"> Sweden, Philippines, Spain </span><span class="ch">\n</span><span class="st"> Normay launched their first"</span>,</span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1998"</span> <span class="op">=</span> <span class="st">"USA became aggressive. </span><span class="ch">\n</span><span class="st"> China trying to increase its space count. </span><span class="ch">\n</span><span class="st"> Egypt, Singapore and Chile </span><span class="ch">\n</span><span class="st"> launched their first"</span>,</span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"1999"</span> <span class="op">=</span> <span class="st">"USA tops.Russia slowing down </span><span class="ch">\n</span><span class="st"> China is increasing its pace. </span><span class="ch">\n</span><span class="st"> Taiwan and Denmark </span><span class="ch">\n</span><span class="st"> launched their first"</span>,</span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2000"</span> <span class="op">=</span> <span class="st">"USA is very aggressive compared to rest, </span><span class="ch">\n</span><span class="st"> Saudi Arabia &amp; UAE launched their first"</span>,</span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2001"</span> <span class="op">=</span> <span class="st">"USA slowed down considering its situation at that time. </span><span class="ch">\n</span><span class="st"> Turkey launched their first"</span>,</span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2002"</span> <span class="op">=</span> <span class="st">"USA slowed down considering its situation at that time. </span><span class="ch">\n</span><span class="st"> Algeria launched their first"</span>,</span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2003"</span> <span class="op">=</span> <span class="st">"Nigeria launched their first.</span><span class="ch">\n</span><span class="st"> China and Japan are head on head </span><span class="ch">\n</span><span class="st"> for 3rd and 4th spot"</span>,</span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2004"</span> <span class="op">=</span> <span class="st">"Absolute is on decreasing trend because of fewer launches by USA.</span><span class="ch">\n</span><span class="st"> Ukrain launched their first"</span>,</span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2005"</span> <span class="op">=</span> <span class="st">""</span>,</span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2006"</span> <span class="op">=</span> <span class="st">"China and Japan increased their pace. </span><span class="ch">\n</span><span class="st"> Kaakhstan launched their first"</span>,</span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2007"</span> <span class="op">=</span> <span class="st">"USA is back to its pace, </span><span class="ch">\n</span><span class="st"> Columbia launched their first"</span>,</span>
+<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2008"</span> <span class="op">=</span> <span class="st">"China increased their pace. </span><span class="ch">\n</span><span class="st"> Venezuela and Vietnam launched their first"</span>,</span>
+<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2009"</span> <span class="op">=</span> <span class="st">"South Africa and Switzerland launched their first"</span>,</span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2010"</span> <span class="op">=</span> <span class="st">"China increasing its pace"</span>,</span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2011"</span> <span class="op">=</span> <span class="st">"USA increasing its pace"</span>,</span>
+<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2012"</span> <span class="op">=</span> <span class="st">"USA increasing its pace"</span>,</span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2013"</span> <span class="op">=</span> <span class="st">"USA leads. </span><span class="ch">\n</span><span class="st"> China and Russia are spotting for 2nd"</span>,</span>
+<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2014"</span> <span class="op">=</span> <span class="st">"More number of countries are launching every year"</span>,</span>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2015"</span> <span class="op">=</span> <span class="st">"China over takes Russia"</span>,</span>
+<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2016"</span> <span class="op">=</span> <span class="st">"USA is still aggresive, </span><span class="ch">\n</span><span class="st"> China increasing its space.</span><span class="ch">\n</span><span class="st"> India trying for 3rd  spot"</span>,</span>
+<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2017"</span> <span class="op">=</span> <span class="st">"USA is more aggresive"</span>,</span>
+<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2018"</span> <span class="op">=</span> <span class="st">"USA is very aggresive. </span><span class="ch">\n</span><span class="st"> China is second.</span><span class="ch">\n</span><span class="st"> no other country nearby"</span>,</span>
+<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2019"</span> <span class="op">=</span> <span class="st">"USA is very aggresive. </span><span class="ch">\n</span><span class="st"> China is second.</span><span class="ch">\n</span><span class="st"> no other country nearby"</span>,</span>
+<span id="cb7-135"><a href="#cb7-135" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2020"</span> <span class="op">=</span> <span class="st">"USA is very aggresive. </span><span class="ch">\n</span><span class="st"> UK for the first time became aggresive."</span>,</span>
+<span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2021"</span> <span class="op">=</span> <span class="st">"USA is exponentially aggresive. </span><span class="ch">\n</span><span class="st"> UK and China are comparitvely aggresive."</span>,</span>
+<span id="cb7-137"><a href="#cb7-137" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2022"</span> <span class="op">=</span> <span class="st">"USA is exponentially aggresive. </span><span class="ch">\n</span><span class="st"> UK and China are comparitvely aggresive."</span>,</span>
+<span id="cb7-138"><a href="#cb7-138" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"2023"</span> <span class="op">=</span> <span class="st">"USA is exponentially aggresive. </span><span class="ch">\n</span><span class="st"> UK and China are comparitvely aggresive."</span></span>
+<span id="cb7-139"><a href="#cb7-139" aria-hidden="true" tabindex="-1"></a>                      )</span>
+<span id="cb7-140"><a href="#cb7-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-141"><a href="#cb7-141" aria-hidden="true" tabindex="-1"></a>plot_list <span class="op">&lt;-</span> <span class="bu">list</span>()</span>
+<span id="cb7-142"><a href="#cb7-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-143"><a href="#cb7-143" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (year <span class="kw">in</span> years) {</span>
+<span id="cb7-144"><a href="#cb7-144" aria-hidden="true" tabindex="-1"></a>  annotation_text <span class="op">&lt;-</span> annotation_texts[<span class="im">as</span>.character(year)]</span>
+<span id="cb7-145"><a href="#cb7-145" aria-hidden="true" tabindex="-1"></a>  plot_list[[year]] <span class="op">&lt;-</span> plot_racing_barplot(countries, year, annotation_text)</span>
+<span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-147"><a href="#cb7-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a>animation::saveGIF(</span>
+<span id="cb7-151"><a href="#cb7-151" aria-hidden="true" tabindex="-1"></a>  expr <span class="op">=</span> {</span>
+<span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="kw">in</span> seq_along(plot_list)) {</span>
+<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(plot_list[[i]])</span>
+<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a>  movie.name <span class="op">=</span> <span class="st">"racing_barplot_animation.gif"</span>,</span>
+<span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a>  interval <span class="op">=</span> <span class="dv">4</span>,</span>
+<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a>  ani.width <span class="op">=</span> <span class="dv">1200</span>,</span>
+<span id="cb7-159"><a href="#cb7-159" aria-hidden="true" tabindex="-1"></a>  ani.height <span class="op">=</span> <span class="dv">700</span>,</span>
+<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a>  res <span class="op">=</span> <span class="dv">300</span>,</span>
+<span id="cb7-161"><a href="#cb7-161" aria-hidden="true" tabindex="-1"></a>  ani.bg <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a>  ani.fps <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-164"><a href="#cb7-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-165"><a href="#cb7-165" aria-hidden="true" tabindex="-1"></a>av_encode_video(</span>
+<span id="cb7-166"><a href="#cb7-166" aria-hidden="true" tabindex="-1"></a>  <span class="bu">input</span> <span class="op">=</span> <span class="st">"racing_barplot_animation.gif"</span>,</span>
+<span id="cb7-167"><a href="#cb7-167" aria-hidden="true" tabindex="-1"></a>  output <span class="op">=</span> <span class="st">"racing_barplot_animation.mp4"</span>,</span>
+<span id="cb7-168"><a href="#cb7-168" aria-hidden="true" tabindex="-1"></a>  framerate <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb7-169"><a href="#cb7-169" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="racing_barplot_animation.mp4"></video></div>
+</section>
+</section>
+<section id="references" class="level1">
+<h1>4. References</h1>
+<ul>
+<li>https://stackoverflow.com/questions/35279570/assign-point-color-depending-on-data-frame-column-value-r</li>
+<li>http://www.sthda.com/english/articles/print/58-gganimate-create-animations-with-ggplot2/</li>
+<li>ChatGpt</li>
+</ul>
+<script src="https://giscus.app/client.js" data-repo="ArunKoundinya/TidyTuesday" data-repo-id="R_kgDOLS-XzA" data-category="General" data-category-id="DIC_kwDOLS-XzM4CdbG7" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="dark_high_contrast" data-lang="en" crossorigin="anonymous" async="">
+</script>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2024, Arun Koundinya Parasa</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This page is built with 💛 and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+<script>videojs(video_shortcode_videojs_video1);</script>
+
+
+
+
+</body></html>
