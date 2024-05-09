@@ -15,14 +15,7 @@ title-block-banner: false
 
 This website is designed to showcase my solutions to [TidyTuesday](https://github.com/rfordatascience/tidytuesday) challenges. In the initial weeks, I will focus on basic analysis and plotting. As the weeks progress, I aim to provide more sophisticated and holistic solutions.
 
-The coding is done in python majorly using the following packages as of now:
-
--   pandas
--   numpy
--   plotnine { Similar to that of ggplot of R }
--   dfply { Similar to that of tidyverse of R }
--   plotly
-
+The coding is done in r or python depending upon data manipulation and visualization creativity
 
 ```{=html}
 <br>
