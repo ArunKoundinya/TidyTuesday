@@ -2,19 +2,9 @@
 
 This website is designed to showcase my solutions to [TidyTuesday](https://github.com/rfordatascience/tidytuesday) challenges. In the initial weeks, I will focus on basic analysis and plotting. As the weeks progress, I aim to provide more sophisticated and holistic solutions.
 
-The coding is done in python majorly using the following packages as of now:
+The coding is done in python or R
 
--   pandas
-
--   numpy
-
--   plotnine { Similar to that of ggplot of R }
-
--   dfply { Similar to that of tidyverse of R }
-
-May be in future may add matplotlib , plotly and shiny
-
-My last seven tidy tuesday solutions
+My last eight tidy tuesday solutions
 
 | Tidy Tuesday Date | Dataset About                                                                                                              | Link for my approach                                   | Comments                                            |
 |------------------|-------------------|------------------|------------------|
@@ -25,3 +15,4 @@ My last seven tidy tuesday solutions
 | 5th Mar 2024      | [Trash Wheel Collection Data](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-03-05/readme.md)   | [Analysis-05032024](tidy-analysis/05032024/index.html) | Line Plots & Heat-Map                               |
 | 12th Mar 2024     | [Fiscal Sponsorship](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-03-12/readme.md)            | [Analysis-12032024](tidy-analysis/12032024/index.html) | Scatter & Histograms with Annotations               |
 | 5th Apr 2024      | [Du Bios Challenge](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-02/readme.md)             | [Analysis-02042024](tidy-analysis/02042024/index.html) | Pie Chart with Annotations - R Code                 |
+| 23rd Apr 2024     | [Objected Launched on Space](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-23/readme.md)    | [Analysis-23042024](tidy-analysis/23042024/index.html) | Animation Visualizations                            |
