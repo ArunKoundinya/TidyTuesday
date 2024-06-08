@@ -4,7 +4,7 @@ This website is designed to showcase my solutions to [TidyTuesday](https://githu
 
 The coding is done in python or R
 
-My last eight tidy tuesday solutions
+My last nine tidy tuesday solutions
 
 | Tidy Tuesday Date | Dataset About                                                                                                              | Link for my approach                                   | Comments                                            |
 |------------------|-------------------|------------------|------------------|
@@ -16,3 +16,4 @@ My last eight tidy tuesday solutions
 | 12th Mar 2024     | [Fiscal Sponsorship](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-03-12/readme.md)            | [Analysis-12032024](tidy-analysis/12032024/index.html) | Scatter & Histograms with Annotations               |
 | 5th Apr 2024      | [Du Bios Challenge](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-02/readme.md)             | [Analysis-02042024](tidy-analysis/02042024/index.html) | Pie Chart with Annotations - R Code                 |
 | 23rd Apr 2024     | [Objected Launched on Space](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-23/readme.md)    | [Analysis-23042024](tidy-analysis/23042024/index.html) | Animation Visualizations                            |
+| 21st May 2024     | [Carbon Majors Emissions Data](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-05-21/readme.md)  | [Analysis-21052024](tidy-analysis/21052024/index.html) | Visualization with Custom Background & Area Chart   |
