@@ -228,14 +228,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">&lt;-</span> readr::read_csv(<span class="st">'districtwise-crime-against-women.csv'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">## For Loading Shape Files</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>INDIA_MAP <span class="op">=</span> st_read(<span class="st">"IND_ShapeFiles/gadm41_IND_1.shp"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">## Indian Census Population from Wikipedia </span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>url <span class="op">&lt;-</span> <span class="st">"https://en.wikipedia.org/wiki/List_of_states_and_union_territories_of_India_by_population"</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>webpage <span class="op">&lt;-</span> read_html(url)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>tables <span class="op">&lt;-</span> html_nodes(webpage, <span class="st">"table"</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>population_table <span class="op">&lt;-</span> html_table(tables[[<span class="dv">2</span>]], fill <span class="op">=</span> TRUE)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>rm(tables,webpage,url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># https://projects.datameet.org/maps/#state-boundaries</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>INDIA_MAP <span class="op">=</span> st_read(<span class="st">"States/Admin2.shp"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">## Indian Census Population from Wikipedia </span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>url <span class="op">&lt;-</span> <span class="st">"https://en.wikipedia.org/wiki/List_of_states_and_union_territories_of_India_by_population"</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>webpage <span class="op">&lt;-</span> read_html(url)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>tables <span class="op">&lt;-</span> html_nodes(webpage, <span class="st">"table"</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>population_table <span class="op">&lt;-</span> html_table(tables[[<span class="dv">2</span>]], fill <span class="op">=</span> TRUE)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>rm(tables,webpage,url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -313,38 +314,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>  mutate(</span>
 <span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>    CrimesPerDay <span class="op">=</span> <span class="bu">round</span>(TotalCrimes<span class="op">/</span><span class="dv">365</span>,<span class="dv">0</span>),</span>
 <span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>    NAME_1 <span class="op">=</span> case_when(</span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>      state_name <span class="op">==</span> <span class="st">"Andaman And Nicobar Islands"</span> <span class="op">~</span> <span class="st">"Andaman and Nicobar"</span>,</span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>      state_name <span class="op">==</span> <span class="st">"The Dadra And Nagar Haveli And Daman And Diu"</span> <span class="op">~</span> <span class="st">"Dadra and Nagar Haveli"</span>,</span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>      state_name <span class="op">==</span> <span class="st">"Delhi"</span> <span class="op">~</span> <span class="st">"NCT of Delhi"</span>,</span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>      state_name <span class="op">==</span> <span class="st">"Jammu And Kashmir"</span> <span class="op">~</span> <span class="st">"Jammu and Kashmir"</span>,</span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>      TRUE <span class="op">~</span> state_name</span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>  ) </span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="co">## Loading Indian Map with State Boundaries from shape files downloaded from https://gadm.org/download_country.html#google_vignette</span></span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>india_map <span class="op">=</span> data.frame(INDIA_MAP)</span>
-<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>india_map <span class="op">=</span> subset(india_map, india_map$GID_0 <span class="op">==</span> <span class="st">"IND"</span> <span class="op">|</span> india_map$GID_0 <span class="op">==</span> <span class="st">"Z01"</span> <span class="op">|</span> india_map$GID_0 <span class="op">==</span> <span class="st">"Z07"</span>)</span>
-<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>india_map <span class="op">=</span> india_map[,c(<span class="st">"NAME_1"</span>,<span class="st">"geometry"</span>)]</span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>india_map <span class="op">=</span> india_map[c(<span class="dv">1</span>:<span class="dv">2</span>,<span class="dv">4</span>:<span class="dv">37</span>),]</span>
-<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a><span class="co">## Creattion of Population Data from Loaded Wikipedia page</span></span>
-<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>population_table <span class="op">&lt;-</span> population_table[c(<span class="dv">2</span>:<span class="dv">37</span>),c(<span class="dv">2</span>,<span class="dv">3</span>)]</span>
-<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>population_table <span class="op">|&gt;</span></span>
-<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>  select(State <span class="op">=</span> `State <span class="kw">or</span> Union Territory`, Population <span class="op">=</span> `Population[<span class="dv">18</span>][<span class="dv">19</span>]`) <span class="op">|&gt;</span></span>
-<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>  mutate(</span>
-<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>    Population <span class="op">=</span> <span class="im">as</span>.numeric(gsub(<span class="st">","</span>, <span class="st">""</span>, Population)), </span>
-<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>    State <span class="op">=</span> trimws(State),</span>
-<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>    PopulationPer1Lakh <span class="op">=</span> <span class="bu">round</span>(Population<span class="op">/</span><span class="dv">100000</span>,<span class="dv">0</span>),</span>
-<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>    PopulationPer1Lakh <span class="op">=</span> case_when(</span>
-<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>      State <span class="op">==</span> <span class="st">"Andhra Pradesh"</span> <span class="op">~</span> <span class="dv">496</span>,</span>
-<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>      TRUE <span class="op">~</span> PopulationPer1Lakh</span>
-<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>  ) <span class="op">|&gt;</span></span>
-<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>  mutate(</span>
-<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>    NAME_1 <span class="op">=</span> case_when(</span>
-<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>      State <span class="op">==</span> <span class="st">"Andaman and Nicobar Islands"</span> <span class="op">~</span> <span class="st">"Andaman and Nicobar"</span>,</span>
-<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>      State <span class="op">==</span> <span class="st">"Dadra and Nagar Haveli and Daman and Diu"</span> <span class="op">~</span> <span class="st">"Dadra and Nagar Haveli"</span>,</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>      state_name <span class="op">==</span> <span class="st">"Andaman And Nicobar Islands"</span> <span class="op">~</span> <span class="st">"Andaman &amp; Nicobar"</span>,</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>      state_name <span class="op">==</span> <span class="st">"The Dadra And Nagar Haveli And Daman And Diu"</span> <span class="op">~</span> <span class="st">"Dadra and Nagar Haveli and Daman and Diu"</span>,</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>      state_name <span class="op">==</span> <span class="st">"Jammu And Kashmir"</span> <span class="op">~</span> <span class="st">"Jammu &amp; Kashmir"</span>,</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>      TRUE <span class="op">~</span> state_name</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a><span class="co">## Loading Indian Map with State Boundaries from shape files downloaded from https://gadm.org/download_country.html#google_vignette</span></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>india_map <span class="op">=</span> data.frame(INDIA_MAP)</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>india_map <span class="op">&lt;-</span></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>  india_map <span class="op">|&gt;</span></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>  select(NAME_1 <span class="op">=</span> `ST_NM`,geometry<span class="op">=</span>`geometry`)</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a><span class="co">## Creattion of Population Data from Loaded Wikipedia page</span></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>population_table <span class="op">&lt;-</span> population_table[c(<span class="dv">2</span>:<span class="dv">37</span>),c(<span class="dv">2</span>,<span class="dv">3</span>)]</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>population_table <span class="op">|&gt;</span></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>  select(State <span class="op">=</span> `State <span class="kw">or</span> Union Territory`, Population <span class="op">=</span> `Population[<span class="dv">18</span>][<span class="dv">19</span>]`) <span class="op">|&gt;</span></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>  mutate(</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>    Population <span class="op">=</span> <span class="im">as</span>.numeric(gsub(<span class="st">","</span>, <span class="st">""</span>, Population)), </span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>    State <span class="op">=</span> trimws(State),</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>    PopulationPer1Lakh <span class="op">=</span> <span class="bu">round</span>(Population<span class="op">/</span><span class="dv">100000</span>,<span class="dv">0</span>),</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>    PopulationPer1Lakh <span class="op">=</span> case_when(</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>      State <span class="op">==</span> <span class="st">"Andhra Pradesh"</span> <span class="op">~</span> <span class="dv">496</span>,</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>      TRUE <span class="op">~</span> PopulationPer1Lakh</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>  ) <span class="op">|&gt;</span></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>  mutate(</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>    NAME_1 <span class="op">=</span> case_when(</span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>      State <span class="op">==</span> <span class="st">"Andaman and Nicobar Islands"</span> <span class="op">~</span> <span class="st">"Andaman &amp; Nicobar"</span>,</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>      State <span class="op">==</span> <span class="st">"Dadra and Nagar Haveli and Daman and Diu"</span> <span class="op">~</span> <span class="st">"Dadra and Nagar Haveli and Daman and Diu"</span>,</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>      State <span class="op">==</span> <span class="st">"Jammu and Kashmir"</span> <span class="op">~</span> <span class="st">"Jammu &amp; Kashmir"</span>,</span>
 <span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>      State <span class="op">==</span> <span class="st">"Manipur[d]"</span> <span class="op">~</span> <span class="st">"Manipur"</span>,</span>
 <span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>      TRUE <span class="op">~</span> State</span>
 <span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>      )</span>
