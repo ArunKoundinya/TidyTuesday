@@ -17,7 +17,7 @@ library(rvest)
 
 data <- readr::read_csv('districtwise-crime-against-women.csv')
 
-INDIA_MAP = st_read("IND_ShapeFiles/gadm41_IND_1.shp")
+INDIA_MAP = st_read("States/Admin2.shp")
 
 
 url <- "https://en.wikipedia.org/wiki/List_of_states_and_union_territories_of_India_by_population"
@@ -94,19 +94,18 @@ Crime_Data_2018_21_State <-
   mutate(
     CrimesPerDay = round(TotalCrimes/365,0),
     NAME_1 = case_when(
-      state_name == "Andaman And Nicobar Islands" ~ "Andaman and Nicobar",
-      state_name == "The Dadra And Nagar Haveli And Daman And Diu" ~ "Dadra and Nagar Haveli",
-      state_name == "Delhi" ~ "NCT of Delhi",
-      state_name == "Jammu And Kashmir" ~ "Jammu and Kashmir",
+      state_name == "Andaman And Nicobar Islands" ~ "Andaman & Nicobar",
+      state_name == "The Dadra And Nagar Haveli And Daman And Diu" ~ "Dadra and Nagar Haveli and Daman and Diu",
+      state_name == "Jammu And Kashmir" ~ "Jammu & Kashmir",
       TRUE ~ state_name
     )
   ) 
 
 
 india_map = data.frame(INDIA_MAP)
-india_map = subset(india_map, india_map$GID_0 == "IND" | india_map$GID_0 == "Z01" | india_map$GID_0 == "Z07")
-india_map = india_map[,c("NAME_1","geometry")]
-india_map = india_map[c(1:2,4:37),]
+india_map <-
+  india_map |>
+  select(NAME_1 = `ST_NM`,geometry=`geometry`)
 
 population_table <- population_table[c(2:37),c(2,3)]
 
@@ -123,8 +122,9 @@ population_table |>
   ) |>
   mutate(
     NAME_1 = case_when(
-      State == "Andaman and Nicobar Islands" ~ "Andaman and Nicobar",
-      State == "Dadra and Nagar Haveli and Daman and Diu" ~ "Dadra and Nagar Haveli",
+      State == "Andaman and Nicobar Islands" ~ "Andaman & Nicobar",
+      State == "Dadra and Nagar Haveli and Daman and Diu" ~ "Dadra and Nagar Haveli and Daman and Diu",
+      State == "Jammu and Kashmir" ~ "Jammu & Kashmir",
       State == "Manipur[d]" ~ "Manipur",
       TRUE ~ State
       )
@@ -271,8 +271,6 @@ combined_plot <- (plot_2018 | plot_2019) / (plot_2020 | plot_2021)
 
 # Display the combined plot
 combined_plot
-
-
 
 ### Plot 2a
 
