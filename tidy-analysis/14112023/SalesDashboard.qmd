@@ -1,12 +1,15 @@
 ---
 title: "Diwali Sales Dashboard"
+subtitle: 14th Nov 2023
 author: ""
+date: "2024-09-21"
 format:
   dashboard:
      theme: default
      orientation: rows
      expandable: true
      scrolling: false
+image: 'image.png'
 ---
 
 
