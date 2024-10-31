@@ -1,7 +1,7 @@
 ---
-title: Tidy Tuesday  - Carbon Majors Emissions Data
-subtitle: 21st May 2024
-date: "2024-06-08"
+title: Tidy Tuesday  - Monster Movies
+subtitle: 29th October 2024
+date: "2024-10-31"
 format: html
 fig-dpi: 300
 execute:
