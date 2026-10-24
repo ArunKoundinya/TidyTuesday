@@ -1,1 +1,1 @@
-Sitemap: https://ArunKoundinya.github.io/TidyTuesday/sitemap.xml
+Sitemap: https://arunkoundinya.github.io/TidyTuesday/sitemap.xml

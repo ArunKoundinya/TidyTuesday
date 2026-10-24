@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Tidy Tuesday by Arun Koundinya</title>
+<link>https://arunkoundinya.github.io/TidyTuesday/</link>
+<atom:link href="https://arunkoundinya.github.io/TidyTuesday/index.xml" rel="self" type="application/rss+xml"/>
+<description>Arun Koundinya Parasa&#39;s solutions to the weekly TidyTuesday data challenge: charts, maps, animations and a dashboard in R and Python, each with the code that made it.</description>
+<image>
+<url>https://arunkoundinya.github.io/TidyTuesday/images/social-card.png</url>
+<title>Tidy Tuesday by Arun Koundinya</title>
+<link>https://arunkoundinya.github.io/TidyTuesday/</link>
+<height>76</height>
+<width>144</width>
+</image>
+<generator>quarto-1.7.32</generator>
+<lastBuildDate>Thu, 31 Oct 2024 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Monster Movies</title>
+  <dc:creator>Arun Koundinya Parasa</dc:creator>
+  <link>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/29102024/</link>
+  <description><![CDATA[ Monster and horror movies from IMDb in R: a dual-axis chart of films and ratings, the rise of well-rated horror, and which sub-genre mixes work with audiences. ]]></description>
+  <category>R</category>
+  <category>dual axis</category>
+  <category>bar chart</category>
+  <guid>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/29102024/</guid>
+  <pubDate>Thu, 31 Oct 2024 04:00:00 GMT</pubDate>
+  <media:content url="https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/29102024/HorrorPlot1.png" medium="image" type="image/png" height="82" width="144"/>
+</item>
+<item>
+  <title></title>
+  <link>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/14112023/</link>
+  <description><![CDATA[ undefined ]]></description>
+  <category>R</category>
+  <category>dashboard</category>
+  <category>maps</category>
+  <guid>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/14112023/</guid>
+  <pubDate>Sat, 21 Sep 2024 04:00:00 GMT</pubDate>
+  <media:content url="https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/14112023/image.png" medium="image" type="image/png" height="59" width="144"/>
+</item>
+<item>
+  <title>Crimes Against Women in India</title>
+  <dc:creator>Arun Koundinya Parasa</dc:creator>
+  <link>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/22072024/</link>
+  <description><![CDATA[ Crimes against women in India in R: category trends, state choropleth maps of absolute and per-capita cases over the years, and correlations across crime types. ]]></description>
+  <category>R</category>
+  <category>maps</category>
+  <category>bonus</category>
+  <guid>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/22072024/</guid>
+  <pubDate>Mon, 22 Jul 2024 04:00:00 GMT</pubDate>
+  <media:content url="https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/22072024/Plot2a_IndiaStates.png" medium="image" type="image/png" height="94" width="144"/>
+</item>
+<item>
+  <title>Carbon Majors Emissions</title>
+  <dc:creator>Arun Koundinya Parasa</dc:creator>
+  <link>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/21052024/</link>
+  <description><![CDATA[ Carbon Majors emissions data in R: stacked area charts with a custom background and an inset pie, showing CO₂ emissions by commodity and by entity type. ]]></description>
+  <category>R</category>
+  <category>area chart</category>
+  <category>custom background</category>
+  <guid>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/21052024/</guid>
+  <pubDate>Sat, 08 Jun 2024 04:00:00 GMT</pubDate>
+  <media:content url="https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/21052024/plot1.png" medium="image" type="image/png" height="94" width="144"/>
+</item>
+<item>
+  <title>Objects Launched into Space</title>
+  <dc:creator>Arun Koundinya Parasa</dc:creator>
+  <link>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/23042024/</link>
+  <description><![CDATA[ Objects launched into space, 1957–2023, in R: annotated line charts by entity and country and a gganimate racing bar chart of the top launchers. ]]></description>
+  <category>R</category>
+  <category>animation</category>
+  <category>line chart</category>
+  <guid>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/23042024/</guid>
+  <pubDate>Wed, 08 May 2024 04:00:00 GMT</pubDate>
+  <media:content url="https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/23042024/plot1.png" medium="image" type="image/png" height="116" width="144"/>
+</item>
+<item>
+  <title>Du Bois Challenge</title>
+  <dc:creator>Arun Koundinya Parasa</dc:creator>
+  <link>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/02042024/</link>
+  <description><![CDATA[ A ggplot2 recreation of plate 37 from W.E.B. Du Bois’s data portraits for the 1900 Paris Exposition, for the 2024 Du Bois Visualization Challenge on TidyTuesday. ]]></description>
+  <category>R</category>
+  <category>recreation</category>
+  <category>pie chart</category>
+  <guid>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/02042024/</guid>
+  <pubDate>Fri, 05 Apr 2024 04:00:00 GMT</pubDate>
+  <media:content url="https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/02042024/MyVersion_Dubios.png" medium="image" type="image/png" height="84" width="144"/>
+</item>
+<item>
+  <title>Fiscal Sponsors</title>
+  <dc:creator>Arun Koundinya Parasa</dc:creator>
+  <link>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/12032024/</link>
+  <description><![CDATA[ Fiscal sponsorship directory in Python: sponsorship age against number of projects, and annotated histograms of projects per sponsor and sponsorship fees. ]]></description>
+  <category>Python</category>
+  <category>scatter plot</category>
+  <category>histogram</category>
+  <guid>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/12032024/</guid>
+  <pubDate>Thu, 21 Mar 2024 04:00:00 GMT</pubDate>
+  <media:content url="https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/12032024/thumbnail.png" medium="image" type="image/png" height="108" width="144"/>
+</item>
+<item>
+  <title>Trash Wheel Collection</title>
+  <dc:creator>Arun Koundinya Parasa</dc:creator>
+  <link>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/05032024/</link>
+  <description><![CDATA[ Mr. Trash Wheel and friends in Python: trash weight and volume over the years, homes powered by the collected trash, trends by item, and a correlation heat map. ]]></description>
+  <category>Python</category>
+  <category>line chart</category>
+  <category>heat map</category>
+  <guid>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/05032024/</guid>
+  <pubDate>Fri, 08 Mar 2024 05:00:00 GMT</pubDate>
+  <media:content url="https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/05032024/thumbnail.png" medium="image" type="image/png" height="108" width="144"/>
+</item>
+<item>
+  <title>R Consortium ISC Grants</title>
+  <dc:creator>Arun Koundinya Parasa</dc:creator>
+  <link>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/20022024/</link>
+  <description><![CDATA[ R Consortium ISC grants in Python: spaCy keyword extraction, k-means clustering, segment and scatter plots, and a word cloud for each cluster of funded projects. ]]></description>
+  <category>Python</category>
+  <category>clustering</category>
+  <category>word cloud</category>
+  <guid>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/20022024/</guid>
+  <pubDate>Sat, 24 Feb 2024 05:00:00 GMT</pubDate>
+  <media:content url="https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/20022024/thumbnail.png" medium="image" type="image/png" height="108" width="144"/>
+</item>
+<item>
+  <title>Valentine’s Day Consumer Data</title>
+  <dc:creator>Arun Koundinya Parasa</dc:creator>
+  <link>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/13022024/</link>
+  <description><![CDATA[ Ten years of US Valentine’s Day survey data in Python: how spending changes with age, which gift categories are growing, and how men and women differ. ]]></description>
+  <category>Python</category>
+  <category>column chart</category>
+  <category>line chart</category>
+  <guid>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/13022024/</guid>
+  <pubDate>Fri, 16 Feb 2024 05:00:00 GMT</pubDate>
+  <media:content url="https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/13022024/thumbnail.png" medium="image" type="image/png" height="108" width="144"/>
+</item>
+<item>
+  <title>Groundhog Predictions</title>
+  <dc:creator>Arun Koundinya Parasa</dc:creator>
+  <link>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/30012024/</link>
+  <description><![CDATA[ Groundhog Day predictions in Python: density, line and bar charts of how often groundhogs see their shadow, year on year and groundhog by groundhog. ]]></description>
+  <category>Python</category>
+  <category>density plot</category>
+  <category>line chart</category>
+  <guid>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/30012024/</guid>
+  <pubDate>Wed, 31 Jan 2024 05:00:00 GMT</pubDate>
+  <media:content url="https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/30012024/thumbnail.png" medium="image" type="image/png" height="108" width="144"/>
+</item>
+<item>
+  <title>US Polling Places</title>
+  <dc:creator>Arun Koundinya Parasa</dc:creator>
+  <link>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/16012024/</link>
+  <description><![CDATA[ A first TidyTuesday chart in Python: counting US polling places per election year from the 2012–2020 polling-places dataset with pandas, dfply and plotnine. ]]></description>
+  <category>Python</category>
+  <category>line chart</category>
+  <guid>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/16012024/</guid>
+  <pubDate>Thu, 18 Jan 2024 05:00:00 GMT</pubDate>
+  <media:content url="https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/16012024/thumbnail.png" medium="image" type="image/png" height="108" width="144"/>
+</item>
+</channel>
+</rss>

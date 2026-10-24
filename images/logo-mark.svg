@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Tidy Tuesday">
+  <rect width="64" height="64" rx="15" fill="#0B7A5C"/>
+  <!-- axes -->
+  <path d="M16 15 V48 H49" fill="none" stroke="#FBF8F2" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
+  <!-- a rising line: one chart a week -->
+  <path d="M22 39 L30 30 L36 35 L47 21" fill="none" stroke="#FBF8F2" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="47" cy="21" r="4.2" fill="#F2B544"/>
+</svg>
