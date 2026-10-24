@@ -1,22 +1,30 @@
-# options specified here will apply to all posts in this folder
+# Options shared by every analysis in this folder
 
-# freeze computational output
-# (see https://quarto.org/docs/projects/code-execution.html#freeze)
+# Outputs are re-computed only when you render a post explicitly
 freeze: true
 
-# Enable banner style title blocks
-title-block-banner: true
+author: "Arun Koundinya Parasa"
+output-file: index.html
+title-block-banner: false
 
-# Author name of all blog posts
-author: 'Arun Koundinya Parasa'
-
-# Table of content settings
 toc: true
 toc-depth: 3
+toc-title: "On this page"
+code-tools: false
+code-copy: true
 
-output-file: index.html
+# Adds the dataset / tools strip under the title and the end-of-post block
+filters:
+  - ../_filters/tt-meta.lua
 
-page-footer:
-  right: "This page is built with 💛 and [Quarto](https://quarto.org/)."
-  left: "&copy; Copyright 2024, Arun Koundinya Parasa"
-  background: "#36494E" 
+comments:
+  giscus:
+    repo: ArunKoundinya/TidyTuesday
+    repo-id: R_kgDOLS-XzA
+    category: General
+    category-id: DIC_kwDOLS-XzM4CdbG7
+    mapping: pathname
+    reactions-enabled: true
+    input-position: bottom
+    theme: light
+    language: en

@@ -1,7 +1,15 @@
 ---
-title: Tidy Tuesday  - US Polling Places
-subtitle: 16th Jan 2024
+title: "US Polling Places"
+subtitle: "How many polling places the US opened in each election year, 2012 to 2020."
 date: "2024-01-18"
+description: "A first TidyTuesday chart in Python: counting US polling places per election year from the 2012–2020 polling-places dataset with pandas, dfply and plotnine."
+categories: [Python, line chart]
+image: thumbnail.png
+tt-week: "2024-01-16"
+dataset: https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-01-16/readme.md
+dataset-name: "TidyTuesday 2024-01-16 readme"
+tools: "Python · pandas, dfply, plotnine"
+charts: "Line chart"
 execute:
   code-link: true
 ---
@@ -57,22 +65,4 @@ polling_summary = (polling >> group_by(X.year) >> summarize(count=n(X.year)) )
      subtitle = "2012 to 2020"
  ) 
 )
-```
-
-```{=html}
-<script src="https://giscus.app/client.js"
-        data-repo="ArunKoundinya/TidyTuesday"
-        data-repo-id="R_kgDOLS-XzA"
-        data-category="General"
-        data-category-id="DIC_kwDOLS-XzM4CdbG7"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="dark_high_contrast"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
 ```

@@ -1,0 +1,55 @@
+<%
+// Chart cards with a filter by language and by technique (techniques used at least twice).
+const LANGS = ["R", "Python"];
+const lang = (i) => (i.categories || []).find(c => LANGS.includes(c)) || "";
+const techs = (i) => (i.categories || []).filter(c => !LANGS.includes(c));
+const counts = {};
+items.forEach(i => techs(i).forEach(t => counts[t] = (counts[t] || 0) + 1));
+const common = Object.keys(counts).filter(t => counts[t] > 1).sort((a, b) => counts[b] - counts[a] || a.localeCompare(b));
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const week = (s) => { const m = String(s || "").match(/^(\d{4})-(\d{2})-(\d{2})/); return m ? `${+m[3]} ${MONTHS[+m[2] - 1]} ${m[1]}` : ""; };
+%>
+```{=html}
+<div class="gallery-toolbar" role="group" aria-label="Filter the gallery">
+  <span class="label">Filter</span>
+  <button class="active" data-f="">All</button>
+  <% for (const l of LANGS) { %><button data-f="<%= l %>"><%= l %></button><% } %>
+  <span class="sep" aria-hidden="true"></span>
+  <% for (const t of common) { %><button data-f="<%= t %>"><%= t %></button><% } %>
+  <span class="count" aria-live="polite"><%= items.length %> analyses</span>
+</div>
+<div class="chart-grid list">
+<% for (const item of items) { const l = lang(item); %>
+  <a class="chart-card" href="<%- item.path %>" data-cats="<%= (item.categories || []).join('|') %>" <%= metadataAttrs(item) %>>
+    <div class="card-img">
+      <% if (item.image) { %><img src="<%- item.image %>" alt="<%= item.title %>" loading="lazy"><% } %>
+      <% if (l) { %><span class="tool <%- l.toLowerCase() %>"><%= l %></span><% } %>
+    </div>
+    <div class="card-body">
+      <span class="kicker"><%= item['tt-week'] ? 'Week of ' + week(item['tt-week']) : 'Bonus dataset' %></span>
+      <h4><%= item.title %></h4>
+      <% if ((item.takeaway || item.subtitle)) { %><div class="excerpt"><%= (item.takeaway || item.subtitle) %></div><% } %>
+      <div class="techs"><% for (const t of techs(item)) { %><span><%= t %></span><% } %></div>
+      <p class="meta">Posted <%= item.date %></p>
+    </div>
+  </a>
+<% } %>
+</div>
+<script>
+(() => {
+  const btns = document.querySelectorAll(".gallery-toolbar button");
+  const cards = document.querySelectorAll(".chart-card");
+  const count = document.querySelector(".gallery-toolbar .count");
+  btns.forEach(b => b.addEventListener("click", () => {
+    btns.forEach(x => x.classList.toggle("active", x === b));
+    let shown = 0;
+    cards.forEach(c => {
+      const hide = !!b.dataset.f && !c.dataset.cats.split("|").includes(b.dataset.f);
+      c.classList.toggle("hidden", hide);
+      if (!hide) shown++;
+    });
+    count.textContent = shown + (shown === 1 ? " analysis" : " analyses");
+  }));
+})();
+</script>
+```

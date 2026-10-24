@@ -1,11 +1,18 @@
 ---
-title: Tidy Tuesday  - Objects Launched into Space
-subtitle: 23rd April 2024
+title: "Objects Launched into Space"
+subtitle: "65 years of launches, from a handful a year to thousands, as charts and a racing-bar movie."
 date: "2024-05-08"
-format: html
+description: "Objects launched into space, 1957–2023, in R: annotated line charts by entity and country and a gganimate racing bar chart of the top launchers."
+categories: [R, animation, line chart]
+image: plot1.png
+tt-week: "2024-04-23"
+dataset: https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-04-23/readme.md
+dataset-name: "TidyTuesday 2024-04-23 readme"
+tools: "R · ggplot2, gganimate"
+charts: "Line charts, racing bar animation"
 fig-dpi: 300
 execute:
-  code-link: true
+  eval: false
 ---
 
 # 0. Loading Libraries
@@ -13,10 +20,10 @@ execute:
 This particular visualization is done on `R` to visualize the data in an animation. Finally, was successful by creating a movie plot where users can pause and see a particular version of plot. Plots are annotated with key findings inside the plot.
 
 
-```{python}
+```{r}
 #| label: loading_libraries
 #| warning: false
-#| eval : false
+#| eval: false
 #| code-fold: true
 #| code-summary: Loading Libraries
 
@@ -31,7 +38,7 @@ library(av)
 
 # 1. Data Loading
 
-```{python}
+```{r}
 #| label: loading_data
 #| warning: false
 #| eval: false
@@ -44,7 +51,7 @@ outer_space_objects <- readr::read_csv('https://raw.githubusercontent.com/rforda
 
 # 2. Data Manipulation
 
-```{python}
+```{r}
 #| label: manipulation_of_data
 #| warning: false
 #| eval: false
@@ -123,7 +130,7 @@ rm(country_colors_df,countrynames,color_hex_codes)
 
 ## 3.1. Total Objects Launched in space over time
 
-```{python}
+```{r}
 #| label: plot1-line-plot
 #| warning: false
 #| eval: false
@@ -239,7 +246,7 @@ outer_space_objects |>
 
 ## 3.2. Objects Launched by Entities
 
-```{python}
+```{r}
 #| label: plot2-bar-plot
 #| warning: false
 #| eval: false
@@ -291,9 +298,9 @@ entities |>
 
 ![](plot2.png){fig-align="center"}
 
-## 3.3. Objected Launched by Top 15 Countries
+## 3.3. Objects Launched by the Top 15 Countries
 
-```{python}
+```{r}
 #| label: plot3-bar-plot
 #| warning: false
 #| eval: false
@@ -340,7 +347,7 @@ top15countries |>
 
 ## 3.4. Movie of Object Launches Across 65 Years
 
-```{python}
+```{r}
 #| label: plot4-animation-plot
 #| warning: false
 #| eval: false
@@ -527,21 +534,3 @@ av_encode_video(
 -   https://stackoverflow.com/questions/35279570/assign-point-color-depending-on-data-frame-column-value-r
 -   http://www.sthda.com/english/articles/print/58-gganimate-create-animations-with-ggplot2/
 -   ChatGpt
-
-```{=html}
-<script src="https://giscus.app/client.js"
-        data-repo="ArunKoundinya/TidyTuesday"
-        data-repo-id="R_kgDOLS-XzA"
-        data-category="General"
-        data-category-id="DIC_kwDOLS-XzM4CdbG7"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="dark_high_contrast"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
-```

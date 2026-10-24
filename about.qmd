@@ -1,5 +1,37 @@
 ---
 title: "About"
+pagetitle: "About this site"
+description: "Why I do TidyTuesday, how each analysis is built, and how to reuse the code."
+toc: false
+body-classes: hub
 ---
 
-About this site
+::: {.page-head}
+[About]{.kicker}
+
+# Practice in public {.unnumbered .unlisted}
+
+TidyTuesday is a weekly social data project run by the R for Data Science community. A new dataset appears every Tuesday, and anyone can make something with it and share it. This site collects what I made.
+:::
+
+## Why I do it
+
+I'm [Arun Koundinya Parasa](https://arunkoundinya.github.io/), and I work with data for a living. Work rarely gives you a fresh dataset and an open brief every week, so TidyTuesday is where I practise: a new subject each time, a deadline that doesn't matter, and nobody telling me which chart to make.
+
+The early weeks are simple line and column charts in Python with `plotnine`. Later ones move to R and `ggplot2` for things that need more control: custom backgrounds, annotated recreations of W.E.B. Du Bois's plates, choropleth maps with `sf`, a racing bar chart with `gganimate`, and a Quarto dashboard.
+
+## How each analysis is built
+
+- **Python weeks** run inside the page. The code you see is the code that drew the chart, rendered with Quarto and Jupyter.
+- **R weeks** were built in R scripts and saved as images; the page shows the full script, folded, next to each chart.
+- Every page links to the TidyTuesday readme for its dataset, so you can start from the same data.
+
+## Reuse the code
+
+All of it is on [GitHub](https://github.com/ArunKoundinya/TidyTuesday). Copy anything you find useful; a link back is appreciated. Comments are open at the bottom of each analysis if you spot a mistake or have a better idea.
+
+## Elsewhere
+
+- [Canvass And Analyze](https://arunkoundinya.github.io/CanvassAndAnalyze/): essays on psychology, analytics and management
+- [AI Basics with AK](https://arunkoundinya.github.io/AIBasicswithAK/): free videos on Python, statistics and AI
+- [LinkedIn](https://www.linkedin.com/in/arunkoundinya0710/) and [GitHub](https://github.com/ArunKoundinya)

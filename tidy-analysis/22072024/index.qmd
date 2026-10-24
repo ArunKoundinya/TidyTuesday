@@ -1,23 +1,33 @@
 ---
-title: Crimes Against Women
-subtitle: India
+title: "Crimes Against Women in India"
+subtitle: "District-level crime data mapped state by state, in absolute numbers and per lakh of population."
 date: "2024-07-22"
-format: html
+description: "Crimes against women in India in R: category trends, state choropleth maps of absolute and per-capita cases over the years, and correlations across crime types."
+categories: [R, maps, bonus]
+image: Plot2a_IndiaStates.png
+dataset: districtwise-crime-against-women.csv
+dataset-name: "District-wise data (CSV)"
+tools: "R · ggplot2, sf"
+charts: "Bar chart, choropleth maps, correlation"
+resources:
+  - districtwise-crime-against-women.csv
 fig-dpi: 300
 execute:
-  code-link: true
+  eval: false
 ---
 
-I have not written any inferences in this blog. I will be sharing my opinions along with my inferences in my [personal blog](https://arunkoundinya.github.io/CanvassAndAnalyze/). Stay Tuned!!!
+::: {.callout-note appearance="simple"}
+This page has the charts and the code only. What I make of them is in a separate essay on my blog: [Crimes Against Women](https://arunkoundinya.github.io/CanvassAndAnalyze/posts/crimes-against-women/) on Canvass And Analyze.
+:::
 
 # 0. Loading Libraries
 
 This particular visualization is done on `R` to visualize the data in shape files.
 
-```{python}
+```{r}
 #| label: loading_libraries
 #| warning: false
-#| eval : false
+#| eval: false
 #| code-fold: true
 #| code-summary: Loading Libraries
 
@@ -29,7 +39,7 @@ library(grid)
 
 # 1. Data Loading
 
-```{python}
+```{r}
 #| label: loading_data
 #| warning: false
 #| eval: false
@@ -55,7 +65,7 @@ rm(tables,webpage,url)
 
 # 2. Data Manipulation
 
-```{python}
+```{r}
 #| label: manipulation_of_data
 #| warning: false
 #| eval: false
@@ -178,7 +188,7 @@ population_table |>
 
 ## 3.1. Does Crimes Against Women Start at Home ?
 
-```{python}
+```{r}
 #| label: plot1-bar-plot
 #| warning: false
 #| eval: false
@@ -222,7 +232,7 @@ Crime_Data_2018_21_Overall |>
 
 ### 3.2.1 Trend of Absolute Violences
 
-```{python}
+```{r}
 #| label: plot2a-map-plot
 #| warning: false
 #| eval: false
@@ -341,7 +351,7 @@ combined_plot
 
 ### 3.2.2 Trend of Violences Per 1 Lakh of Population
 
-```{python}
+```{r}
 #| label: plot2b-map-plot
 #| warning: false
 #| eval: false
@@ -428,7 +438,7 @@ combined_plot_pc
 
 ### 3.3.1 Trend of Absolute Violences
 
-```{python}
+```{r}
 #| label: plot3a-map-plot
 #| warning: false
 #| eval: false
@@ -575,7 +585,7 @@ combined_plot2
 
 ### 3.3.2 Trend of Violences Per 1 Lakh of Population
 
-```{python}
+```{r}
 #| label: plot3b-map-plot
 #| warning: false
 #| eval: false
@@ -690,7 +700,7 @@ combined_plot2_pc
 
 ## 3.4. Any Correlation across Violence Categories ?
 
-```{python}
+```{r}
 #| label: plot4-Cor-plot
 #| warning: false
 #| eval: false
@@ -730,21 +740,3 @@ cor_crime_data |>
 # 4. References
 
 -   ChatGPT for shapemap errors
-
-```{=html}
-<script src="https://giscus.app/client.js"
-        data-repo="ArunKoundinya/TidyTuesday"
-        data-repo-id="R_kgDOLS-XzA"
-        data-category="General"
-        data-category-id="DIC_kwDOLS-XzM4CdbG7"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="dark_high_contrast"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
-```

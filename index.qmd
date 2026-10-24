@@ -1,24 +1,87 @@
 ---
-title: "TidyTuesday Solved Soluitions"
-subtitle: "By Arun Koundinya"
-listing:
-  contents: tidy-analysis
-  sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: false
-  filter-ui: false
-  fields: [date, title, description, categories, image]
+title: "Tidy Tuesday"
+pagetitle: "Tidy Tuesday by Arun Koundinya: charts in R and Python"
+description: "Arun Koundinya Parasa's solutions to the weekly TidyTuesday data challenge: charts, maps, animations and a dashboard in R and Python, each with the code that made it."
+image: images/social-card.png
 page-layout: full
-title-block-banner: false
+title-block-style: none
+toc: false
+comments: false
+body-classes: home
+listing:
+  - id: latest
+    contents: "tidy-analysis/*/*.qmd"
+    sort: "date desc"
+    template: _templates/latest-card.ejs
+    page-size: 1000
+  - id: gallery
+    contents: "tidy-analysis/*/*.qmd"
+    sort: "date desc"
+    template: _templates/gallery.ejs
+    page-size: 1000
+    date-format: "MMM YYYY"
+    feed:
+      title: "Tidy Tuesday by Arun Koundinya"
+      type: partial
+  - id: weeks
+    contents: "tidy-analysis/*/*.qmd"
+    sort: "date desc"
+    template: _templates/weeks.ejs
+    page-size: 1000
 ---
 
-This website is designed to showcase my solutions to [TidyTuesday](https://github.com/rfordatascience/tidytuesday) challenges. In the initial weeks, I will focus on basic analysis and plotting. As the weeks progress, I aim to provide more sophisticated and holistic solutions.
+::: {.home-hero}
+::: {.hero-copy}
+::: {.hero-brand}
+![](images/logo-mark.svg){.hero-logo fig-alt="Tidy Tuesday logo"}
 
-The coding is done in r or python depending upon data manipulation and visualization creativity
+[A weekly data challenge · R & Python]{.kicker}
+:::
 
-```{=html}
-<br>
-<br>
-<br>
-```
+# One dataset a week, <em>turned into a chart.</em> {.unnumbered .unlisted}
+
+[Every Tuesday the [R for Data Science](https://github.com/rfordatascience/tidytuesday) community shares a new dataset. These are my answers: from a first line plot in Python to custom backgrounds, choropleth maps, animations and a full dashboard in R. Each one comes with the code.]{.lede}
+
+::: {.cta}
+[Browse the gallery ↓](#h-gallery){.btn-ak}
+[What is TidyTuesday? ↗](https://github.com/rfordatascience/tidytuesday){.btn-ak .ghost}
+:::
+:::
+
+::: {.hero-aside}
+::: {#latest}
+:::
+:::
+:::
+
+::: {.section-head}
+## The gallery {#h-gallery .unnumbered .unlisted}
+
+[Newest first · click a chart for the full analysis]{.meta}
+:::
+
+::: {#gallery}
+:::
+
+::: {.section-head}
+## All weeks at a glance {#all-weeks .unnumbered .unlisted}
+
+[Sorted by TidyTuesday week]{.meta}
+:::
+
+::: {#weeks}
+:::
+
+::: {.more-band}
+## More from Arun {.unnumbered .unlisted}
+
+Data, psychology and teaching, on my other sites.
+
+::: {.sites}
+[**Canvass And Analyze** [Essays on psychology, analytics and management, including the story behind some of these charts.]{}](https://arunkoundinya.github.io/CanvassAndAnalyze/){.site}
+
+[**AI Basics with AK** [Free videos, slides and homework on Python, statistics and AI.]{}](https://arunkoundinya.github.io/AIBasicswithAK/){.site}
+
+[**Portfolio** [Who I am, what I work on, and how to get in touch.]{}](https://arunkoundinya.github.io/){.site}
+:::
+:::

@@ -1,8 +1,15 @@
 ---
-title: Tidy Tuesday  - Valentine's Day Consumer Data
-subtitle: 13th Feb 2024
+title: "Valentine's Day Consumer Data"
+subtitle: "Valentine's spending has nearly doubled. Men buy flowers and jewellery; women buy cards."
 date: "2024-02-16"
-format: html
+description: "Ten years of US Valentine's Day survey data in Python: how spending changes with age, which gift categories are growing, and how men and women differ."
+categories: [Python, column chart, line chart]
+image: thumbnail.png
+tt-week: "2024-02-13"
+dataset: https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-02-13/readme.md
+dataset-name: "TidyTuesday 2024-02-13 readme"
+tools: "Python · pandas, dfply, plotnine"
+charts: "Line and column charts"
 fig-dpi: 300
 execute:
   code-link: true
@@ -203,21 +210,3 @@ print(plot4)
 -   Men tend to predominantly choose flowers and jewelry as their gift categories.
 -   In contrast, women's dominant categories are gift cards and greeting cards, and the margin between these two categories is noticeable.
 -   This sheds light on the differing expectations that men and women may have for their partners.
-
-```{=html}
-<script src="https://giscus.app/client.js"
-        data-repo="ArunKoundinya/TidyTuesday"
-        data-repo-id="R_kgDOLS-XzA"
-        data-category="General"
-        data-category-id="DIC_kwDOLS-XzM4CdbG7"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="dark_high_contrast"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
-```

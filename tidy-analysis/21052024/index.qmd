@@ -1,11 +1,18 @@
 ---
-title: Tidy Tuesday  - Carbon Majors Emissions Data
-subtitle: 21st May 2024
+title: "Carbon Majors Emissions"
+subtitle: "1.42 trillion tonnes of CO₂ from the world's largest producers, by commodity and owner."
 date: "2024-06-08"
-format: html
+description: "Carbon Majors emissions data in R: stacked area charts with a custom background and an inset pie, showing CO₂ emissions by commodity and by entity type."
+categories: [R, area chart, custom background]
+image: plot1.png
+tt-week: "2024-05-21"
+dataset: https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-05-21/readme.md
+dataset-name: "TidyTuesday 2024-05-21 readme"
+tools: "R · ggplot2, jpeg, grid"
+charts: "Stacked area, inset pie"
 fig-dpi: 300
 execute:
-  code-link: true
+  eval: false
 ---
 
 # 0. Loading Libraries
@@ -13,10 +20,10 @@ execute:
 This particular visualization is done on `R` to visualize the data with custom back ground.
 
 
-```{python}
+```{r}
 #| label: loading_libraries
 #| warning: false
-#| eval : false
+#| eval: false
 #| code-fold: true
 #| code-summary: Loading Libraries
 
@@ -28,7 +35,7 @@ library(grid)
 
 # 1. Data Loading
 
-```{python}
+```{r}
 #| label: loading_data
 #| warning: false
 #| eval: false
@@ -41,7 +48,7 @@ emissions <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/
 
 # 2. Data Manipulation
 
-```{python}
+```{r}
 #| label: manipulation_of_data
 #| warning: false
 #| eval: false
@@ -105,7 +112,7 @@ emissions_summary_4 <-
 
 ## 3.1. 1.42 Trillion Tonnes of CO2 Emissions 
 
-```{python}
+```{r}
 #| label: plot1-area-plot
 #| warning: false
 #| eval: false
@@ -209,7 +216,7 @@ ggplot() +
 
 ## 3.2. 0.5 Trillion Tonnes of CO2 Emitted by Each Entity Group
 
-```{python}
+```{r}
 #| label: plot2-line-plot
 #| warning: false
 #| eval: false
@@ -311,21 +318,3 @@ emissions_summary_3 |>
 -   https://imagecolorpicker.com
 -   https://stackoverflow.com/questions/2954005/how-to-move-or-position-a-legend-in-ggplot2
 -   https://stackoverflow.com/questions/62173825/ggplot2-geom-text-position-in-pie-chart
-
-```{=html}
-<script src="https://giscus.app/client.js"
-        data-repo="ArunKoundinya/TidyTuesday"
-        data-repo-id="R_kgDOLS-XzA"
-        data-category="General"
-        data-category-id="DIC_kwDOLS-XzM4CdbG7"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="dark_high_contrast"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
-```

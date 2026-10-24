@@ -1,11 +1,18 @@
 ---
-title: Tidy Tuesday  - Monster Movies
-subtitle: 29th October 2024
+title: "Monster Movies"
+subtitle: "Horror films have boomed since 2000, and the good ones with them."
 date: "2024-10-31"
-format: html
+description: "Monster and horror movies from IMDb in R: a dual-axis chart of films and ratings, the rise of well-rated horror, and which sub-genre mixes work with audiences."
+categories: [R, dual axis, bar chart]
+image: HorrorPlot1.png
+tt-week: "2024-10-29"
+dataset: https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-10-29/readme.md
+dataset-name: "TidyTuesday 2024-10-29 readme"
+tools: "R · ggplot2, grid"
+charts: "Dual-axis line, bar charts"
 fig-dpi: 300
 execute:
-  code-link: true
+  eval: false
 ---
 
 # 0. Loading Libraries
@@ -13,10 +20,10 @@ execute:
 This particular visualization is done on `R` to visualize the data with custom back ground.
 
 
-```{python}
+```{r}
 #| label: loading_libraries
 #| warning: false
-#| eval : false
+#| eval: false
 #| code-fold: true
 #| code-summary: Loading Libraries
 
@@ -29,7 +36,7 @@ library(patchwork)
 
 # 1. Data Loading
 
-```{python}
+```{r}
 #| label: loading_data
 #| warning: false
 #| eval: false
@@ -46,7 +53,7 @@ monster_movies <- readr::read_csv('https://raw.githubusercontent.com/rfordatasci
 
 ## 2.1. Production of Horror Films Increased Since 2000
 
-```{python}
+```{r}
 #| label: plot1-dualaxis-plot
 #| warning: false
 #| eval: false
@@ -112,9 +119,9 @@ monster_movies |>
 
 However, the average rating of the genres remained same
 
-## 3.2. Number of Good Horror Movies increased Since 2000
+## 2.2. Number of Good Horror Movies increased Since 2000
 
-```{python}
+```{r}
 #| label: plot2-bar-plot
 #| warning: false
 #| eval: false
@@ -175,9 +182,9 @@ monster_movies |>
 ![](HorrorPlot2.png){fig-align="center"}
 
 
-## 3.3. Sub Genre Mix of Horror Movies
+## 2.3. Sub Genre Mix of Horror Movies
 
-```{python}
+```{r}
 #| label: plot3-bar-plot
 #| warning: false
 #| eval: false
@@ -290,26 +297,8 @@ combined_plot
 -  A blend of Documentary and Comedy is becoming a preferred genre combination for horror movies.
 -  A pure mix of Comedy and Sci-Fi is generally seen as a miss with audiences.
 
-# 4. References
+# 3. References
 
 -   https://r-graph-gallery.com/line-chart-dual-Y-axis-ggplot2.html
 -   https://pixabay.com/photos/silhouette-ghost-horror-halloween-3777403/
 -   https://www.statsignificant.com/p/why-do-people-like-horror-films-a
-
-```{=html}
-<script src="https://giscus.app/client.js"
-        data-repo="ArunKoundinya/TidyTuesday"
-        data-repo-id="R_kgDOLS-XzA"
-        data-category="General"
-        data-category-id="DIC_kwDOLS-XzM4CdbG7"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="dark_high_contrast"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
-```

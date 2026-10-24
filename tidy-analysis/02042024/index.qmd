@@ -1,28 +1,34 @@
 ---
-title: Tidy Tuesday  - Du Bios Challenge
-subtitle: 2nd April 2024
+title: "Du Bois Challenge"
+subtitle: "Recreating plate 37 from W.E.B. Du Bois's 1900 data portraits in ggplot2."
 date: "2024-04-05"
-format: html
+description: "A ggplot2 recreation of plate 37 from W.E.B. Du Bois's data portraits for the 1900 Paris Exposition, for the 2024 Du Bois Visualization Challenge on TidyTuesday."
+categories: [R, recreation, pie chart]
 image: MyVersion_Dubios.png
+tt-week: "2024-04-02"
+dataset: https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-04-02/readme.md
+dataset-name: "TidyTuesday 2024-04-02 readme"
+tools: "R · ggplot2"
+charts: "Annotated pie chart"
 fig-dpi: 300
 execute:
-  code-link: true
+  eval: false
 ---
 
 # 0. Introduction
 
-This particular visualization is done on `R` and image is rendered on this blog. Replicationg of the entire challenge seems to be very tough especially having a unique background across the plots.
+This particular visualization is done on `R` and image is rendered on this blog. Replicating the entire challenge seems to be very tough especially having a unique background across the plots.
 
-# 1. Original Dubios Visualization
+# 1. The original Du Bois plate
 
 ![](original-plate-37.jpeg){fig-align="center" width="463"}
 
 # 2. My Version for replication
 
-```{python}
+```{r}
 #| label: Dubios-Challenge
 #| code-fold: true
-#| code-summary: Dubios-Challenge_MyCode
+#| code-summary: Du Bois challenge code
 #| warning: false
 #| eval: false
 
@@ -210,21 +216,3 @@ final_plot
 ```
 
 ![](MyVersion_Dubios.png)
-
-
-<script src="https://giscus.app/client.js"
-        data-repo="ArunKoundinya/TidyTuesday"
-        data-repo-id="R_kgDOLS-XzA"
-        data-category="General"
-        data-category-id="DIC_kwDOLS-XzM4CdbG7"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="dark_high_contrast"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
-```

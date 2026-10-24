@@ -1,8 +1,15 @@
 ---
-title: Tidy Tuesday  - Trash Wheel Collection Data
-subtitle: 5th March 2024
+title: "Trash Wheel Collection"
+subtitle: "Baltimore's trash wheels collect more every year, with a sharp rise after COVID."
 date: "2024-03-08"
-format: html
+description: "Mr. Trash Wheel and friends in Python: trash weight and volume over the years, homes powered by the collected trash, trends by item, and a correlation heat map."
+categories: [Python, line chart, heat map]
+image: thumbnail.png
+tt-week: "2024-03-05"
+dataset: https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-03-05/readme.md
+dataset-name: "TidyTuesday 2024-03-05 readme"
+tools: "Python · plotnine, seaborn"
+charts: "Line charts, heat map"
 fig-dpi: 300
 execute:
   code-link: true
@@ -55,7 +62,7 @@ plot =  ( trashwheels >>
         theme_minimal()
         )
 
-plot.save("TrashWeightVolume.png", width=8, height=6)
+plot.save("TrashWeightVolume.png", width=8, height=6, dpi=300)
 
 ```
 
@@ -83,7 +90,7 @@ plot = ( trashwheels >>
  theme_minimal()
  )
 
-plot.save("HomePowered.png", width=8, height=6)
+plot.save("HomePowered.png", width=8, height=6, dpi=300)
 
 ```
 
@@ -113,7 +120,7 @@ plot =  (trashwheels >>
         theme_minimal()
         )
 
-plot.save("TrashVolumeCat.png", width=8, height=6)
+plot.save("TrashVolumeCat.png", width=8, height=6, dpi=300)
 
 ```
 
@@ -158,21 +165,3 @@ plt.savefig('correlation_heatmap.png')
 
 -   **Limited Observations**: Upon examination, I did not observe a significant association as expected. However, a noticeable correlation exists between the usage of plastic bottles and related products such as plastic bags, wrappers, and polystyrene.
 -   **Material Association**: The correlation between plastic bottles and sport balls suggests a potential association in the manufacturing process, possibly sharing similar synthetic raw materials.
-
-```{=html}
-<script src="https://giscus.app/client.js"
-        data-repo="ArunKoundinya/TidyTuesday"
-        data-repo-id="R_kgDOLS-XzA"
-        data-category="General"
-        data-category-id="DIC_kwDOLS-XzM4CdbG7"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="dark_high_contrast"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
-```

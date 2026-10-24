@@ -1,26 +1,49 @@
 project:
   type: website
+  render:
+    - "*.qmd"
+    - "tidy-analysis/*/*.qmd"
+  post-render:
+    - scripts/seo.py
 
 website:
-  title: "TidyTuesday"
-  description: "Homepage for Tidy Solutions on Python"
-  favicon: /images/logo.jpeg
-
+  title: "Tidy Tuesday"
+  site-url: https://arunkoundinya.github.io/TidyTuesday/
+  description: "Arun Koundinya Parasa's solutions to the weekly TidyTuesday data challenge: charts, maps, animations and a dashboard in R and Python, with the code for each."
+  favicon: images/favicon.png
+  open-graph: true
+  twitter-card: true
+  image: images/social-card.png
   navbar:
+    logo: images/logo-mark.svg
+    logo-alt: "Tidy Tuesday by Arun Koundinya"
     left:
-      - text: Home
+      - text: Gallery
         href: index.qmd
+      - text: All weeks
+        href: index.qmd#all-weeks
       - text: About
         href: about.qmd
-
+    right:
+      - icon: rss
+        href: index.xml
+        aria-label: RSS
+      - icon: github
+        href: https://github.com/ArunKoundinya/TidyTuesday
+        aria-label: GitHub
+      - icon: linkedin
+        href: https://www.linkedin.com/in/arunkoundinya0710/
+        aria-label: LinkedIn
 
   page-footer:
-    right: "This page is built with 💛 and [Quarto](https://quarto.org/)."
-    left: "&copy; Copyright 2024, Arun Koundinya Parasa"
-    background: "#36494E" 
+    left: "&copy; 2023 – 2026 [Arun Koundinya Parasa](https://arunkoundinya.github.io/) · Also: [Canvass And Analyze](https://arunkoundinya.github.io/CanvassAndAnalyze/) · [AI Basics with AK](https://arunkoundinya.github.io/AIBasicswithAK/)"
+    right: "Built with 💚 and [Quarto](https://quarto.org/). Data from [#TidyTuesday](https://github.com/rfordatascience/tidytuesday)."
 
 format:
   html:
-    theme: simple
+    theme: [cosmo, theme.scss]
     css: styles.css
+    include-in-header: _seo-head.html
     toc: true
+    grid:
+      body-width: 860px

@@ -1,0 +1,25 @@
+<%
+// Hero card: the most recent analysis, plus counts across all of them.
+const lead = items[0];
+const lang = (i) => (i.categories || []).find(c => c === "R" || c === "Python") || "";
+const nR = items.filter(i => lang(i) === "R").length;
+const nPy = items.filter(i => lang(i) === "Python").length;
+%>
+```{=html}
+<a class="now-card" href="<%- lead.path %>" <%= metadataAttrs(lead) %>>
+  <% if (lead.image) { %><div class="now-img"><img src="<%- lead.image %>" alt="<%= lead.title %>"></div><% } %>
+  <div class="now-body">
+    <div class="now-top">
+      <span class="kicker">Latest chart</span>
+      <% if (lang(lead)) { %><span class="tool <%- lang(lead).toLowerCase() %>"><%= lang(lead) %></span><% } %>
+    </div>
+    <h3><%= lead.title %></h3>
+    <% if ((lead.takeaway || lead.subtitle)) { %><p class="excerpt"><%= (lead.takeaway || lead.subtitle) %></p><% } %>
+  </div>
+  <div class="stats">
+    <div><strong><%= items.length %></strong><span>analyses</span></div>
+    <div><strong><%= nR %></strong><span>in R</span></div>
+    <div><strong><%= nPy %></strong><span>in Python</span></div>
+  </div>
+</a>
+```

@@ -1,0 +1,24 @@
+<%
+// Compact table of every analysis, newest TidyTuesday week first.
+const LANGS = ["R", "Python"];
+const lang = (i) => (i.categories || []).find(c => LANGS.includes(c)) || "";
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const week = (s) => { const m = String(s || "").match(/^(\d{4})-(\d{2})-(\d{2})/); return m ? `${+m[3]} ${MONTHS[+m[2] - 1]} ${m[1]}` : "Bonus"; };
+const rows = [...items].sort((a, b) => String(b['tt-week'] || b.date).localeCompare(String(a['tt-week'] || a.date)));
+%>
+```{=html}
+<table class="weeks-table list">
+  <thead><tr><th>Week</th><th>Analysis</th><th class="how">Charts</th><th>Tool</th><th class="data">Data</th></tr></thead>
+  <tbody>
+  <% for (const item of rows) { const l = lang(item); %>
+    <tr <%= metadataAttrs(item) %>>
+      <td class="when"><%= week(item['tt-week']) %></td>
+      <td class="what"><a href="<%- item.path %>"><%= item.title %></a><% if ((item.takeaway || item.subtitle)) { %><span class="sub"><%= (item.takeaway || item.subtitle) %></span><% } %></td>
+      <td class="how"><%= item.charts || (item.categories || []).filter(c => !LANGS.includes(c)).join(", ") %></td>
+      <td><% if (l) { %><span class="tool <%- l.toLowerCase() %>"><%= l %></span><% } %></td>
+      <td class="data"><% if (item.dataset && /^https?:/.test(item.dataset)) { %><a href="<%- item.dataset %>">readme ↗</a><% } %></td>
+    </tr>
+  <% } %>
+  </tbody>
+</table>
+```

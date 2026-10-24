@@ -1,15 +1,24 @@
 ---
 title: "Diwali Sales Dashboard"
-subtitle: 14th Nov 2023
+subtitle: "TidyTuesday, 14 Nov 2023"
 author: ""
+takeaway: "Who shopped for Diwali, what they bought and where, in one Quarto dashboard."
 date: "2024-09-21"
+description: "A Quarto dashboard in R on the Diwali sales dataset: value boxes, spending distributions, state maps and an animated chart of orders across India."
+categories: [R, dashboard, maps]
+image: image.png
+tt-week: "2023-11-14"
+dataset: https://github.com/rfordatascience/tidytuesday/blob/main/data/2023/2023-11-14/readme.md
+tools: "R · Quarto dashboards, gganimate, sf"
+charts: "Value boxes, box plots, maps, animation"
+comments: false
+toc: false
 format:
   dashboard:
      theme: default
      orientation: rows
      expandable: true
      scrolling: false
-image: 'image.png'
 ---
 
 
