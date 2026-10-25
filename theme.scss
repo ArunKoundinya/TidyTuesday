@@ -197,6 +197,10 @@ main.content .tt-facts p { margin: 0; font-size: .9rem; }
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
+  // Quarto offsets a targeted section with a ::before spacer, which would become a
+  // third flex item; use scroll-margin for the sticky navbar instead
+  scroll-margin-top: 70px;
+  &:target::before { display: none; }
   border-top: 2px solid $ink;
   padding-top: .7rem;
   margin: 4rem 0 1.5rem;
