@@ -75,12 +75,14 @@ listing:
 ::: {.more-band}
 ## More from Arun {.unnumbered .unlisted}
 
-Data, psychology and teaching, on my other sites.
+Essays, teaching and study notes, on my other sites.
 
 ::: {.sites}
 [**Canvass And Analyze** [Essays on psychology, analytics and management, including the story behind some of these charts.]{}](https://arunkoundinya.github.io/CanvassAndAnalyze/){.site}
 
 [**AI Basics with AK** [Free videos, slides and homework on Python, statistics and AI.]{}](https://arunkoundinya.github.io/AIBasicswithAK/){.site}
+
+[**Deep Learning notebook** [Notebooks on TensorFlow, neural networks, CNNs, LSTMs and NLP. Each one runs in Colab.]{}](https://arunkoundinya.github.io/DeepLearning/){.site}
 
 [**Portfolio** [Who I am, what I work on, and how to get in touch.]{}](https://arunkoundinya.github.io/){.site}
 :::

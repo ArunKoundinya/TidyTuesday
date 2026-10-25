@@ -36,7 +36,7 @@ website:
         aria-label: LinkedIn
 
   page-footer:
-    left: "&copy; 2023 – 2026 [Arun Koundinya Parasa](https://arunkoundinya.github.io/) · Also: [Canvass And Analyze](https://arunkoundinya.github.io/CanvassAndAnalyze/) · [AI Basics with AK](https://arunkoundinya.github.io/AIBasicswithAK/)"
+    left: "&copy; 2023 – 2026 [Arun Koundinya Parasa](https://arunkoundinya.github.io/) · Also: [Canvass And Analyze](https://arunkoundinya.github.io/CanvassAndAnalyze/) · [AI Basics with AK](https://arunkoundinya.github.io/AIBasicswithAK/) · [Deep Learning](https://arunkoundinya.github.io/DeepLearning/)"
     right: "Built with 💚 and [Quarto](https://quarto.org/). Data from [#TidyTuesday](https://github.com/rfordatascience/tidytuesday)."
 
 format:
