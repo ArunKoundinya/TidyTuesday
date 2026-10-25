@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://arunkoundinya.github.io/TidyTuesday/index.html</loc>
-    <lastmod>2026-10-24T23:22:36.858Z</lastmod>
+    <lastmod>2026-10-25T00:37:56.686Z</lastmod>
   </url>
   <url>
     <loc>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/02042024/index.html</loc>
@@ -54,5 +54,6 @@
   </url>
   <url>
     <loc>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/14112023/index.html</loc>
+    <lastmod>2026-10-24T23:22:43.008Z</lastmod>
   </url>
 </urlset>
