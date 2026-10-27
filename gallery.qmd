@@ -1,0 +1,45 @@
+---
+title: "Gallery"
+pagetitle: "Gallery: every Tidy Tuesday chart"
+description: "Every one of Arun Koundinya Parasa's TidyTuesday analyses in one place: filter by R or Python, chart type and year, or search, plus a table of all weeks."
+image: images/social-card.png
+page-layout: full
+title-block-style: none
+toc: false
+comments: false
+body-classes: hub
+listing:
+  - id: gallery
+    contents: "tidy-analysis/*/*.qmd"
+    sort: "date desc"
+    template: _templates/gallery.ejs
+    template-params:
+      filter: true
+    page-size: 1000
+    date-format: "MMM YYYY"
+  - id: weeks
+    contents: "tidy-analysis/*/*.qmd"
+    sort: "date desc"
+    template: _templates/weeks.ejs
+    page-size: 1000
+---
+
+::: {.page-head}
+[Gallery]{.kicker}
+
+# Every chart, newest first {.unnumbered .unlisted}
+
+Filter by language, chart type or year, or search for a topic. Each card opens the full analysis.
+:::
+
+::: {#gallery}
+:::
+
+::: {.section-head}
+## All weeks at a glance {#all-weeks .unnumbered .unlisted}
+
+[Sorted by TidyTuesday week]{.meta}
+:::
+
+::: {#weeks}
+:::

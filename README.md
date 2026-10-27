@@ -24,9 +24,26 @@ My solutions to the weekly [TidyTuesday](https://github.com/rfordatascience/tidy
 A [Quarto](https://quarto.org/) website. Each analysis lives in `tidy-analysis/<ddmmyyyy>/`.
 
 - `theme.scss` – look and feel, shared with the portfolio, Canvass And Analyze and AI Basics with AK
-- `index.qmd` + `_templates/*.ejs` – home page: latest chart, filterable gallery, all-weeks table
-- `_filters/tt-meta.lua` – the dataset / tools strip under each title, from front matter
-- `scripts/seo.py` – runs after render; canonical URLs and structured data
+- `index.qmd` – home: latest chart, the 6 newest charts, subscribe band
+- `gallery.qmd` – every chart, with filters (language, chart type, year) and search, plus the all-weeks table
+- `_templates/*.ejs` – the cards, latest-chart card and weeks table used by those pages
+- `_filters/tt-meta.lua` – the dataset / tools strip under each title and the subscribe block at the end, from front matter
+- `scripts/seo.py` – runs after render; canonical URLs, structured data, keeps the subscription pages out of search
+- `scripts/subscribe_box.py` – runs after render; connects the subscribe forms to the email Worker
+
+### Email subscriptions
+
+Readers subscribe on the home page or at the end of any analysis. The Worker and subscriber database are
+shared with Canvass And Analyze and live in that repo (`CanvassAndAnalyze/subscribe/`); this site's
+subscribers are the list `tidytuesday` (see `subscribe/site.json`). Confirm and unsubscribe links land on
+`confirm.qmd` and `unsubscribe.qmd` here.
+
+- `scripts/email_templates.py` – the branded emails. After changing the confirm or welcome email, run
+  `python3 scripts/email_templates.py worker` (writes the Worker's copy) and redeploy the Worker from
+  `CanvassAndAnalyze/subscribe` with `npx wrangler deploy`. `preview` writes HTML previews.
+- `scripts/notify.py` – emails subscribers about new analyses. Uses the secrets file made by the
+  Canvass repo's `scripts/setup_subscribe_secrets.sh`. Already-announced analyses are in
+  `subscribe/announced.json`.
 
 ### Adding a week
 
@@ -53,6 +70,13 @@ The Python posts run when rendered; `requirements.txt` pins the library versions
 python3.12 -m venv .venv && .venv/bin/pip install -r requirements.txt
 export QUARTO_PYTHON=$PWD/.venv/bin/python
 quarto publish gh-pages
+```
+
+Then tell subscribers about the new week (commit the updated `subscribe/announced.json` after):
+
+```bash
+python3 scripts/notify.py --dry-run
+python3 scripts/notify.py
 ```
 
 The Diwali dashboard also needs the R packages `tidyverse`, `scales`, `sf`, `gganimate`, `av` and `gt`.

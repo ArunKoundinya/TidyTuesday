@@ -44,8 +44,12 @@ function Pandoc(doc)
   if charts then cell("Charts", esc(charts)) end
 
   table.insert(doc.blocks, 1, pandoc.RawBlock("html", '<div class="tt-facts">' .. table.concat(cells) .. '</div>'))
+  -- scripts/subscribe_box.py wires the .subscribe-form placeholder to the subscription Worker
   table.insert(doc.blocks, pandoc.RawBlock("html",
-    '<div class="tt-next"><p><strong>One week down.</strong> See the other charts in the gallery, ' ..
-    'or leave a comment below.</p><a class="btn-ak" href="../../index.html">← Back to the gallery</a></div>'))
+    '<div class="tt-next"><p class="kicker">One week down</p>' ..
+    '<p class="tt-next-title">Get the next chart in your inbox</p>' ..
+    '<div class="subscribe-form"></div>' ..
+    '<div class="tt-next-back"><p>Or browse the other charts, and leave a comment below.</p>' ..
+    '<a class="btn-ak" href="../../gallery.html">← Back to the gallery</a></div></div>'))
   return doc
 end

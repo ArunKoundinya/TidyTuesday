@@ -3,8 +3,13 @@ project:
   render:
     - "*.qmd"
     - "tidy-analysis/*/*.qmd"
+  resources:
+    - assets/subscribe.js
+    - images/logo-mark.png          # used by the subscriber emails
+    - images/apple-touch-icon.png   # linked by scripts/seo.py
   post-render:
     - scripts/seo.py
+    - scripts/subscribe_box.py
 
 website:
   title: "Tidy Tuesday"
@@ -19,11 +24,13 @@ website:
     logo-alt: "Tidy Tuesday by Arun Koundinya"
     left:
       - text: Gallery
-        href: index.qmd
+        href: gallery.qmd
       - text: All weeks
-        href: index.qmd#all-weeks
+        href: gallery.qmd#all-weeks
       - text: About
         href: about.qmd
+      - text: Subscribe
+        href: index.qmd#h-subscribe
     right:
       - icon: rss
         href: index.xml

@@ -1,5 +1,8 @@
 <%
-// Chart cards with a filter by language and by technique (techniques used at least twice).
+// Chart cards. template-params:
+//   limit  - show only the newest N cards and a "Browse all" link (home page)
+//   filter - show the toolbar: language and technique chips, year chips and a search box (gallery page)
+const params = typeof templateParams !== "undefined" ? templateParams : {};
 const LANGS = ["R", "Python"];
 const lang = (i) => (i.categories || []).find(c => LANGS.includes(c)) || "";
 const techs = (i) => (i.categories || []).filter(c => !LANGS.includes(c));
@@ -8,19 +11,34 @@ items.forEach(i => techs(i).forEach(t => counts[t] = (counts[t] || 0) + 1));
 const common = Object.keys(counts).filter(t => counts[t] > 1).sort((a, b) => counts[b] - counts[a] || a.localeCompare(b));
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 const week = (s) => { const m = String(s || "").match(/^(\d{4})-(\d{2})-(\d{2})/); return m ? `${+m[3]} ${MONTHS[+m[2] - 1]} ${m[1]}` : ""; };
+// Year of the TidyTuesday release (or of the post, for bonus datasets)
+const year = (i) => String(i['tt-week'] || i.date || "").match(/\d{4}/)?.[0] || "";
+const years = [...new Set(items.map(year).filter(Boolean))].sort().reverse();
+const shown = params.limit ? items.slice(0, params.limit) : items;
+const text = (i) => [i.title, i.takeaway || i.subtitle, i.description, (i.categories || []).join(" ")].join(" ").toLowerCase();
 %>
 ```{=html}
+<% if (params.filter) { %>
 <div class="gallery-toolbar" role="group" aria-label="Filter the gallery">
-  <span class="label">Filter</span>
-  <button class="active" data-f="">All</button>
-  <% for (const l of LANGS) { %><button data-f="<%= l %>"><%= l %></button><% } %>
-  <span class="sep" aria-hidden="true"></span>
-  <% for (const t of common) { %><button data-f="<%= t %>"><%= t %></button><% } %>
-  <span class="count" aria-live="polite"><%= items.length %> analyses</span>
+  <div class="row">
+    <span class="label">Show</span>
+    <button class="active" data-f="">All</button>
+    <% for (const l of LANGS) { %><button data-f="<%= l %>"><%= l %></button><% } %>
+    <span class="sep" aria-hidden="true"></span>
+    <% for (const t of common) { %><button data-f="<%= t %>"><%= t %></button><% } %>
+  </div>
+  <div class="row">
+    <span class="label">Year</span>
+    <button class="active" data-y="">Any</button>
+    <% for (const y of years) { %><button data-y="<%= y %>"><%= y %></button><% } %>
+    <input class="search" type="search" placeholder="Search charts…" aria-label="Search charts">
+    <span class="count" aria-live="polite"><%= items.length %> analyses</span>
+  </div>
 </div>
+<% } %>
 <div class="chart-grid list">
-<% for (const item of items) { const l = lang(item); %>
-  <a class="chart-card" href="<%- item.path %>" data-cats="<%= (item.categories || []).join('|') %>" <%= metadataAttrs(item) %>>
+<% for (const item of shown) { const l = lang(item); %>
+  <a class="chart-card" href="<%- item.path %>" data-cats="<%= (item.categories || []).join('|') %>" data-year="<%= year(item) %>" data-text="<%= text(item) %>" <%= metadataAttrs(item) %>>
     <div class="card-img">
       <% if (item.image) { %><img src="<%- item.image %>" alt="<%= item.title %>" loading="lazy"><% } %>
       <% if (l) { %><span class="tool <%- l.toLowerCase() %>"><%= l %></span><% } %>
@@ -35,21 +53,42 @@ const week = (s) => { const m = String(s || "").match(/^(\d{4})-(\d{2})-(\d{2})/
   </a>
 <% } %>
 </div>
+<% if (params.filter) { %>
+<p class="empty-note" hidden>No charts match. Try another filter or clear the search.</p>
+<% } %>
+<% if (params.limit && items.length > shown.length) { %>
+<p class="browse-all"><a class="btn-ak ghost" href="gallery.html">Browse all <%= items.length %> charts →</a></p>
+<% } %>
+<% if (params.filter) { %>
 <script>
 (() => {
-  const btns = document.querySelectorAll(".gallery-toolbar button");
-  const cards = document.querySelectorAll(".chart-card");
-  const count = document.querySelector(".gallery-toolbar .count");
-  btns.forEach(b => b.addEventListener("click", () => {
-    btns.forEach(x => x.classList.toggle("active", x === b));
-    let shown = 0;
+  const bar = document.querySelector(".gallery-toolbar");
+  const cards = [...document.querySelectorAll(".chart-card")];
+  const count = bar.querySelector(".count"), search = bar.querySelector(".search");
+  const empty = document.querySelector(".empty-note");
+  const state = { f: "", y: "", q: "" };
+  function apply() {
+    let n = 0;
     cards.forEach(c => {
-      const hide = !!b.dataset.f && !c.dataset.cats.split("|").includes(b.dataset.f);
-      c.classList.toggle("hidden", hide);
-      if (!hide) shown++;
+      const ok = (!state.f || c.dataset.cats.split("|").includes(state.f))
+              && (!state.y || c.dataset.year === state.y)
+              && (!state.q || c.dataset.text.includes(state.q));
+      c.classList.toggle("hidden", !ok);
+      if (ok) n++;
     });
-    count.textContent = shown + (shown === 1 ? " analysis" : " analyses");
-  }));
+    count.textContent = n + (n === 1 ? " analysis" : " analyses");
+    empty.hidden = n > 0;
+  }
+  for (const key of ["f", "y"]) {
+    const group = bar.querySelectorAll("button[data-" + key + "]");
+    group.forEach(b => b.addEventListener("click", () => {
+      group.forEach(x => x.classList.toggle("active", x === b));
+      state[key] = b.dataset[key];
+      apply();
+    }));
+  }
+  search.addEventListener("input", () => { state.q = search.value.trim().toLowerCase(); apply(); });
 })();
 </script>
+<% } %>
 ```

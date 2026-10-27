@@ -142,8 +142,18 @@ for path in files:
         extra = (f'\n<meta property="og:image:type" content="image/{kind}">' if kind else "") + \
                 (f'\n<meta property="og:image:alt" content="{title.group(1)}">' if title else "")
         html = html.replace(m.group(0), m.group(0) + extra, 1)
+    if rel in ("confirm.html", "unsubscribe.html"):              # subscription status pages: keep out of search
+        html = html.replace('content="index, follow, max-image-preview:large"', 'content="noindex"', 1)
     html = html.replace("</head>", tags_for(rel) + "</head>", 1)
     open(path, "w", encoding="utf-8").write(html)
     done += 1
+
+# Subscription status pages stay out of the sitemap (Quarto has no per-page switch for it)
+sitemap = os.path.join(OUT, "sitemap.xml")
+if os.path.exists(sitemap):
+    xml = open(sitemap, encoding="utf-8").read()
+    trimmed = re.sub(r"\s*<url>\s*<loc>[^<]*/(?:confirm|unsubscribe)\.html</loc>.*?</url>", "", xml, flags=re.S)
+    if trimmed != xml:
+        open(sitemap, "w", encoding="utf-8").write(trimmed)
 
 print(f"seo.py: tagged {done} pages")

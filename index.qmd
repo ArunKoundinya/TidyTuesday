@@ -14,20 +14,17 @@ listing:
     sort: "date desc"
     template: _templates/latest-card.ejs
     page-size: 1000
-  - id: gallery
-    contents: "tidy-analysis/*/*.qmd"
-    sort: "date desc"
-    template: _templates/gallery.ejs
-    page-size: 1000
-    date-format: "MMM YYYY"
     feed:
       title: "Tidy Tuesday by Arun Koundinya"
       type: partial
-  - id: weeks
+  - id: recent
     contents: "tidy-analysis/*/*.qmd"
     sort: "date desc"
-    template: _templates/weeks.ejs
+    template: _templates/gallery.ejs
+    template-params:
+      limit: 6
     page-size: 1000
+    date-format: "MMM YYYY"
 ---
 
 ::: {.home-hero}
@@ -43,7 +40,7 @@ listing:
 [Every Tuesday the [R for Data Science](https://github.com/rfordatascience/tidytuesday) community shares a new dataset. These are my answers: from a first line plot in Python to custom backgrounds, choropleth maps, animations and a full dashboard in R. Each one comes with the code.]{.lede}
 
 ::: {.cta}
-[Browse the gallery ↓](#h-gallery){.btn-ak}
+[Browse the gallery](gallery.qmd){.btn-ak}
 [What is TidyTuesday? ↗](https://github.com/rfordatascience/tidytuesday){.btn-ak .ghost}
 :::
 :::
@@ -55,21 +52,30 @@ listing:
 :::
 
 ::: {.section-head}
-## The gallery {#h-gallery .unnumbered .unlisted}
+## Recent charts {#h-recent .unnumbered .unlisted}
 
-[Newest first · click a chart for the full analysis]{.meta}
+[All charts →](gallery.qmd)
 :::
 
-::: {#gallery}
+::: {#recent}
 :::
 
-::: {.section-head}
-## All weeks at a glance {#all-weeks .unnumbered .unlisted}
+::: {.subscribe-band}
+::: {}
+[By email]{.kicker}
 
-[Sorted by TidyTuesday week]{.meta}
+## Get the next chart in your inbox {#h-subscribe .unnumbered .unlisted}
+
+One email when a new week is published, with the chart and the takeaway. No other mail, and you can unsubscribe anytime.
 :::
 
-::: {#weeks}
+::: {.subscribe-side}
+```{=html}
+<div class="subscribe-form"></div>
+```
+
+[Or follow by [RSS](index.xml) · [LinkedIn](https://www.linkedin.com/in/arunkoundinya0710/)]{.sub-alt}
+:::
 :::
 
 ::: {.more-band}
