@@ -17,7 +17,20 @@
 <width>144</width>
 </image>
 <generator>quarto-1.7.32</generator>
-<lastBuildDate>Thu, 31 Oct 2024 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 26 Oct 2026 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>College Majors and AI Exposure</title>
+  <dc:creator>Arun Koundinya Parasa</dc:creator>
+  <link>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/20102026/</link>
+  <description><![CDATA[ Which college majors are safest from AI, and do they pay? In R: k-means clusters of 453 occupations by AI exposure, a scatter of exposure against salary with spotlight majors circled, and a gt summary table. ]]></description>
+  <category>R</category>
+  <category>scatter plot</category>
+  <category>clustering</category>
+  <category>table</category>
+  <guid>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/20102026/</guid>
+  <pubDate>Mon, 26 Oct 2026 04:00:00 GMT</pubDate>
+  <media:content url="https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/20102026/Plot1.png" medium="image" type="image/png" height="84" width="144"/>
+</item>
 <item>
   <title>Monster Movies</title>
   <dc:creator>Arun Koundinya Parasa</dc:creator>

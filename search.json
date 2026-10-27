@@ -355,5 +355,40 @@
     "title": "About",
     "section": "Elsewhere",
     "text": "Elsewhere\n\nCanvass And Analyze: essays on psychology, analytics and management\nAI Basics with AK: free videos on Python, statistics and AI\nLinkedIn and GitHub"
+  },
+  {
+    "objectID": "tidy-analysis/20102026/index.html",
+    "href": "tidy-analysis/20102026/index.html",
+    "title": "College Majors and AI Exposure",
+    "section": "",
+    "text": "TidyTuesday week20 Oct 2026DatasetTidyTuesday 2026-10-20 readme ↗Built withR · dplyr, ggplot2, ggforce, gtChartsAnnotated scatter, k-means clusters, gt table"
+  },
+  {
+    "objectID": "tidy-analysis/20102026/index.html#clustering-occupations-by-ai-exposure",
+    "href": "tidy-analysis/20102026/index.html#clustering-occupations-by-ai-exposure",
+    "title": "College Majors and AI Exposure",
+    "section": "1.1. Clustering Occupations by AI Exposure",
+    "text": "1.1. Clustering Occupations by AI Exposure\nEach occupation gets a salary proxy, which is the median salary four years after graduation of the majors that feed into it, weighted by their number of graduates. K-means then splits the occupations into three groups, ordered Low, Mid and High by their average exposure."
+  },
+  {
+    "objectID": "tidy-analysis/20102026/index.html#picking-spotlight-majors",
+    "href": "tidy-analysis/20102026/index.html#picking-spotlight-majors",
+    "title": "College Majors and AI Exposure",
+    "section": "1.2. Picking Spotlight Majors",
+    "text": "1.2. Picking Spotlight Majors\nA major belongs to the cluster where most of its jobs sit. I kept majors with more than 75% of their jobs in that one cluster, then picked the three largest by graduates in each cluster to circle on the chart."
+  },
+  {
+    "objectID": "tidy-analysis/20102026/index.html#where-ai-meets-the-job-market",
+    "href": "tidy-analysis/20102026/index.html#where-ai-meets-the-job-market",
+    "title": "College Majors and AI Exposure",
+    "section": "2.1. Where AI Meets the Job Market",
+    "text": "2.1. Where AI Meets the Job Market\n\n\n\n\n\nFindings:\n\nPay overlaps: the three clusters’ pay ranges overlap a lot, so AI exposure on its own says little about salary.\nLow exposure: construction finishing, vehicle maintenance and heavy-equipment work sit at the far left, with salaries around $80k–$90k.\nHigh exposure: business administration, general psychology and general business send graduates into jobs where AI overlaps most with the skill mix.\nWhere graduates go: most graduates head into mid- and high-exposure jobs, as the table below also shows. High exposure doesn’t mean AI will replace these jobs; it means they will change."
+  },
+  {
+    "objectID": "tidy-analysis/20102026/index.html#three-ways-ai-meets-work",
+    "href": "tidy-analysis/20102026/index.html#three-ways-ai-meets-work",
+    "title": "College Majors and AI Exposure",
+    "section": "2.2. Three Ways AI Meets Work",
+    "text": "2.2. Three Ways AI Meets Work\n\n\n\n\n\nFindings:\n\nLow exposure pays best: the 102 low-exposure jobs have the highest median salary proxy, $74,297, against about $61,000 for the high cluster and $59,000 for the mid cluster."
   }
 ]
