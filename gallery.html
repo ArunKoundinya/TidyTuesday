@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Every one of Arun Koundinya Parasa’s TidyTuesday analyses in one place: filter by R or Python, chart type and year, or search, plus a table of all weeks.">
+
+<title>Gallery: every Tidy Tuesday chart – Tidy Tuesday</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./images/favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-25cb606da3a62b75b45781cfd62e2df7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-0461fc6f81225f4bbaef33dc4d97a1c8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-gallery .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-project','listing-website','listing-format','listing-language','listing-freeze','listing-author','listing-output-file','listing-title-block-banner','listing-toc','listing-toc-depth','listing-toc-title','listing-code-tools','listing-code-copy','listing-filters','listing-comments','listing-title','listing-subtitle','listing-date','listing-description','listing-categories','listing-image','listing-tt-week','listing-dataset','listing-dataset-name','listing-tools','listing-charts','listing-fig-dpi','listing-execute','listing-path','listing-outputHref','listing-date-modified','listing-filename','listing-file-modified','listing-reading-time','listing-word-count','listing-takeaway','listing-fig-height','listing-fig-width','listing-resources',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
+      
+      searchColumns: ["listing-project","listing-website","listing-format","listing-language","listing-freeze","listing-author","listing-output-file","listing-title-block-banner","listing-toc","listing-toc-depth","listing-toc-title","listing-code-tools","listing-code-copy","listing-filters","listing-comments","listing-title","listing-subtitle","listing-date","listing-description","listing-categories","listing-image","listing-tt-week","listing-dataset","listing-dataset-name","listing-tools","listing-charts","listing-fig-dpi","listing-execute","listing-path","listing-outputHref","listing-date-modified","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-takeaway","listing-fig-height","listing-fig-width","listing-resources"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-gallery'] = new List('listing-gallery', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-weeks .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-project','listing-website','listing-format','listing-language','listing-freeze','listing-author','listing-output-file','listing-title-block-banner','listing-toc','listing-toc-depth','listing-toc-title','listing-code-tools','listing-code-copy','listing-filters','listing-comments','listing-title','listing-subtitle','listing-date','listing-description','listing-categories','listing-image','listing-tt-week','listing-dataset','listing-dataset-name','listing-tools','listing-charts','listing-fig-dpi','listing-execute','listing-path','listing-outputHref','listing-date-modified','listing-filename','listing-file-modified','listing-reading-time','listing-word-count','listing-takeaway','listing-fig-height','listing-fig-width','listing-resources',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
+      
+      searchColumns: ["listing-project","listing-website","listing-format","listing-language","listing-freeze","listing-author","listing-output-file","listing-title-block-banner","listing-toc","listing-toc-depth","listing-toc-title","listing-code-tools","listing-code-copy","listing-filters","listing-comments","listing-title","listing-subtitle","listing-date","listing-description","listing-categories","listing-image","listing-tt-week","listing-dataset","listing-dataset-name","listing-tools","listing-charts","listing-fig-dpi","listing-execute","listing-path","listing-outputHref","listing-date-modified","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-takeaway","listing-fig-height","listing-fig-width","listing-resources"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-weeks'] = new List('listing-weeks', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+<!-- Search engine ownership verification. Paste the content values from
+     Google Search Console and Bing Webmaster Tools, then uncomment. -->
+<!-- <meta name="google-site-verification" content="PASTE-GOOGLE-CODE"> -->
+<!-- <meta name="msvalidate.01" content="PASTE-BING-CODE"> -->
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="Gallery: every Tidy Tuesday chart">
+<meta property="og:description" content="Every one of Arun Koundinya Parasa’s TidyTuesday analyses in one place: filter by R or Python, chart type and year, or search, plus a table of all weeks.">
+<meta property="og:image" content="https://arunkoundinya.github.io/TidyTuesday/images/social-card.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Gallery: every Tidy Tuesday chart">
+<meta property="og:site_name" content="Tidy Tuesday">
+<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="1200">
+<meta name="twitter:title" content="Gallery: every Tidy Tuesday chart">
+<meta name="twitter:description" content="Every one of Arun Koundinya Parasa’s TidyTuesday analyses in one place: filter by R or Python, chart type and year, or search, plus a table of all weeks.">
+<meta name="twitter:image" content="https://arunkoundinya.github.io/TidyTuesday/images/social-card.png">
+<meta name="twitter:image-height" content="630">
+<meta name="twitter:image-width" content="1200">
+<meta name="twitter:card" content="summary_large_image">
+<!-- seo.py -->
+<link rel="canonical" href="https://arunkoundinya.github.io/TidyTuesday/gallery.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://arunkoundinya.github.io/TidyTuesday/gallery.html">
+<link rel="apple-touch-icon" href="https://arunkoundinya.github.io/TidyTuesday/images/apple-touch-icon.png">
+</head>
+
+<body class="nav-fixed hub quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./images/logo-mark.svg" alt="Tidy Tuesday by Arun Koundinya" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Tidy Tuesday</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./gallery.html" aria-current="page"> 
+<span class="menu-text">Gallery</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./gallery.html#all-weeks"> 
+<span class="menu-text">All weeks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html#h-subscribe"> 
+<span class="menu-text">Subscribe</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="./index.xml"> <i class="bi bi-rss" role="img" aria-label="RSS">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ArunKoundinya/TidyTuesday"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/arunkoundinya0710/"> <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content column-page" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7">Gallery</h1></header>
+
+<header id="title-block-header">
+
+
+</header>
+
+
+<div class="page-head">
+<p><span class="kicker">Gallery</span></p>
+<section id="every-chart-newest-first" class="level1 unnumbered unlisted">
+<h1 class="unnumbered unlisted">Every chart, newest first</h1>
+<p>Filter by language, chart type or year, or search for a topic. Each card opens the full analysis.</p>
+</section>
+</div>
+<div id="listing-gallery" class="quarto-listing quarto-listing-container-custom">
+
+<div class="gallery-toolbar" role="group" aria-label="Filter the gallery">
+  <div class="row">
+    <span class="label">Show</span>
+    <button class="active" data-f="">All</button>
+    <button data-f="R">R</button><button data-f="Python">Python</button>
+    <span class="sep" aria-hidden="true"></span>
+    <button data-f="line chart">line chart</button><button data-f="clustering">clustering</button><button data-f="maps">maps</button><button data-f="scatter plot">scatter plot</button>
+  </div>
+  <div class="row">
+    <span class="label">Year</span>
+    <button class="active" data-y="">Any</button>
+    <button data-y="2026">2026</button><button data-y="2024">2024</button><button data-y="2023">2023</button>
+    <input class="search" type="search" placeholder="Search charts…" aria-label="Search charts">
+    <span class="count" aria-live="polite">13 analyses</span>
+  </div>
+</div>
+
+<div class="chart-grid list">
+
+  <a class="chart-card" href="./tidy-analysis/20102026/index.html" data-cats="R|scatter plot|clustering|table" data-year="2026" data-text="college majors and ai exposure the jobs least exposed to ai pay the most, yet only about 1 in 40 graduates heads toward them. which college majors are safest from ai, and do they pay? in r: k-means clusters of 453 occupations by ai exposure, a scatter of exposure against salary with spotlight majors circled, and a gt summary table. r scatter plot clustering table" data-index="0" data-categories="UiUyQ3NjYXR0ZXIlMjBwbG90JTJDY2x1c3RlcmluZyUyQ3RhYmxl" data-listing-date-sort="1792987200000" data-listing-file-modified-sort="1793062574695" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="362">
+    <div class="card-img">
+      <img src="./tidy-analysis/20102026/Plot1.png" alt="College Majors and AI Exposure" loading="lazy">
+      <span class="tool r">R</span>
+    </div>
+    <div class="card-body">
+      <span class="kicker">Week of 20 Oct 2026</span>
+      <h4 class="anchored">College Majors and AI Exposure</h4>
+      <div class="excerpt">The jobs least exposed to AI pay the most, yet only about 1 in 40 graduates heads toward them.</div>
+      <div class="techs"><span>scatter plot</span><span>clustering</span><span>table</span></div>
+      <p class="meta">Posted Oct 2026</p>
+    </div>
+  </a>
+
+  <a class="chart-card" href="./tidy-analysis/29102024/index.html" data-cats="R|dual axis|bar chart" data-year="2024" data-text="monster movies horror films have boomed since 2000, and the good ones with them. monster and horror movies from imdb in r: a dual-axis chart of films and ratings, the rise of well-rated horror, and which sub-genre mixes work with audiences. r dual axis bar chart" data-index="1" data-categories="UiUyQ2R1YWwlMjBheGlzJTJDYmFyJTIwY2hhcnQ=" data-listing-date-sort="1730347200000" data-listing-file-modified-sort="1792884086087" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1479">
+    <div class="card-img">
+      <img src="./tidy-analysis/29102024/HorrorPlot1.png" alt="Monster Movies" loading="lazy">
+      <span class="tool r">R</span>
+    </div>
+    <div class="card-body">
+      <span class="kicker">Week of 29 Oct 2024</span>
+      <h4 class="anchored">Monster Movies</h4>
+      <div class="excerpt">Horror films have boomed since 2000, and the good ones with them.</div>
+      <div class="techs"><span>dual axis</span><span>bar chart</span></div>
+      <p class="meta">Posted Oct 2024</p>
+    </div>
+  </a>
+
+  <a class="chart-card" href="./tidy-analysis/14112023/index.html" data-cats="R|dashboard|maps" data-year="2023" data-text="diwali sales dashboard who shopped for diwali, what they bought and where, in one quarto dashboard. a quarto dashboard in r on the diwali sales dataset: value boxes, spending distributions, state maps and an animated chart of orders across india. r dashboard maps" data-index="2" data-categories="UiUyQ2Rhc2hib2FyZCUyQ21hcHM=" data-listing-date-sort="1726891200000" data-listing-file-modified-sort="1792884156849" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2509">
+    <div class="card-img">
+      <img src="./tidy-analysis/14112023/image.png" alt="Diwali Sales Dashboard" loading="lazy">
+      <span class="tool r">R</span>
+    </div>
+    <div class="card-body">
+      <span class="kicker">Week of 14 Nov 2023</span>
+      <h4 class="anchored">Diwali Sales Dashboard</h4>
+      <div class="excerpt">Who shopped for Diwali, what they bought and where, in one Quarto dashboard.</div>
+      <div class="techs"><span>dashboard</span><span>maps</span></div>
+      <p class="meta">Posted Sep 2024</p>
+    </div>
+  </a>
+
+  <a class="chart-card" href="./tidy-analysis/22072024/index.html" data-cats="R|maps|bonus" data-year="2024" data-text="crimes against women in india district-level crime data mapped state by state, in absolute numbers and per lakh of population. crimes against women in india in r: category trends, state choropleth maps of absolute and per-capita cases over the years, and correlations across crime types. r maps bonus" data-index="3" data-categories="UiUyQ21hcHMlMkNib251cw==" data-listing-date-sort="1721620800000" data-listing-file-modified-sort="1792884093984" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3120">
+    <div class="card-img">
+      <img src="./tidy-analysis/22072024/Plot2a_IndiaStates.png" alt="Crimes Against Women in India" loading="lazy">
+      <span class="tool r">R</span>
+    </div>
+    <div class="card-body">
+      <span class="kicker">Bonus dataset</span>
+      <h4 class="anchored">Crimes Against Women in India</h4>
+      <div class="excerpt">District-level crime data mapped state by state, in absolute numbers and per lakh of population.</div>
+      <div class="techs"><span>maps</span><span>bonus</span></div>
+      <p class="meta">Posted Jul 2024</p>
+    </div>
+  </a>
+
+  <a class="chart-card" href="./tidy-analysis/21052024/index.html" data-cats="R|area chart|custom background" data-year="2024" data-text="carbon majors emissions 1.42 trillion tonnes of co₂ from the world's largest producers, by commodity and owner. carbon majors emissions data in r: stacked area charts with a custom background and an inset pie, showing co₂ emissions by commodity and by entity type. r area chart custom background" data-index="4" data-categories="UiUyQ2FyZWElMjBjaGFydCUyQ2N1c3RvbSUyMGJhY2tncm91bmQ=" data-listing-date-sort="1717819200000" data-listing-file-modified-sort="1792884075867" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1409">
+    <div class="card-img">
+      <img src="./tidy-analysis/21052024/plot1.png" alt="Carbon Majors Emissions" loading="lazy">
+      <span class="tool r">R</span>
+    </div>
+    <div class="card-body">
+      <span class="kicker">Week of 21 May 2024</span>
+      <h4 class="anchored">Carbon Majors Emissions</h4>
+      <div class="excerpt">1.42 trillion tonnes of CO₂ from the world's largest producers, by commodity and owner.</div>
+      <div class="techs"><span>area chart</span><span>custom background</span></div>
+      <p class="meta">Posted Jun 2024</p>
+    </div>
+  </a>
+
+  <a class="chart-card" href="./tidy-analysis/23042024/index.html" data-cats="R|animation|line chart" data-year="2024" data-text="objects launched into space 65 years of launches, from a handful a year to thousands, as charts and a racing-bar movie. objects launched into space, 1957–2023, in r: annotated line charts by entity and country and a gganimate racing bar chart of the top launchers. r animation line chart" data-index="5" data-categories="UiUyQ2FuaW1hdGlvbiUyQ2xpbmUlMjBjaGFydA==" data-listing-date-sort="1715140800000" data-listing-file-modified-sort="1792884086085" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="22" data-listing-word-count-sort="4241">
+    <div class="card-img">
+      <img src="./tidy-analysis/23042024/plot1.png" alt="Objects Launched into Space" loading="lazy">
+      <span class="tool r">R</span>
+    </div>
+    <div class="card-body">
+      <span class="kicker">Week of 23 Apr 2024</span>
+      <h4 class="anchored">Objects Launched into Space</h4>
+      <div class="excerpt">65 years of launches, from a handful a year to thousands, as charts and a racing-bar movie.</div>
+      <div class="techs"><span>animation</span><span>line chart</span></div>
+      <p class="meta">Posted May 2024</p>
+    </div>
+  </a>
+
+  <a class="chart-card" href="./tidy-analysis/02042024/index.html" data-cats="R|recreation|pie chart" data-year="2024" data-text="du bois challenge recreating plate 37 from w.e.b. du bois's 1900 data portraits in ggplot2. a ggplot2 recreation of plate 37 from w.e.b. du bois's data portraits for the 1900 paris exposition, for the 2024 du bois visualization challenge on tidytuesday. r recreation pie chart" data-index="6" data-categories="UiUyQ3JlY3JlYXRpb24lMkNwaWUlMjBjaGFydA==" data-listing-date-sort="1712289600000" data-listing-file-modified-sort="1792884086081" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="852">
+    <div class="card-img">
+      <img src="./tidy-analysis/02042024/MyVersion_Dubios.png" alt="Du Bois Challenge" loading="lazy">
+      <span class="tool r">R</span>
+    </div>
+    <div class="card-body">
+      <span class="kicker">Week of 2 Apr 2024</span>
+      <h4 class="anchored">Du Bois Challenge</h4>
+      <div class="excerpt">Recreating plate 37 from W.E.B. Du Bois's 1900 data portraits in ggplot2.</div>
+      <div class="techs"><span>recreation</span><span>pie chart</span></div>
+      <p class="meta">Posted Apr 2024</p>
+    </div>
+  </a>
+
+  <a class="chart-card" href="./tidy-analysis/12032024/index.html" data-cats="Python|scatter plot|histogram" data-year="2024" data-text="fiscal sponsors most fiscal sponsors run one or two projects and charge a 5–10% fee. fiscal sponsorship directory in python: sponsorship age against number of projects, and annotated histograms of projects per sponsor and sponsorship fees. python scatter plot histogram" data-index="7" data-categories="UHl0aG9uJTJDc2NhdHRlciUyMHBsb3QlMkNoaXN0b2dyYW0=" data-listing-date-sort="1710993600000" data-listing-file-modified-sort="1792884031619" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="858">
+    <div class="card-img">
+      <img src="./tidy-analysis/12032024/thumbnail.png" alt="Fiscal Sponsors" loading="lazy">
+      <span class="tool python">Python</span>
+    </div>
+    <div class="card-body">
+      <span class="kicker">Week of 12 Mar 2024</span>
+      <h4 class="anchored">Fiscal Sponsors</h4>
+      <div class="excerpt">Most fiscal sponsors run one or two projects and charge a 5–10% fee.</div>
+      <div class="techs"><span>scatter plot</span><span>histogram</span></div>
+      <p class="meta">Posted Mar 2024</p>
+    </div>
+  </a>
+
+  <a class="chart-card" href="./tidy-analysis/05032024/index.html" data-cats="Python|line chart|heat map" data-year="2024" data-text="trash wheel collection baltimore's trash wheels collect more every year, with a sharp rise after covid. mr. trash wheel and friends in python: trash weight and volume over the years, homes powered by the collected trash, trends by item, and a correlation heat map. python line chart heat map" data-index="8" data-categories="UHl0aG9uJTJDbGluZSUyMGNoYXJ0JTJDaGVhdCUyMG1hcA==" data-listing-date-sort="1709874000000" data-listing-file-modified-sort="1792884384248" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="595">
+    <div class="card-img">
+      <img src="./tidy-analysis/05032024/thumbnail.png" alt="Trash Wheel Collection" loading="lazy">
+      <span class="tool python">Python</span>
+    </div>
+    <div class="card-body">
+      <span class="kicker">Week of 5 Mar 2024</span>
+      <h4 class="anchored">Trash Wheel Collection</h4>
+      <div class="excerpt">Baltimore's trash wheels collect more every year, with a sharp rise after COVID.</div>
+      <div class="techs"><span>line chart</span><span>heat map</span></div>
+      <p class="meta">Posted Mar 2024</p>
+    </div>
+  </a>
+
+  <a class="chart-card" href="./tidy-analysis/20022024/index.html" data-cats="Python|clustering|word cloud" data-year="2024" data-text="r consortium isc grants clustering the r consortium's grants by funding and topic, then reading each cluster through a word cloud. r consortium isc grants in python: spacy keyword extraction, k-means clustering, segment and scatter plots, and a word cloud for each cluster of funded projects. python clustering word cloud" data-index="9" data-categories="UHl0aG9uJTJDY2x1c3RlcmluZyUyQ3dvcmQlMjBjbG91ZA==" data-listing-date-sort="1708750800000" data-listing-file-modified-sort="1792884384248" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1525">
+    <div class="card-img">
+      <img src="./tidy-analysis/20022024/thumbnail.png" alt="R Consortium ISC Grants" loading="lazy">
+      <span class="tool python">Python</span>
+    </div>
+    <div class="card-body">
+      <span class="kicker">Week of 20 Feb 2024</span>
+      <h4 class="anchored">R Consortium ISC Grants</h4>
+      <div class="excerpt">Clustering the R Consortium's grants by funding and topic, then reading each cluster through a word cloud.</div>
+      <div class="techs"><span>clustering</span><span>word cloud</span></div>
+      <p class="meta">Posted Feb 2024</p>
+    </div>
+  </a>
+
+  <a class="chart-card" href="./tidy-analysis/13022024/index.html" data-cats="Python|column chart|line chart" data-year="2024" data-text="valentine's day consumer data valentine's spending has nearly doubled. men buy flowers and jewellery; women buy cards. ten years of us valentine's day survey data in python: how spending changes with age, which gift categories are growing, and how men and women differ. python column chart line chart" data-index="10" data-categories="UHl0aG9uJTJDY29sdW1uJTIwY2hhcnQlMkNsaW5lJTIwY2hhcnQ=" data-listing-date-sort="1708059600000" data-listing-file-modified-sort="1792884031619" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1115">
+    <div class="card-img">
+      <img src="./tidy-analysis/13022024/thumbnail.png" alt="Valentine's Day Consumer Data" loading="lazy">
+      <span class="tool python">Python</span>
+    </div>
+    <div class="card-body">
+      <span class="kicker">Week of 13 Feb 2024</span>
+      <h4 class="anchored">Valentine's Day Consumer Data</h4>
+      <div class="excerpt">Valentine's spending has nearly doubled. Men buy flowers and jewellery; women buy cards.</div>
+      <div class="techs"><span>column chart</span><span>line chart</span></div>
+      <p class="meta">Posted Feb 2024</p>
+    </div>
+  </a>
+
+  <a class="chart-card" href="./tidy-analysis/30012024/index.html" data-cats="Python|density plot|line chart" data-year="2024" data-text="groundhog predictions most groundhogs call an early spring. punxsutawney phil usually doesn't. groundhog day predictions in python: density, line and bar charts of how often groundhogs see their shadow, year on year and groundhog by groundhog. python density plot line chart" data-index="11" data-categories="UHl0aG9uJTJDZGVuc2l0eSUyMHBsb3QlMkNsaW5lJTIwY2hhcnQ=" data-listing-date-sort="1706677200000" data-listing-file-modified-sort="1792884086089" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="662">
+    <div class="card-img">
+      <img src="./tidy-analysis/30012024/thumbnail.png" alt="Groundhog Predictions" loading="lazy">
+      <span class="tool python">Python</span>
+    </div>
+    <div class="card-body">
+      <span class="kicker">Week of 30 Jan 2024</span>
+      <h4 class="anchored">Groundhog Predictions</h4>
+      <div class="excerpt">Most groundhogs call an early spring. Punxsutawney Phil usually doesn't.</div>
+      <div class="techs"><span>density plot</span><span>line chart</span></div>
+      <p class="meta">Posted Jan 2024</p>
+    </div>
+  </a>
+
+  <a class="chart-card" href="./tidy-analysis/16012024/index.html" data-cats="Python|line chart" data-year="2024" data-text="us polling places how many polling places the us opened in each election year, 2012 to 2020. a first tidytuesday chart in python: counting us polling places per election year from the 2012–2020 polling-places dataset with pandas, dfply and plotnine. python line chart" data-index="12" data-categories="UHl0aG9uJTJDbGluZSUyMGNoYXJ0" data-listing-date-sort="1705554000000" data-listing-file-modified-sort="1792884031618" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="119">
+    <div class="card-img">
+      <img src="./tidy-analysis/16012024/thumbnail.png" alt="US Polling Places" loading="lazy">
+      <span class="tool python">Python</span>
+    </div>
+    <div class="card-body">
+      <span class="kicker">Week of 16 Jan 2024</span>
+      <h4 class="anchored">US Polling Places</h4>
+      <div class="excerpt">How many polling places the US opened in each election year, 2012 to 2020.</div>
+      <div class="techs"><span>line chart</span></div>
+      <p class="meta">Posted Jan 2024</p>
+    </div>
+  </a>
+
+</div>
+
+<p class="empty-note" hidden="">No charts match. Try another filter or clear the search.</p>
+
+<script>
+(() => {
+  const bar = document.querySelector(".gallery-toolbar");
+  const cards = [...document.querySelectorAll(".chart-card")];
+  const count = bar.querySelector(".count"), search = bar.querySelector(".search");
+  const empty = document.querySelector(".empty-note");
+  const state = { f: "", y: "", q: "" };
+  function apply() {
+    let n = 0;
+    cards.forEach(c => {
+      const ok = (!state.f || c.dataset.cats.split("|").includes(state.f))
+              && (!state.y || c.dataset.year === state.y)
+              && (!state.q || c.dataset.text.includes(state.q));
+      c.classList.toggle("hidden", !ok);
+      if (ok) n++;
+    });
+    count.textContent = n + (n === 1 ? " analysis" : " analyses");
+    empty.hidden = n > 0;
+  }
+  for (const key of ["f", "y"]) {
+    const group = bar.querySelectorAll("button[data-" + key + "]");
+    group.forEach(b => b.addEventListener("click", () => {
+      group.forEach(x => x.classList.toggle("active", x === b));
+      state[key] = b.dataset[key];
+      apply();
+    }));
+  }
+  search.addEventListener("input", () => { state.q = search.value.trim().toLowerCase(); apply(); });
+})();
+</script>
+
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+<section id="all-weeks" class="level2 unnumbered unlisted section-head">
+<h2 class="unnumbered unlisted anchored" data-anchor-id="all-weeks">All weeks at a glance</h2>
+<p><span class="meta">Sorted by TidyTuesday week</span></p>
+</section>
+<div id="listing-weeks" class="quarto-listing quarto-listing-container-custom">
+<table class="weeks-table list caption-top table" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Week</th>
+<th data-quarto-table-cell-role="th">Analysis</th>
+<th class="how" data-quarto-table-cell-role="th">Charts</th>
+<th data-quarto-table-cell-role="th">Tool</th>
+<th class="data" data-quarto-table-cell-role="th">Data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd" data-index="0" data-categories="UiUyQ21hcHMlMkNib251cw==" data-listing-date-sort="1721620800000" data-listing-file-modified-sort="1792884093984" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3120">
+<td class="when">Bonus</td>
+<td class="what"><a href="./tidy-analysis/22072024/index.html">Crimes Against Women in India</a><span class="sub">District-level crime data mapped state by state, in absolute numbers and per lakh of population.</span></td>
+<td class="how">Bar chart, choropleth maps, correlation</td>
+<td><span class="tool r">R</span></td>
+<td class="data"></td>
+</tr>
+<tr class="even" data-index="1" data-categories="UiUyQ3NjYXR0ZXIlMjBwbG90JTJDY2x1c3RlcmluZyUyQ3RhYmxl" data-listing-date-sort="1792987200000" data-listing-file-modified-sort="1793062574695" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="362">
+<td class="when">20 Oct 2026</td>
+<td class="what"><a href="./tidy-analysis/20102026/index.html">College Majors and AI Exposure</a><span class="sub">The jobs least exposed to AI pay the most, yet only about 1 in 40 graduates heads toward them.</span></td>
+<td class="how">Annotated scatter, k-means clusters, gt table</td>
+<td><span class="tool r">R</span></td>
+<td class="data"><a href="https://github.com/rfordatascience/tidytuesday/blob/main/data/2026/2026-10-20/readme.md">readme ↗</a></td>
+</tr>
+<tr class="odd" data-index="2" data-categories="UiUyQ2R1YWwlMjBheGlzJTJDYmFyJTIwY2hhcnQ=" data-listing-date-sort="1730347200000" data-listing-file-modified-sort="1792884086087" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1479">
+<td class="when">29 Oct 2024</td>
+<td class="what"><a href="./tidy-analysis/29102024/index.html">Monster Movies</a><span class="sub">Horror films have boomed since 2000, and the good ones with them.</span></td>
+<td class="how">Dual-axis line, bar charts</td>
+<td><span class="tool r">R</span></td>
+<td class="data"><a href="https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-10-29/readme.md">readme ↗</a></td>
+</tr>
+<tr class="even" data-index="3" data-categories="UiUyQ2FyZWElMjBjaGFydCUyQ2N1c3RvbSUyMGJhY2tncm91bmQ=" data-listing-date-sort="1717819200000" data-listing-file-modified-sort="1792884075867" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1409">
+<td class="when">21 May 2024</td>
+<td class="what"><a href="./tidy-analysis/21052024/index.html">Carbon Majors Emissions</a><span class="sub">1.42 trillion tonnes of CO₂ from the world's largest producers, by commodity and owner.</span></td>
+<td class="how">Stacked area, inset pie</td>
+<td><span class="tool r">R</span></td>
+<td class="data"><a href="https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-05-21/readme.md">readme ↗</a></td>
+</tr>
+<tr class="odd" data-index="4" data-categories="UiUyQ2FuaW1hdGlvbiUyQ2xpbmUlMjBjaGFydA==" data-listing-date-sort="1715140800000" data-listing-file-modified-sort="1792884086085" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="22" data-listing-word-count-sort="4241">
+<td class="when">23 Apr 2024</td>
+<td class="what"><a href="./tidy-analysis/23042024/index.html">Objects Launched into Space</a><span class="sub">65 years of launches, from a handful a year to thousands, as charts and a racing-bar movie.</span></td>
+<td class="how">Line charts, racing bar animation</td>
+<td><span class="tool r">R</span></td>
+<td class="data"><a href="https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-04-23/readme.md">readme ↗</a></td>
+</tr>
+<tr class="even" data-index="5" data-categories="UiUyQ3JlY3JlYXRpb24lMkNwaWUlMjBjaGFydA==" data-listing-date-sort="1712289600000" data-listing-file-modified-sort="1792884086081" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="852">
+<td class="when">2 Apr 2024</td>
+<td class="what"><a href="./tidy-analysis/02042024/index.html">Du Bois Challenge</a><span class="sub">Recreating plate 37 from W.E.B. Du Bois's 1900 data portraits in ggplot2.</span></td>
+<td class="how">Annotated pie chart</td>
+<td><span class="tool r">R</span></td>
+<td class="data"><a href="https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-04-02/readme.md">readme ↗</a></td>
+</tr>
+<tr class="odd" data-index="6" data-categories="UHl0aG9uJTJDc2NhdHRlciUyMHBsb3QlMkNoaXN0b2dyYW0=" data-listing-date-sort="1710993600000" data-listing-file-modified-sort="1792884031619" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="858">
+<td class="when">12 Mar 2024</td>
+<td class="what"><a href="./tidy-analysis/12032024/index.html">Fiscal Sponsors</a><span class="sub">Most fiscal sponsors run one or two projects and charge a 5–10% fee.</span></td>
+<td class="how">Scatter, annotated histograms</td>
+<td><span class="tool python">Python</span></td>
+<td class="data"><a href="https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-03-12/readme.md">readme ↗</a></td>
+</tr>
+<tr class="even" data-index="7" data-categories="UHl0aG9uJTJDbGluZSUyMGNoYXJ0JTJDaGVhdCUyMG1hcA==" data-listing-date-sort="1709874000000" data-listing-file-modified-sort="1792884384248" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="595">
+<td class="when">5 Mar 2024</td>
+<td class="what"><a href="./tidy-analysis/05032024/index.html">Trash Wheel Collection</a><span class="sub">Baltimore's trash wheels collect more every year, with a sharp rise after COVID.</span></td>
+<td class="how">Line charts, heat map</td>
+<td><span class="tool python">Python</span></td>
+<td class="data"><a href="https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-03-05/readme.md">readme ↗</a></td>
+</tr>
+<tr class="odd" data-index="8" data-categories="UHl0aG9uJTJDY2x1c3RlcmluZyUyQ3dvcmQlMjBjbG91ZA==" data-listing-date-sort="1708750800000" data-listing-file-modified-sort="1792884384248" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1525">
+<td class="when">20 Feb 2024</td>
+<td class="what"><a href="./tidy-analysis/20022024/index.html">R Consortium ISC Grants</a><span class="sub">Clustering the R Consortium's grants by funding and topic, then reading each cluster through a word cloud.</span></td>
+<td class="how">Segment, scatter, word clouds</td>
+<td><span class="tool python">Python</span></td>
+<td class="data"><a href="https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-02-20/readme.md">readme ↗</a></td>
+</tr>
+<tr class="even" data-index="9" data-categories="UHl0aG9uJTJDY29sdW1uJTIwY2hhcnQlMkNsaW5lJTIwY2hhcnQ=" data-listing-date-sort="1708059600000" data-listing-file-modified-sort="1792884031619" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1115">
+<td class="when">13 Feb 2024</td>
+<td class="what"><a href="./tidy-analysis/13022024/index.html">Valentine's Day Consumer Data</a><span class="sub">Valentine's spending has nearly doubled. Men buy flowers and jewellery; women buy cards.</span></td>
+<td class="how">Line and column charts</td>
+<td><span class="tool python">Python</span></td>
+<td class="data"><a href="https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-02-13/readme.md">readme ↗</a></td>
+</tr>
+<tr class="odd" data-index="10" data-categories="UHl0aG9uJTJDZGVuc2l0eSUyMHBsb3QlMkNsaW5lJTIwY2hhcnQ=" data-listing-date-sort="1706677200000" data-listing-file-modified-sort="1792884086089" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="662">
+<td class="when">30 Jan 2024</td>
+<td class="what"><a href="./tidy-analysis/30012024/index.html">Groundhog Predictions</a><span class="sub">Most groundhogs call an early spring. Punxsutawney Phil usually doesn't.</span></td>
+<td class="how">Density, line and bar charts</td>
+<td><span class="tool python">Python</span></td>
+<td class="data"><a href="https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-01-30/readme.md">readme ↗</a></td>
+</tr>
+<tr class="even" data-index="11" data-categories="UHl0aG9uJTJDbGluZSUyMGNoYXJ0" data-listing-date-sort="1705554000000" data-listing-file-modified-sort="1792884031618" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="119">
+<td class="when">16 Jan 2024</td>
+<td class="what"><a href="./tidy-analysis/16012024/index.html">US Polling Places</a><span class="sub">How many polling places the US opened in each election year, 2012 to 2020.</span></td>
+<td class="how">Line chart</td>
+<td><span class="tool python">Python</span></td>
+<td class="data"><a href="https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-01-16/readme.md">readme ↗</a></td>
+</tr>
+<tr class="odd" data-index="12" data-categories="UiUyQ2Rhc2hib2FyZCUyQ21hcHM=" data-listing-date-sort="1726891200000" data-listing-file-modified-sort="1792884156849" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2509">
+<td class="when">14 Nov 2023</td>
+<td class="what"><a href="./tidy-analysis/14112023/index.html">Diwali Sales Dashboard</a><span class="sub">Who shopped for Diwali, what they bought and where, in one Quarto dashboard.</span></td>
+<td class="how">Value boxes, box plots, maps, animation</td>
+<td><span class="tool r">R</span></td>
+<td class="data"><a href="https://github.com/rfordatascience/tidytuesday/blob/main/data/2023/2023-11-14/readme.md">readme ↗</a></td>
+</tr>
+</tbody>
+</table>
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/arunkoundinya\.github\.io\/TidyTuesday\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2023 – 2026 <a href="https://arunkoundinya.github.io/">Arun Koundinya Parasa</a> · Also: <a href="https://arunkoundinya.github.io/CanvassAndAnalyze/">Canvass And Analyze</a> · <a href="https://arunkoundinya.github.io/AIBasicswithAK/">AI Basics with AK</a> · <a href="https://arunkoundinya.github.io/DeepLearning/">Deep Learning</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with 💚 and <a href="https://quarto.org/">Quarto</a>. Data from <a href="https://github.com/rfordatascience/tidytuesday">#TidyTuesday</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
