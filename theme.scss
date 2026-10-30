@@ -470,6 +470,75 @@ main.content .chart-card .excerpt, main.content .now-card .excerpt { font-size: 
 main.content p.meta { font-size: .76rem; margin-bottom: 0; }
 .now-card, .chart-card, .more-band, .weeks-table { .anchorjs-link { display: none; } }
 
+// Share buttons (added by scripts/share_buttons.py)
+.share-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem;
+  font-family: $font-family-sans-serif;
+}
+.share-top { margin: -0.4rem 0 1.4rem; }
+.share-label {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: $muted;
+  margin-right: .2rem;
+}
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 .55rem;
+  border: 1px solid $rule;
+  border-radius: 999px;
+  background: #fff;
+  color: $ink-soft !important;
+  font-size: .78rem;
+  font-weight: 500;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: color .15s, border-color .15s, background .15s;
+  .bi { font-size: .95rem; }
+  &:hover { border-color: currentColor; }
+  &.share-whatsapp:hover { color: #1FA855 !important; }
+  &.share-linkedin:hover { color: #0A66C2 !important; }
+  &.share-twitter-x:hover { color: #000 !important; }
+  &.share-facebook:hover { color: #1877F2 !important; }
+  &.share-telegram:hover { color: #229ED9 !important; }
+  &.share-envelope:hover,
+  &.share-copy:hover,
+  &.share-native:hover { color: $green !important; }
+  &.copied { color: $green-d !important; border-color: $green-d; }
+}
+.share-top .share-btn:not(.share-copy):not(.share-native) { padding: 0; }
+.share-card {
+  margin: 3rem 0 1.5rem;
+  padding: 1.4rem 1.4rem 1.5rem;
+  border-top: 1px solid $rule;
+  border-bottom: 1px solid $rule;
+  text-align: center;
+  h3 { margin: .2rem 0 1rem !important; font-size: 1.3rem; border: none; }
+  .kicker { margin: 0; }
+  .share-row { justify-content: center; }
+  .share-btn { height: 38px; padding: 0 .85rem; }
+}
+// On phones the WhatsApp button leads, and the native share sheet covers the rest.
+@media (max-width: 560px) {
+  .share-top .share-btn span { display: none; }
+  .share-top .share-btn { padding: 0; }
+  .share-top .share-label { display: none; }
+  .share-card .share-btn span { display: none; }
+  .share-card .share-btn.share-native span,
+  .share-card .share-btn.share-whatsapp span,
+  .share-card .share-btn.share-copy span { display: inline; }
+}
+
 // ---------- Email subscribe (assets/subscribe.js) ----------
 // Home band: light, so it doesn't stack two dark bands above "More from Arun"
 .subscribe-band {
