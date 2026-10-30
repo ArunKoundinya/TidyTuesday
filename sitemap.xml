@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://arunkoundinya.github.io/TidyTuesday/gallery.html</loc>
-    <lastmod>2026-10-27T22:34:46.878Z</lastmod>
+    <loc>https://arunkoundinya.github.io/TidyTuesday/index.html</loc>
+    <lastmod>2026-10-27T22:34:46.873Z</lastmod>
   </url>
   <url>
     <loc>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/02042024/index.html</loc>
     <lastmod>2026-10-24T23:21:26.081Z</lastmod>
   </url>
   <url>
-    <loc>https://arunkoundinya.github.io/TidyTuesday/index.html</loc>
-    <lastmod>2026-10-27T22:34:46.873Z</lastmod>
+    <loc>https://arunkoundinya.github.io/TidyTuesday/gallery.html</loc>
+    <lastmod>2026-10-27T22:34:46.878Z</lastmod>
   </url>
   <url>
     <loc>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/05032024/index.html</loc>
@@ -49,6 +49,10 @@
     <lastmod>2026-10-24T23:21:26.085Z</lastmod>
   </url>
   <url>
+    <loc>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/27102026/index.html</loc>
+    <lastmod>2026-10-30T21:45:08.187Z</lastmod>
+  </url>
+  <url>
     <loc>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/29102024/index.html</loc>
     <lastmod>2026-10-24T23:21:26.087Z</lastmod>
   </url>
@@ -62,6 +66,5 @@
   </url>
   <url>
     <loc>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/14112023/index.html</loc>
-    <lastmod>2026-10-27T22:35:52.486Z</lastmod>
   </url>
 </urlset>

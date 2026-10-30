@@ -17,7 +17,19 @@
 <width>144</width>
 </image>
 <generator>quarto-1.7.32</generator>
-<lastBuildDate>Mon, 26 Oct 2026 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 30 Oct 2026 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>IKEA Prices and Affordability</title>
+  <dc:creator>Arun Koundinya Parasa</dc:creator>
+  <link>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/27102026/</link>
+  <description><![CDATA[ The same IKEA sofas and armchairs priced in 50 countries, in R: a world map of the IKEA price index, and how many days of income an IKEA living room costs the median adult and IKEA’s own target customer. ]]></description>
+  <category>R</category>
+  <category>maps</category>
+  <category>dot plot</category>
+  <guid>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/27102026/</guid>
+  <pubDate>Fri, 30 Oct 2026 04:00:00 GMT</pubDate>
+  <media:content url="https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/27102026/Plot1.png" medium="image" type="image/png" height="95" width="144"/>
+</item>
 <item>
   <title>College Majors and AI Exposure</title>
   <dc:creator>Arun Koundinya Parasa</dc:creator>
