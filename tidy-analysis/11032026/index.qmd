@@ -1,0 +1,253 @@
+---
+title: "How the world's languages are connected through grammar"
+subtitle: "TidyTuesday 2026-11-03 · Grambank"
+date: "2026-11-10"
+description: "An interactive map of Grambank, in R and Observable: pick any of about 2,000 languages and see its 10 closest grammatical matches anywhere in the world, or the hub languages that turn up most often in others' top-5 lists."
+categories: [R, interactive, maps]
+image: thumbnail.png
+tt-week: "2026-11-03"
+dataset: https://github.com/rfordatascience/tidytuesday/blob/main/data/2026/2026-11-03/readme.md
+dataset-name: "TidyTuesday 2026-11-03 readme"
+tools: "R · tidyverse; Observable Plot"
+charts: "Interactive map, k-nearest-neighbour network"
+format:
+  html:
+    page-layout: full
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: prep
+library(tidyverse)
+
+base <- "https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-11-03/"
+grambank_languages <- read_csv(paste0(base, "grambank_languages.csv"), show_col_types = FALSE)
+grambank_values    <- read_csv(paste0(base, "grambank_values.csv"),    show_col_types = FALSE)
+
+MIN_FEATURES <- 100   # ignore thinly documented languages
+K_NETWORK    <- 5     # each language links to its 5 most similar
+
+# languages worth comparing
+langs <- grambank_values |>
+  count(language_id, name = "n_features") |>
+  inner_join(grambank_languages, by = "language_id") |>
+  filter(n_features >= MIN_FEATURES, !is.na(latitude)) |>
+  mutate(family_name = replace_na(family_name, "Isolate / unclassified"))
+vals <- grambank_values |> filter(language_id %in% langs$language_id)
+
+# similarity for ALL pairs = share of co-coded features with the same answer,
+# via two matrix products (one-hot answers -> agreements, presence -> shared)
+onehot <- function(df, col) {
+  m <- table(factor(df$language_id, levels = langs$language_id), df[[col]])
+  matrix(as.numeric(m), nrow(m), dimnames = list(rownames(m), colnames(m)))
+}
+A <- onehot(vals, "code_id"); P <- onehot(vals, "parameter_id")
+shared <- tcrossprod(P)
+sim    <- tcrossprod(A) / shared
+sim[shared < MIN_FEATURES] <- NA
+diag(sim) <- NA
+
+# k-nearest-neighbour network (directed: "B is among A's 5 closest")
+knn <- map_dfr(rownames(sim), \(id) {
+  s <- sort(sim[id, ], decreasing = TRUE)[seq_len(K_NETWORK)]
+  tibble(from = id, to = names(s), sim = unname(s))
+}) |> filter(!is.na(sim))
+
+# hub score: how many languages count this one among their 5 closest
+hub <- count(knn, language_id = to, name = "hub")
+
+# undirected links for drawing, with both ends' coordinates
+coords <- select(langs, language_id, lon = longitude, lat = latitude)
+links <- knn |>
+  mutate(a = pmin(from, to), b = pmax(from, to)) |>
+  distinct(a, b, .keep_all = TRUE) |>
+  left_join(rename(coords, a = language_id, lon1 = lon, lat1 = lat), by = "a") |>
+  left_join(rename(coords, b = language_id, lon2 = lon, lat2 = lat), by = "b") |>
+  select(from = a, to = b, lon1, lat1, lon2, lat2, sim)
+
+# family groups for colouring: 8 biggest families + Other
+top_fam <- langs |> filter(family_name != "Isolate / unclassified") |>
+  count(family_name, sort = TRUE) |> slice_head(n = 8) |> pull(family_name)
+
+# each language's 195 answers as one compact string ("." = not coded),
+# so the browser can compute similarity to any language on the fly
+params <- sort(unique(grambank_values$parameter_id))
+feat <- vals |>
+  mutate(parameter_id = factor(parameter_id, params)) |>
+  select(language_id, parameter_id, value) |>
+  pivot_wider(names_from = parameter_id, values_from = value,
+              names_expand = TRUE, values_fill = NA) |>
+  select(language_id, all_of(params)) |>
+  mutate(across(-language_id, \(x) replace_na(as.character(x), "."))) |>
+  unite("f", -language_id, sep = "")
+
+nodes <- langs |>
+  left_join(hub, by = "language_id") |>
+  left_join(feat, by = "language_id") |>
+  transmute(id = language_id, name = language_name, family = family_name,
+            area = macroarea, lon = longitude, lat = latitude,
+            fam = if_else(family_name %in% top_fam, family_name, "Other"),
+            hub = replace_na(hub, 0L), f)
+
+ojs_define(nodes = nodes, links = links, fam_domain = c(top_fam, "Other"))
+```
+
+Pick a language from the list, or **click any dot on the map**. The map highlights only that language's **10 closest grammatical matches**, numbered from most to least similar and coloured by language family. Switch to **Top 10 hubs** to see the languages that show up most often in other languages' top-5 lists, each joined to its own 5 closest matches.
+
+```{ojs}
+//| label: libs
+Plot = require("@observablehq/plot@0.6.16")
+land = d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/land-110m.json")
+  .then(w => topojson.feature(w, w.objects.land))
+L = transpose(nodes)
+E = transpose(links)
+byId = new Map(L.map(d => [d.id, d]))
+famColours = ["#4E79A7","#F28E2B","#E15759","#76B7B2","#59A14F",
+              "#EDC948","#B07AA1","#FF9DA7","#9D9D9D"]
+```
+
+```{ojs}
+//| label: controls
+viewof sel = Inputs.input("hind1269")      // the selected language (shared state)
+viewof view = Inputs.radio(["Selected language", "Top 10 hubs"],
+                           {value: "Selected language", label: "Show"})
+viewof pick = Inputs.bind(
+  Inputs.select(
+    new Map(L.map(d => [`${d.name} (${d.family})`, d.id])
+             .sort((a, b) => a[0].localeCompare(b[0]))),
+    {label: "Language", width: 360, disabled: view !== "Selected language"}),
+  viewof sel)
+viewof k = Inputs.range([5, 25], {step: 1, value: 10, label: "Matches to show",
+                                  disabled: view !== "Selected language"})
+viewof zoom = Inputs.toggle({label: "Zoom to highlighted", value: true})
+viewof showNet = Inputs.toggle({label: "Show full network (busy!)", value: false})
+```
+
+```{ojs}
+//| label: compute
+// similarity of two languages: share of co-coded features with the same answer
+similarity = (a, b) => {
+  let n = 0, m = 0;
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] !== "." && b[i] !== ".") { n++; if (a[i] === b[i]) m++; }
+  }
+  return n >= 100 ? m / n : NaN;
+}
+closest = (lang, n) => L.filter(d => d.id !== lang.id)
+  .map(d => ({...d, sim: similarity(lang.f, d.f)}))
+  .filter(d => !isNaN(d.sim))
+  .sort((a, b) => b.sim - a.sim).slice(0, n)
+
+me = byId.get(sel)
+data = L.map(d => ({...d, sim: d.id === sel ? NaN : similarity(me.f, d.f)}))
+nbrs = closest(me, k).map((d, i) => ({...d, rank: i + 1}))
+
+// the 10 languages that appear most often in other languages' top 5
+hubs = L.slice().sort((a, b) => b.hub - a.hub).slice(0, 10)
+  .map((d, i) => ({...d, rank: i + 1}))
+// each hub joined to its own 5 closest matches (50 lines, not hundreds)
+hubLinks = hubs.flatMap(h => closest(h, 5).map(d =>
+  ({lon1: h.lon, lat1: h.lat, lon2: d.lon, lat2: d.lat})))
+```
+
+```{ojs}
+//| label: map
+//| column: page
+{
+  const isHub = view === "Top 10 hubs";
+  const focus = isHub ? hubs : nbrs;
+  const sMin = d3.min(nbrs, d => d.sim), sMax = d3.max(nbrs, d => d.sim);
+  const zoomPts = isHub ? focus : [me, ...focus];
+  const xy = {x: "lon", y: "lat"};
+
+  const W = Math.min(width, 1200);
+  const fig = Plot.plot({
+    width: W, height: Math.round(W * 0.5),
+    style: {fontSize: "12px", background: "transparent"},
+    projection: zoom
+      ? {type: "equal-earth", inset: 40,
+         domain: {type: "MultiPoint", coordinates: zoomPts.map(d => [d.lon, d.lat])}}
+      : "equal-earth",
+    color: {type: "categorical", domain: fam_domain, range: famColours,
+            legend: true, label: "Language family"},
+    marks: [
+      Plot.sphere({fill: "#E8F0F3", stroke: "#E2DBCD", clip: "frame"}),
+      Plot.geo(land, {fill: "#E6DFD2", stroke: "#FFFFFF", strokeWidth: 0.4, clip: "frame"}),
+      showNet ? Plot.link(E, {x1: "lon1", y1: "lat1", x2: "lon2", y2: "lat2",
+                               stroke: "#333", strokeOpacity: 0.05, strokeWidth: 0.5,
+                               clip: "frame"}) : null,
+      // every language as a faint grey dot, for context only
+      Plot.dot(L, {...xy, r: 1.6, fill: "#A9A59D", fillOpacity: 0.7, clip: "frame"}),
+      // the connections
+      isHub
+        ? Plot.link(hubLinks, {x1: "lon1", y1: "lat1", x2: "lon2", y2: "lat2",
+                               stroke: "#0B7A5C", strokeOpacity: 0.6, strokeWidth: 1,
+                               clip: "frame"})
+        : Plot.link(nbrs, {x1: () => me.lon, y1: () => me.lat, x2: "lon", y2: "lat",
+                           stroke: "#0B7A5C", strokeOpacity: 0.8, clip: "frame",
+                           strokeWidth: d => 0.8 + 2.5 * (d.sim - sMin) / (sMax - sMin || 1)}),
+      // the highlighted languages: coloured by family, numbered by rank
+      Plot.dot(focus, {...xy, r: 10, fill: "fam", stroke: "white", strokeWidth: 1.5}),
+      Plot.text(focus, {...xy, text: "rank", fill: "white", stroke: "#1b2a3a",
+                        strokeWidth: 2.5, fontSize: 11, fontWeight: "bold"}),
+      // name the three closest matches (or the three biggest hubs) next to their dots
+      Plot.text(focus.filter(d => d.rank <= 3), {...xy, text: "name", dx: 14, textAnchor: "start",
+                        fontSize: 12, fontWeight: "bold", fill: "#1b2a3a", stroke: "white", strokeWidth: 4}),
+      // the selected language
+      isHub ? null : Plot.dot([me], {...xy, r: 10, fill: "#1b2a3a", stroke: "white", strokeWidth: 2.5}),
+      isHub ? null : Plot.text([me], {...xy, text: "name", dy: -20, fontSize: 15,
+                                      fontWeight: "bold", fill: "#1b2a3a", stroke: "white", strokeWidth: 5}),
+      Plot.tip(data, Plot.pointer({
+        ...xy,
+        title: d => `${d.name}\n${d.family} · ${d.area}\n` +
+                    (isHub ? "" : `Similarity to ${me.name}: ${isNaN(d.sim) ? "n/a" : d.sim.toFixed(2)}\n`) +
+                    `In the top 5 of ${d.hub} languages\n(click to select)`
+      }))
+    ]
+  });
+
+  // clicking any dot selects that language (and switches to its view)
+  fig.addEventListener("click", () => {
+    const d = fig.value;
+    if (!d) return;
+    if (d.id !== sel) {
+      viewof sel.value = d.id;
+      viewof sel.dispatchEvent(new Event("input", {bubbles: true}));
+    }
+    if (view !== "Selected language") {
+      viewof view.value = "Selected language";
+      viewof view.dispatchEvent(new Event("input", {bubbles: true}));
+    }
+  });
+  return fig;
+}
+```
+
+::: {.grid .column-page}
+
+::: {.g-col-12 .g-col-md-6}
+#### Closest matches to the selected language
+```{ojs}
+//| label: nbr-table
+Inputs.table(nbrs.map(d => ({"#": d.rank, Language: d.name, Family: d.family,
+                             Similarity: d.sim})),
+  {format: {Similarity: x => x.toFixed(3)}, rows: 25, height: 360, layout: "auto"})
+```
+:::
+
+::: {.g-col-12 .g-col-md-6}
+#### Top 10 hubs (most connected languages)
+```{ojs}
+//| label: hub-table
+Inputs.table(hubs.map(d => ({"#": d.rank, Language: d.name, Family: d.family,
+                             "In top 5 of": d.hub})),
+  {rows: 10, height: 360, layout: "auto"})
+```
+:::
+
+:::
+
+*Similarity = the share of Grambank features coded for both languages on which they give the same answer (at least 100 shared features required). Hub score = the number of languages that list this one among their 5 closest. Data: Skirgård et al. (2023), Grambank, via TidyTuesday.*
