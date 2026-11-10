@@ -17,7 +17,19 @@
 <width>144</width>
 </image>
 <generator>quarto-1.7.32</generator>
-<lastBuildDate>Fri, 30 Oct 2026 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 10 Nov 2026 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>How the world’s languages are connected through grammar</title>
+  <dc:creator>Arun Koundinya Parasa</dc:creator>
+  <link>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/11032026/</link>
+  <description><![CDATA[ An interactive map of Grambank, in R and Observable: pick any of about 2,000 languages and see its 10 closest grammatical matches anywhere in the world, or the hub languages that turn up most often in others’ top-5 lists. ]]></description>
+  <category>R</category>
+  <category>interactive</category>
+  <category>maps</category>
+  <guid>https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/11032026/</guid>
+  <pubDate>Tue, 10 Nov 2026 05:00:00 GMT</pubDate>
+  <media:content url="https://arunkoundinya.github.io/TidyTuesday/tidy-analysis/11032026/thumbnail.png" medium="image" type="image/png" height="83" width="144"/>
+</item>
 <item>
   <title>IKEA Prices and Affordability</title>
   <dc:creator>Arun Koundinya Parasa</dc:creator>
